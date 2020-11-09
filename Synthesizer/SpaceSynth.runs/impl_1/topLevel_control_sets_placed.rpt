@@ -1,0 +1,87 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
+| Date         : Mon Nov  9 12:13:01 2020
+| Host         : DESKTOP-RLIVKHG running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file topLevel_control_sets_placed.rpt
+| Design       : topLevel
+| Device       : xc7a100t
+-------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |     9 |
+|    Minimum number of control sets                        |     9 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    15 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |     9 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     0 |
+| >= 6 to < 8        |     2 |
+| >= 8 to < 10       |     1 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     1 |
+| >= 16              |     4 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              17 |            5 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              26 |            8 |
+| Yes          | No                    | No                     |              22 |            7 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |              72 |           19 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++-----------------------+-----------------------------------------+---------------------------------+------------------+----------------+
+|      Clock Signal     |              Enable Signal              |         Set/Reset Signal        | Slice Load Count | Bel Load Count |
++-----------------------+-----------------------------------------+---------------------------------+------------------+----------------+
+|  clk_100mhz_IBUF_BUFG | synth1/osc1/triangle_wave[7]_i_1_n_0    |                                 |                3 |              7 |
+|  clk_100mhz_IBUF_BUFG | synth1/osc2/triangle_wave[7]_i_1__0_n_0 |                                 |                2 |              7 |
+|  clk_100mhz_IBUF_BUFG | synth1/lpfilter/filtered_out[7]_i_1_n_0 |                                 |                2 |              8 |
+|  clk_100mhz_IBUF_BUFG |                                         | btnd_IBUF                       |                4 |             11 |
+|  clk_100mhz_IBUF_BUFG |                                         | sample_counter[15]_i_1_n_0      |                4 |             15 |
+|  clk_100mhz_IBUF_BUFG | synth1/osc1/E[0]                        | btnd_IBUF                       |                5 |             16 |
+|  clk_100mhz_IBUF_BUFG |                                         |                                 |                5 |             17 |
+|  clk_100mhz_IBUF_BUFG | synth1/lpfilter/previous_input_0        | btnd_IBUF                       |                6 |             24 |
+|  clk_100mhz_IBUF_BUFG | synth1/lpfilter/sum[31]_i_2_n_0         | synth1/lpfilter/sum[31]_i_1_n_0 |                8 |             32 |
++-----------------------+-----------------------------------------+---------------------------------+------------------+----------------+
+
+
