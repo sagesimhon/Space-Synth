@@ -1,0 +1,326 @@
+{
+    "ltx_root": {
+        "version": 4,
+        "minor": 0,
+        "ltx_data": [
+            {
+                "name": "EDA_PROBESET",
+                "active": true,
+                "debug_cores": [
+                    {
+                        "type": "XSDB_V3",
+                        "name": "dbg_hub",
+                        "spec": "labtools_xsdbm_v3",
+                        "clk_input_freq_hz": "65000003"
+                    },
+                    {
+                        "type": "ILA_V3",
+                        "name": "blue_blob/my_ila",
+                        "spec": "labtools_ila_v6",
+                        "ipName": "ila",
+                        "core_location": {
+                            "user_chain": 1,
+                            "slave_index": 0,
+                            "bscan_switch_index": 0
+                        },
+                        "uuid": "360998EF8E335A5D9BBF41D3D54B6304",
+                        "pins": [
+                            {
+                                "name": "probe0",
+                                "id": 0,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "blue_blob/pclk_in",
+                                        "isBus": false,
+                                        "parentNetId": 0
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 1,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "blue_blob/vsync_in",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe2",
+                                "id": 2,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 2,
+                                "nets": [
+                                    {
+                                        "name": "blue_blob/href_in",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe3",
+                                "id": 3,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 3,
+                                "nets": [
+                                    {
+                                        "name": "blue_blob/jbclk_p",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe4",
+                                "id": 4,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 11,
+                                "portIndex": 4,
+                                "nets": [
+                                    {
+                                        "name": "blue_blob/data_to_vga",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "blue_blob/data_to_vga[11]"
+                                            },
+                                            {
+                                                "name": "blue_blob/data_to_vga[10]"
+                                            },
+                                            {
+                                                "name": "blue_blob/data_to_vga[9]"
+                                            },
+                                            {
+                                                "name": "blue_blob/data_to_vga[8]"
+                                            },
+                                            {
+                                                "name": "blue_blob/data_to_vga[7]"
+                                            },
+                                            {
+                                                "name": "blue_blob/data_to_vga[6]"
+                                            },
+                                            {
+                                                "name": "blue_blob/data_to_vga[5]"
+                                            },
+                                            {
+                                                "name": "blue_blob/data_to_vga[4]"
+                                            },
+                                            {
+                                                "name": "blue_blob/data_to_vga[3]"
+                                            },
+                                            {
+                                                "name": "blue_blob/data_to_vga[2]"
+                                            },
+                                            {
+                                                "name": "blue_blob/data_to_vga[1]"
+                                            },
+                                            {
+                                                "name": "blue_blob/data_to_vga[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "ILA_V3",
+                        "name": "red_blob/my_ila",
+                        "spec": "labtools_ila_v6",
+                        "ipName": "ila",
+                        "core_location": {
+                            "user_chain": 1,
+                            "slave_index": 1,
+                            "bscan_switch_index": 0
+                        },
+                        "uuid": "95151A2354315AF49684584803B1A9CE",
+                        "pins": [
+                            {
+                                "name": "probe0",
+                                "id": 5,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "red_blob/pclk_in",
+                                        "isBus": false,
+                                        "parentNetId": 16
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 6,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "red_blob/vsync_in",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe2",
+                                "id": 7,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 2,
+                                "nets": [
+                                    {
+                                        "name": "red_blob/href_in",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe3",
+                                "id": 8,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 3,
+                                "nets": [
+                                    {
+                                        "name": "red_blob/jbclk_p",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe4",
+                                "id": 9,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 11,
+                                "portIndex": 4,
+                                "nets": [
+                                    {
+                                        "name": "red_blob/data_to_vga",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "red_blob/data_to_vga[11]"
+                                            },
+                                            {
+                                                "name": "red_blob/data_to_vga[10]"
+                                            },
+                                            {
+                                                "name": "red_blob/data_to_vga[9]"
+                                            },
+                                            {
+                                                "name": "red_blob/data_to_vga[8]"
+                                            },
+                                            {
+                                                "name": "red_blob/data_to_vga[7]"
+                                            },
+                                            {
+                                                "name": "red_blob/data_to_vga[6]"
+                                            },
+                                            {
+                                                "name": "red_blob/data_to_vga[5]"
+                                            },
+                                            {
+                                                "name": "red_blob/data_to_vga[4]"
+                                            },
+                                            {
+                                                "name": "red_blob/data_to_vga[3]"
+                                            },
+                                            {
+                                                "name": "red_blob/data_to_vga[2]"
+                                            },
+                                            {
+                                                "name": "red_blob/data_to_vga[1]"
+                                            },
+                                            {
+                                                "name": "red_blob/data_to_vga[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "parent_nets": [
+                    {
+                        "id": 0,
+                        "name": "blue_blob/pclk_in",
+                        "state_reg": [
+                            {
+                                "name": "blue_blob/my_camera/FSM_sequential_FSM_state_reg",
+                                "states": [
+                                    {
+                                        "name": "ROW_CAPTURE",
+                                        "val": "1"
+                                    },
+                                    {
+                                        "name": "WAIT_FRAME_START",
+                                        "val": "0"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": 16,
+                        "name": "red_blob/pclk_in",
+                        "state_reg": [
+                            {
+                                "name": "red_blob/my_camera/FSM_sequential_FSM_state_reg",
+                                "states": [
+                                    {
+                                        "name": "ROW_CAPTURE",
+                                        "val": "1"
+                                    },
+                                    {
+                                        "name": "WAIT_FRAME_START",
+                                        "val": "0"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
