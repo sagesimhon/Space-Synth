@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date         : Thu Nov 26 19:56:36 2020
+| Date         : Thu Nov 26 22:50:09 2020
 | Host         : ubuntu running 64-bit Ubuntu 20.04.1 LTS
 | Command      : report_utilization -file clean_top_level_utilization_synth.rpt -pb clean_top_level_utilization_synth.pb
 | Design       : clean_top_level
@@ -30,13 +30,13 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Fixed | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                |  289 |     0 |     63400 |  0.46 |
-|   LUT as Logic             |  276 |     0 |     63400 |  0.44 |
-|   LUT as Memory            |   13 |     0 |     19000 |  0.07 |
+| Slice LUTs*                |  478 |     0 |     63400 |  0.75 |
+|   LUT as Logic             |  458 |     0 |     63400 |  0.72 |
+|   LUT as Memory            |   20 |     0 |     19000 |  0.11 |
 |     LUT as Distributed RAM |    0 |     0 |           |       |
-|     LUT as Shift Register  |   13 |     0 |           |       |
-| Slice Registers            |  231 |     0 |    126800 |  0.18 |
-|   Register as Flip Flop    |  231 |     0 |    126800 |  0.18 |
+|     LUT as Shift Register  |   20 |     0 |           |       |
+| Slice Registers            |  380 |     0 |    126800 |  0.30 |
+|   Register as Flip Flop    |  380 |     0 |    126800 |  0.30 |
 |   Register as Latch        |    0 |     0 |    126800 |  0.00 |
 | F7 Muxes                   |    0 |     0 |     31700 |  0.00 |
 | F8 Muxes                   |    0 |     0 |     15850 |  0.00 |
@@ -58,8 +58,8 @@ Table of Contents
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
-| 7     |          Yes |         Set |            - |
-| 224   |          Yes |       Reset |            - |
+| 14    |          Yes |         Set |            - |
+| 366   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -82,8 +82,8 @@ Table of Contents
 +----------------+------+-------+-----------+-------+
 |    Site Type   | Used | Fixed | Available | Util% |
 +----------------+------+-------+-----------+-------+
-| DSPs           |    2 |     0 |       240 |  0.83 |
-|   DSP48E1 only |    2 |       |           |       |
+| DSPs           |    4 |     0 |       240 |  1.67 |
+|   DSP48E1 only |    4 |       |           |       |
 +----------------+------+-------+-----------+-------+
 
 
@@ -93,7 +93,7 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Fixed | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |   52 |     0 |       210 | 24.76 |
+| Bonded IOB                  |   69 |     0 |       210 | 32.86 |
 | Bonded IPADs                |    0 |     0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |         6 |  0.00 |
 | PHASER_REF                  |    0 |     0 |         6 |  0.00 |
@@ -115,7 +115,7 @@ Table of Contents
 +------------+------+-------+-----------+-------+
 |  Site Type | Used | Fixed | Available | Util% |
 +------------+------+-------+-----------+-------+
-| BUFGCTRL   |    3 |     0 |        32 |  9.38 |
+| BUFGCTRL   |    2 |     0 |        32 |  6.25 |
 | BUFIO      |    0 |     0 |        24 |  0.00 |
 | MMCME2_ADV |    1 |     0 |         6 | 16.67 |
 | PLLE2_ADV  |    0 |     0 |         6 |  0.00 |
@@ -149,20 +149,20 @@ Table of Contents
 +------------+------+---------------------+
 |  Ref Name  | Used | Functional Category |
 +------------+------+---------------------+
-| FDRE       |  224 |        Flop & Latch |
-| LUT4       |   90 |                 LUT |
-| LUT6       |   76 |                 LUT |
-| LUT2       |   63 |                 LUT |
-| LUT5       |   53 |                 LUT |
-| LUT3       |   50 |                 LUT |
-| CARRY4     |   37 |          CarryLogic |
+| FDRE       |  366 |        Flop & Latch |
+| LUT4       |  171 |                 LUT |
+| LUT6       |  114 |                 LUT |
+| LUT2       |  107 |                 LUT |
+| LUT3       |   95 |                 LUT |
+| LUT5       |   77 |                 LUT |
+| CARRY4     |   66 |          CarryLogic |
+| OBUF       |   38 |                  IO |
 | IBUF       |   31 |                  IO |
-| OBUF       |   21 |                  IO |
-| SRLC32E    |   13 |  Distributed Memory |
-| LUT1       |   12 |                 LUT |
-| FDSE       |    7 |        Flop & Latch |
-| BUFG       |    3 |               Clock |
-| DSP48E1    |    2 |    Block Arithmetic |
+| LUT1       |   21 |                 LUT |
+| SRLC32E    |   20 |  Distributed Memory |
+| FDSE       |   14 |        Flop & Latch |
+| DSP48E1    |    4 |    Block Arithmetic |
+| BUFG       |    2 |               Clock |
 | MMCME2_ADV |    1 |               Clock |
 +------------+------+---------------------+
 
@@ -173,9 +173,9 @@ Table of Contents
 +---------------+------+
 |    Ref Name   | Used |
 +---------------+------+
-| div_gen_0     |    2 |
-| ila_0         |    1 |
-| blk_mem_gen_0 |    1 |
+| div_gen_0     |    4 |
+| ila_0         |    2 |
+| blk_mem_gen_0 |    2 |
 +---------------+------+
 
 
