@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Sun Nov 15 19:50:22 2020
+# Process ID: 615147
+# Current directory: /home/sage/test_camera/test_camera.runs/div_gen_0_synth_1
+# Command line: vivado -log div_gen_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source div_gen_0.tcl
+# Log file: /home/sage/test_camera/test_camera.runs/div_gen_0_synth_1/div_gen_0.vds
+# Journal file: /home/sage/test_camera/test_camera.runs/div_gen_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source div_gen_0.tcl -notrace
