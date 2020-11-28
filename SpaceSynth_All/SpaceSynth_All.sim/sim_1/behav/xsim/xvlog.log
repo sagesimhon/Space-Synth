@@ -1,0 +1,30 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_mask_bram/sim/blue_mask_bram.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module blue_mask_bram
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_mask_bram/sim/red_mask_bram.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module red_mask_bram
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/image_bram/sim/image_bram.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module image_bram
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/ila_0/sim/ila_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ila_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module blk_mem_gen_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0_clk_wiz.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_wiz_0_clk_wiz
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_wiz_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_read.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module camera_read
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_to_mask.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module camera_to_mask
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module center_finder
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/debounce.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module debounce
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rgb2hsv
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/xvga.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module xvga
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/top_level.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top_level
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

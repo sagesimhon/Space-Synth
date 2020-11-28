@@ -1,0 +1,24 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1" \
+"../../../../SpaceSynth_All.srcs/sources_1/ip/blue_mask_bram/sim/blue_mask_bram.v" \
+"../../../../SpaceSynth_All.srcs/sources_1/ip/red_mask_bram/sim/red_mask_bram.v" \
+"../../../../SpaceSynth_All.srcs/sources_1/ip/image_bram/sim/image_bram.v" \
+"../../../../SpaceSynth_All.srcs/sources_1/ip/ila_0/sim/ila_0.v" \
+"../../../../SpaceSynth_All.srcs/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v" \
+"../../../../SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0_clk_wiz.v" \
+"../../../../SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0.v" \
+
+sv xil_defaultlib  --include "../../../../SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1" \
+"../../../../SpaceSynth_All.srcs/sources_1/new/camera_read.sv" \
+"../../../../SpaceSynth_All.srcs/sources_1/new/camera_to_mask.sv" \
+"../../../../SpaceSynth_All.srcs/sources_1/new/center_finder.sv" \
+"../../../../SpaceSynth_All.srcs/sources_1/new/debounce.sv" \
+"../../../../SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv" \
+"../../../../SpaceSynth_All.srcs/sources_1/new/xvga.sv" \
+"../../../../SpaceSynth_All.srcs/sources_1/new/top_level.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
