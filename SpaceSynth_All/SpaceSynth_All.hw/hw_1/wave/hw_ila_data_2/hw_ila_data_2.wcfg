@@ -10,28 +10,18 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="1025fs"></ZoomEndTime>
+      <ZoomEndTime time="178fs"></ZoomEndTime>
       <Cursor1Time time="542fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="170"></ValueColumnWidth>
+      <ValueColumnWidth column_width="166"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="5" />
-   <wave_markers>
-   </wave_markers>
+   <WVObjectSize size="4" />
    <wvobject fp_name="color_blobs/red_cf/frame_state" type="array">
       <obj_property name="DisplayName">FullPathName</obj_property>
       <obj_property name="ElementShortName">color_blobs/red_cf/frame_state[1:0]</obj_property>
       <obj_property name="ObjectShortName">frame_state[1:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject fp_name="color_blobs/red_cf/write_enable" type="logic">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">color_blobs/red_cf/write_enable</obj_property>
-      <obj_property name="ObjectShortName">write_enable</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>

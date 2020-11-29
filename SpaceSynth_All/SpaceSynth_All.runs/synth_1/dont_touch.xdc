@@ -6,5 +6,5 @@
 # IP: ip/blue_mask_bram/blue_mask_bram.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==blue_mask_bram || ORIG_REF_NAME==blue_mask_bram} -quiet] -quiet
 
-# IP: ip/blk_mem_gen_0/blk_mem_gen_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==blk_mem_gen_0 || ORIG_REF_NAME==blk_mem_gen_0} -quiet] -quiet
+# IP: ip/average_divider/average_divider.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==average_divider || ORIG_REF_NAME==average_divider} -quiet] -quiet

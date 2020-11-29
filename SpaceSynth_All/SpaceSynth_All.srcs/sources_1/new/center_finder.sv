@@ -8,24 +8,25 @@ module center_finder(input clk_in, input rst_in, //clock and reset
                      output logic [8:0] h_index_out);
     
     parameter MAX_V_IDX = 8'd239; // height of camera frame
-    parameter MAX_H_IDX = 9'd319; // width of camera frame
+    parameter MAX_H_IDX = 9'd0; // width of camera frame
     
     logic [7:0] v_index_in_prev;
     logic [8:0] h_index_in_prev;
 
+    //Vars to hold index sum for averaging
+    // Size is determined by max size of sum of indices
+    // which equals n(n+1) / 2 *m where n = 319 
+    // and m = 239 
+    logic [23:0] h_sum;
+    logic [23:0] v_sum;
+    
+    logic [16:0] num_pixels;
+    logic divide_enable;
+    
     logic [1:0] frame_state;
     
-    logic [16:0] array_count;
-    logic [16:0] pixel_index_data;
-    logic [16:0] center_indeces;
-    
-    //Setup BRAM for storing pixel indices
-    logic write_enable;
-    blk_mem_gen_0 index_bram(.addra(array_count), 
-                             .clka(clk_in), //camera's clock signal 
-                             .dina(pixel_index_data),
-                             .wea(write_enable),
-                             .douta(center_indeces));
+    logic [47:0] h_quotient;
+    logic [47:0] v_quotient;
      
     localparam INITIALIZE = 0;
     localparam IDLE = 1;
@@ -33,80 +34,94 @@ module center_finder(input clk_in, input rst_in, //clock and reset
     localparam DONE = 3;  
     always_ff @(posedge clk_in)begin
         case(frame_state)
-            INITIALIZE: begin //Zero everything at beginning of frame
-                valid_out <= 1'b0;
-                area_out <= 17'd0;
-                array_count <= 17'd0;
-                write_enable <= 1'b1;
+            INITIALIZE: begin 
+                h_sum <= 24'd0;
+                v_sum <= 24'd0;
+                num_pixels <= 17'd0;
+                divide_enable <= 1'd0;
+                valid_out <= 1'd0;
                 frame_state <= NEWPIXEL;
                end
             
-            IDLE: begin //Sit around until something interesting happens
+            IDLE: begin 
                 //If we get a new pixel...
                 if ((v_index_in != v_index_in_prev) || (h_index_in != h_index_in_prev))begin
-                    if (pixel_in)begin //...and it's part of the mask, count it!
-                        write_enable <= 1'b1; //Enable writing to BRAM
+                    if (pixel_in)begin //...and it's part of the tracked object, count it!
                         frame_state <= NEWPIXEL;
                     end
                     else begin //otherwise, do nothing
-                        write_enable <= 1'b0;
+                        divide_enable <= 1'b0;
                         v_index_in_prev <= v_index_in;
                         h_index_in_prev <= h_index_in;
                         
                         //Unless we reached the end of the frame, in which case jump to delivering the result
-                        frame_state <= (v_index_in == MAX_V_IDX && h_index_in == MAX_H_IDX)?DONE:IDLE;
+                        if (v_index_in == MAX_V_IDX && h_index_in == MAX_H_IDX)begin
+                            divide_enable <= 1'b1;
+                            frame_state <= DONE;
+                        end 
                     end
                 end
-                //If we dont get a new pixel, don't do anything
-                else begin
-                    frame_state <= IDLE;
-                    write_enable <= 1'b0;
-                end
                end
                
-            NEWPIXEL: begin //Runs just once every time we have a new pixel
-                area_out <= area_out + pixel_in; //Add pixel to area count
+            NEWPIXEL: begin 
+                h_sum <= h_sum+h_index_in;
+                v_sum <= v_sum+v_index_in;
+                num_pixels <= num_pixels+17'd1;
                 
-                //Put vertical and horizontal indices into BRAM
-                pixel_index_data <= {v_index_in,h_index_in}; 
-               
                 v_index_in_prev <= v_index_in;
                 h_index_in_prev <= h_index_in;
-                write_enable <= 1'b0; //Disable writing to BRAM
                 
-                //If we reached the end of the frame, jump to delivering the result
                 if (v_index_in == MAX_V_IDX && h_index_in == MAX_H_IDX)begin
-                    array_count <= array_count>>1; //Set BRAM index to median
+                    divide_enable <= 1'b1;
                     frame_state <= DONE;
                 end
-                //Otherwise go back to idle
                 else begin
-                    array_count <= array_count + 17'd1; //Keep track of how many entries in BRAM
+                    divide_enable <= 1'b0;
                     frame_state <= IDLE;
-                end 
+                end
+                
                end
                
-            DONE: begin //Delivers the result of the center
-                //Pull horizontal and verical index of median pixel out of BRAM
-                v_index_out <= center_indeces[16:9];
-                h_index_out <= center_indeces[8:0];
-                
-                //Signal calculation is done
-                valid_out <= 1'b1;
-                
-                //Reset the FSM when the new frame begins
-                frame_state <= (v_index_in == 0 && h_index_in == 0)?INITIALIZE:DONE;                       
+            DONE: begin //Wait for dividing to finish
+                if (v_index_in == 0 && h_index_in == 0)begin
+                    h_index_out <= h_quotient[32:24]; 
+                    v_index_out <= v_quotient[31:24];
+                    area_out <= num_pixels;
+                    divide_enable <= 1'b1;
+                    valid_out <= 1'd1;
+                    
+                    frame_state <= INITIALIZE;
+                end            
                end
                
             default: frame_state <= INITIALIZE;
         endcase     
     end
     
+
+    //26 clock cycles to divide
+    average_divider r_div(
+		.aclk(clk_in),
+		.s_axis_dividend_tdata(h_sum),
+		.s_axis_dividend_tvalid(divide_enable),
+		.s_axis_divisor_tdata(num_pixels),
+		.s_axis_divisor_tvalid(divide_enable),
+		.m_axis_dout_tdata(h_quotient)         
+		);
+    average_divider c_div(
+		.aclk(clk_in),
+		.s_axis_dividend_tdata(v_sum),
+		.s_axis_dividend_tvalid(divide_enable),
+		.s_axis_divisor_tdata(num_pixels),
+		.s_axis_divisor_tvalid(divide_enable),
+		.m_axis_dout_tdata(v_quotient)         
+		);
+
 //    ila_0 my_ila(.clk(clk_in),     
 //                                .probe0(v_index_in), 
 //                                .probe1(h_index_in),
 //                                .probe2(frame_state),
-//                                .probe3(write_enable),
+//                                .probe3(divide_enable),
 //                                .probe4(v_index_out));
-        
+
 endmodule

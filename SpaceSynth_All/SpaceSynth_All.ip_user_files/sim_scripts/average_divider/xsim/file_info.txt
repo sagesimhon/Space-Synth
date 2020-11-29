@@ -1,0 +1,2 @@
+average_divider.vhd,vhdl,xil_defaultlib,../../../../SpaceSynth_All.srcs/sources_1/ip/average_divider/sim/average_divider.vhd,
+glbl.v,Verilog,xil_defaultlib,glbl.v

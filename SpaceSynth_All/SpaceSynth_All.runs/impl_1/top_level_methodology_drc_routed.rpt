@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date         : Fri Nov 27 22:41:15 2020
+| Date         : Sat Nov 28 16:03:51 2020
 | Host         : DESKTOP-RLIVKHG running 64-bit major release  (build 9200)
 | Command      : report_methodology -file top_level_methodology_drc_routed.rpt -pb top_level_methodology_drc_routed.pb -rpx top_level_methodology_drc_routed.rpx
 | Design       : top_level
@@ -23,25 +23,38 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 139
-+-----------+------------------+------------------------------------------------+------------+
-| Rule      | Severity         | Description                                    | Violations |
-+-----------+------------------+------------------------------------------------+------------+
-| TIMING-6  | Critical Warning | No common primary clock between related clocks | 2          |
-| TIMING-17 | Critical Warning | Non-clocked sequential cell                    | 86         |
-| TIMING-20 | Warning          | Non-clocked latch                              | 51         |
-+-----------+------------------+------------------------------------------------+------------+
+             Violations found: 397
++-----------+------------------+--------------------------------------------------------------------+------------+
+| Rule      | Severity         | Description                                                        | Violations |
++-----------+------------------+--------------------------------------------------------------------+------------+
+| TIMING-4  | Critical Warning | Invalid primary clock redefinition on a clock tree                 | 1          |
+| TIMING-6  | Critical Warning | No common primary clock between related clocks                     | 1          |
+| TIMING-7  | Critical Warning | No common node between related clocks                              | 1          |
+| TIMING-17 | Critical Warning | Non-clocked sequential cell                                        | 86         |
+| TIMING-27 | Critical Warning | Invalid primary clock on hierarchical pin                          | 1          |
+| TIMING-51 | Critical Warning | No common phase between related clocks from parallel MMCMs or PLLs | 1          |
+| SYNTH-11  | Warning          | DSP output not registered                                          | 2          |
+| SYNTH-12  | Warning          | DSP input not registered                                           | 4          |
+| TIMING-16 | Warning          | Large setup violation                                              | 248        |
+| TIMING-18 | Warning          | Missing input or output delay                                      | 1          |
+| TIMING-20 | Warning          | Non-clocked latch                                                  | 51         |
++-----------+------------------+--------------------------------------------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
-TIMING-6#1 Critical Warning
-No common primary clock between related clocks  
-The clocks clk_out1_clk_wiz_0 and clk_out1_clk_wiz_0_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_clk_wiz_0] -to [get_clocks clk_out1_clk_wiz_0_1]
+TIMING-4#1 Critical Warning
+Invalid primary clock redefinition on a clock tree  
+Invalid clock redefinition on a clock tree. The primary clock clkdivider/inst/clk_in1 is defined downstream of clock sys_clk_pin and overrides its insertion delay and/or waveform definition
 Related violations: <none>
 
-TIMING-6#2 Critical Warning
+TIMING-6#1 Critical Warning
 No common primary clock between related clocks  
-The clocks clk_out1_clk_wiz_0_1 and clk_out1_clk_wiz_0 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_clk_wiz_0_1] -to [get_clocks clk_out1_clk_wiz_0]
+The clocks clk_out1_clk_wiz_0 and sys_clk_pin are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_clk_wiz_0] -to [get_clocks sys_clk_pin]
+Related violations: <none>
+
+TIMING-7#1 Critical Warning
+No common node between related clocks  
+The clocks clk_out1_clk_wiz_0 and sys_clk_pin are related (timed together) but they have no common node. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_clk_wiz_0] -to [get_clocks sys_clk_pin]
 Related violations: <none>
 
 TIMING-17#1 Critical Warning
@@ -472,6 +485,1291 @@ Related violations: <none>
 TIMING-17#86 Critical Warning
 Non-clocked sequential cell  
 The clock pin color_blobs/r_mask_bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM18.ram/CLKARDCLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-27#1 Critical Warning
+Invalid primary clock on hierarchical pin  
+A primary clock clkdivider/inst/clk_in1 is created on an inappropriate internal pin clkdivider/inst/clk_in1. It is not recommended to create a primary clock on a hierarchical pin when its driver pin has a fanout connected to multiple clock pins
+Related violations: <none>
+
+TIMING-51#1 Critical Warning
+No common phase between related clocks from parallel MMCMs or PLLs  
+The clocks clk_out1_clk_wiz_0 and sys_clk_pin are timed together but have no phase relationship. The design could fail in hardware. The clocks originate from two parallel MMCMs or PLLs and at least one of the block's clock dividers is not set to 1. To be safely timed, all parallel MMCMs or PLLs must have the clock divider set to 1.
+Related violations: <none>
+
+SYNTH-11#1 Warning
+DSP output not registered  
+DSP instance synth1/lpfilter/mult_out is not fully pipelined on the output side. MREG/PREG are not used.
+Related violations: <none>
+
+SYNTH-11#2 Warning
+DSP output not registered  
+DSP instance synth2/lpfilter/mult_out is not fully pipelined on the output side. MREG/PREG are not used.
+Related violations: <none>
+
+SYNTH-12#1 Warning
+DSP input not registered  
+DSP instance synth1/osc1/phase0 is not fully pipelined on the input side. AREG/BREG/CREG/DREG are not used.
+Related violations: <none>
+
+SYNTH-12#2 Warning
+DSP input not registered  
+DSP instance synth1/osc2/phase0 is not fully pipelined on the input side. AREG/BREG/CREG/DREG are not used.
+Related violations: <none>
+
+SYNTH-12#3 Warning
+DSP input not registered  
+DSP instance synth2/osc1/phase0 is not fully pipelined on the input side. AREG/BREG/CREG/DREG are not used.
+Related violations: <none>
+
+SYNTH-12#4 Warning
+DSP input not registered  
+DSP instance synth2/osc2/phase0 is not fully pipelined on the input side. AREG/BREG/CREG/DREG are not used.
+Related violations: <none>
+
+TIMING-16#1 Warning
+Large setup violation  
+There is a large setup violation of -2.004 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/filtered_out_reg[1]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#2 Warning
+Large setup violation  
+There is a large setup violation of -2.004 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/filtered_out_reg[2]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#3 Warning
+Large setup violation  
+There is a large setup violation of -2.004 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/filtered_out_reg[3]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#4 Warning
+Large setup violation  
+There is a large setup violation of -2.004 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/filtered_out_reg[4]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#5 Warning
+Large setup violation  
+There is a large setup violation of -2.004 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/filtered_out_reg[5]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#6 Warning
+Large setup violation  
+There is a large setup violation of -2.004 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/filtered_out_reg[6]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#7 Warning
+Large setup violation  
+There is a large setup violation of -2.004 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/filtered_out_reg[7]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#8 Warning
+Large setup violation  
+There is a large setup violation of -2.328 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/filtered_out_reg[1]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#9 Warning
+Large setup violation  
+There is a large setup violation of -2.328 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/filtered_out_reg[3]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#10 Warning
+Large setup violation  
+There is a large setup violation of -2.328 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/filtered_out_reg[4]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#11 Warning
+Large setup violation  
+There is a large setup violation of -2.380 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[10]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#12 Warning
+Large setup violation  
+There is a large setup violation of -2.380 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[11]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#13 Warning
+Large setup violation  
+There is a large setup violation of -2.380 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[8]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#14 Warning
+Large setup violation  
+There is a large setup violation of -2.380 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[9]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#15 Warning
+Large setup violation  
+There is a large setup violation of -2.402 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/mult_out/CEA2 (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#16 Warning
+Large setup violation  
+There is a large setup violation of -2.407 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[20]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#17 Warning
+Large setup violation  
+There is a large setup violation of -2.407 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[21]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#18 Warning
+Large setup violation  
+There is a large setup violation of -2.407 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[22]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#19 Warning
+Large setup violation  
+There is a large setup violation of -2.407 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[23]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#20 Warning
+Large setup violation  
+There is a large setup violation of -2.408 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/filtered_out_reg[2]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#21 Warning
+Large setup violation  
+There is a large setup violation of -2.408 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/filtered_out_reg[5]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#22 Warning
+Large setup violation  
+There is a large setup violation of -2.408 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/filtered_out_reg[6]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#23 Warning
+Large setup violation  
+There is a large setup violation of -2.408 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/filtered_out_reg[7]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#24 Warning
+Large setup violation  
+There is a large setup violation of -2.423 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[0]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#25 Warning
+Large setup violation  
+There is a large setup violation of -2.423 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[1]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#26 Warning
+Large setup violation  
+There is a large setup violation of -2.423 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[2]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#27 Warning
+Large setup violation  
+There is a large setup violation of -2.423 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[3]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#28 Warning
+Large setup violation  
+There is a large setup violation of -2.425 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[20]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#29 Warning
+Large setup violation  
+There is a large setup violation of -2.425 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[21]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#30 Warning
+Large setup violation  
+There is a large setup violation of -2.425 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[22]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#31 Warning
+Large setup violation  
+There is a large setup violation of -2.425 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[23]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#32 Warning
+Large setup violation  
+There is a large setup violation of -2.430 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[24]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#33 Warning
+Large setup violation  
+There is a large setup violation of -2.430 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[25]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#34 Warning
+Large setup violation  
+There is a large setup violation of -2.430 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[26]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#35 Warning
+Large setup violation  
+There is a large setup violation of -2.430 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[27]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#36 Warning
+Large setup violation  
+There is a large setup violation of -2.438 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[28]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#37 Warning
+Large setup violation  
+There is a large setup violation of -2.438 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[29]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#38 Warning
+Large setup violation  
+There is a large setup violation of -2.438 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[30]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#39 Warning
+Large setup violation  
+There is a large setup violation of -2.438 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[31]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#40 Warning
+Large setup violation  
+There is a large setup violation of -2.444 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[16]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#41 Warning
+Large setup violation  
+There is a large setup violation of -2.444 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[17]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#42 Warning
+Large setup violation  
+There is a large setup violation of -2.444 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[18]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#43 Warning
+Large setup violation  
+There is a large setup violation of -2.444 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[19]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#44 Warning
+Large setup violation  
+There is a large setup violation of -2.450 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[12]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#45 Warning
+Large setup violation  
+There is a large setup violation of -2.450 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[13]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#46 Warning
+Large setup violation  
+There is a large setup violation of -2.450 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[14]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#47 Warning
+Large setup violation  
+There is a large setup violation of -2.450 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[15]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#48 Warning
+Large setup violation  
+There is a large setup violation of -2.458 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[4]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#49 Warning
+Large setup violation  
+There is a large setup violation of -2.458 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[5]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#50 Warning
+Large setup violation  
+There is a large setup violation of -2.458 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[6]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#51 Warning
+Large setup violation  
+There is a large setup violation of -2.458 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[7]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#52 Warning
+Large setup violation  
+There is a large setup violation of -2.482 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[24]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#53 Warning
+Large setup violation  
+There is a large setup violation of -2.482 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[25]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#54 Warning
+Large setup violation  
+There is a large setup violation of -2.482 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[26]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#55 Warning
+Large setup violation  
+There is a large setup violation of -2.482 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[27]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#56 Warning
+Large setup violation  
+There is a large setup violation of -2.518 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[12]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#57 Warning
+Large setup violation  
+There is a large setup violation of -2.518 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[13]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#58 Warning
+Large setup violation  
+There is a large setup violation of -2.518 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[14]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#59 Warning
+Large setup violation  
+There is a large setup violation of -2.518 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[15]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#60 Warning
+Large setup violation  
+There is a large setup violation of -2.518 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[24]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#61 Warning
+Large setup violation  
+There is a large setup violation of -2.518 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[25]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#62 Warning
+Large setup violation  
+There is a large setup violation of -2.518 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[26]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#63 Warning
+Large setup violation  
+There is a large setup violation of -2.518 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[27]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#64 Warning
+Large setup violation  
+There is a large setup violation of -2.561 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/mult_out/CEB2 (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#65 Warning
+Large setup violation  
+There is a large setup violation of -2.563 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/mult_out/CEA2 (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#66 Warning
+Large setup violation  
+There is a large setup violation of -2.572 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[16]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#67 Warning
+Large setup violation  
+There is a large setup violation of -2.572 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[17]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#68 Warning
+Large setup violation  
+There is a large setup violation of -2.572 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[18]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#69 Warning
+Large setup violation  
+There is a large setup violation of -2.572 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[19]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#70 Warning
+Large setup violation  
+There is a large setup violation of -2.576 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[4]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#71 Warning
+Large setup violation  
+There is a large setup violation of -2.576 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[5]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#72 Warning
+Large setup violation  
+There is a large setup violation of -2.576 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[6]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#73 Warning
+Large setup violation  
+There is a large setup violation of -2.576 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[7]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#74 Warning
+Large setup violation  
+There is a large setup violation of -2.577 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[12]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#75 Warning
+Large setup violation  
+There is a large setup violation of -2.577 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[13]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#76 Warning
+Large setup violation  
+There is a large setup violation of -2.577 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[14]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#77 Warning
+Large setup violation  
+There is a large setup violation of -2.577 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[15]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#78 Warning
+Large setup violation  
+There is a large setup violation of -2.580 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/mult_out/CEB2 (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#79 Warning
+Large setup violation  
+There is a large setup violation of -2.603 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[28]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#80 Warning
+Large setup violation  
+There is a large setup violation of -2.603 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[29]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#81 Warning
+Large setup violation  
+There is a large setup violation of -2.603 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[30]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#82 Warning
+Large setup violation  
+There is a large setup violation of -2.603 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[31]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#83 Warning
+Large setup violation  
+There is a large setup violation of -2.613 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[20]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#84 Warning
+Large setup violation  
+There is a large setup violation of -2.613 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[21]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#85 Warning
+Large setup violation  
+There is a large setup violation of -2.613 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[22]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#86 Warning
+Large setup violation  
+There is a large setup violation of -2.613 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[23]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#87 Warning
+Large setup violation  
+There is a large setup violation of -2.620 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[28]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#88 Warning
+Large setup violation  
+There is a large setup violation of -2.620 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[29]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#89 Warning
+Large setup violation  
+There is a large setup violation of -2.620 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[30]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#90 Warning
+Large setup violation  
+There is a large setup violation of -2.620 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[31]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#91 Warning
+Large setup violation  
+There is a large setup violation of -2.623 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[0]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#92 Warning
+Large setup violation  
+There is a large setup violation of -2.623 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[1]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#93 Warning
+Large setup violation  
+There is a large setup violation of -2.623 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[2]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#94 Warning
+Large setup violation  
+There is a large setup violation of -2.623 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[3]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#95 Warning
+Large setup violation  
+There is a large setup violation of -2.627 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[16]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#96 Warning
+Large setup violation  
+There is a large setup violation of -2.627 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[17]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#97 Warning
+Large setup violation  
+There is a large setup violation of -2.627 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[18]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#98 Warning
+Large setup violation  
+There is a large setup violation of -2.627 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[19]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#99 Warning
+Large setup violation  
+There is a large setup violation of -2.629 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[4]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#100 Warning
+Large setup violation  
+There is a large setup violation of -2.629 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[5]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#101 Warning
+Large setup violation  
+There is a large setup violation of -2.629 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[6]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#102 Warning
+Large setup violation  
+There is a large setup violation of -2.629 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[7]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#103 Warning
+Large setup violation  
+There is a large setup violation of -2.646 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[28]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#104 Warning
+Large setup violation  
+There is a large setup violation of -2.646 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[29]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#105 Warning
+Large setup violation  
+There is a large setup violation of -2.646 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[30]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#106 Warning
+Large setup violation  
+There is a large setup violation of -2.646 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[31]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#107 Warning
+Large setup violation  
+There is a large setup violation of -2.657 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[10]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#108 Warning
+Large setup violation  
+There is a large setup violation of -2.657 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[11]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#109 Warning
+Large setup violation  
+There is a large setup violation of -2.657 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[8]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#110 Warning
+Large setup violation  
+There is a large setup violation of -2.657 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[9]/CE (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#111 Warning
+Large setup violation  
+There is a large setup violation of -2.678 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[0]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#112 Warning
+Large setup violation  
+There is a large setup violation of -2.678 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[1]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#113 Warning
+Large setup violation  
+There is a large setup violation of -2.678 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[2]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#114 Warning
+Large setup violation  
+There is a large setup violation of -2.678 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[3]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#115 Warning
+Large setup violation  
+There is a large setup violation of -2.679 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[20]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#116 Warning
+Large setup violation  
+There is a large setup violation of -2.679 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[21]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#117 Warning
+Large setup violation  
+There is a large setup violation of -2.679 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[22]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#118 Warning
+Large setup violation  
+There is a large setup violation of -2.679 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[23]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#119 Warning
+Large setup violation  
+There is a large setup violation of -2.691 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[10]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#120 Warning
+Large setup violation  
+There is a large setup violation of -2.691 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[11]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#121 Warning
+Large setup violation  
+There is a large setup violation of -2.691 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[8]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#122 Warning
+Large setup violation  
+There is a large setup violation of -2.691 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[9]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#123 Warning
+Large setup violation  
+There is a large setup violation of -2.700 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[0]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#124 Warning
+Large setup violation  
+There is a large setup violation of -2.700 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[1]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#125 Warning
+Large setup violation  
+There is a large setup violation of -2.700 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[2]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#126 Warning
+Large setup violation  
+There is a large setup violation of -2.700 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[3]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#127 Warning
+Large setup violation  
+There is a large setup violation of -2.710 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[4]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#128 Warning
+Large setup violation  
+There is a large setup violation of -2.710 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[5]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#129 Warning
+Large setup violation  
+There is a large setup violation of -2.710 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[6]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#130 Warning
+Large setup violation  
+There is a large setup violation of -2.710 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[7]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#131 Warning
+Large setup violation  
+There is a large setup violation of -2.771 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[10]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#132 Warning
+Large setup violation  
+There is a large setup violation of -2.771 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[11]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#133 Warning
+Large setup violation  
+There is a large setup violation of -2.771 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[8]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#134 Warning
+Large setup violation  
+There is a large setup violation of -2.771 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/sum_reg[9]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#135 Warning
+Large setup violation  
+There is a large setup violation of -2.772 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[16]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#136 Warning
+Large setup violation  
+There is a large setup violation of -2.772 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[17]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#137 Warning
+Large setup violation  
+There is a large setup violation of -2.772 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[18]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#138 Warning
+Large setup violation  
+There is a large setup violation of -2.772 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[19]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#139 Warning
+Large setup violation  
+There is a large setup violation of -2.842 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[24]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#140 Warning
+Large setup violation  
+There is a large setup violation of -2.842 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[25]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#141 Warning
+Large setup violation  
+There is a large setup violation of -2.842 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[26]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#142 Warning
+Large setup violation  
+There is a large setup violation of -2.842 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[27]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#143 Warning
+Large setup violation  
+There is a large setup violation of -2.851 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[12]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#144 Warning
+Large setup violation  
+There is a large setup violation of -2.851 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[13]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#145 Warning
+Large setup violation  
+There is a large setup violation of -2.851 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[14]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#146 Warning
+Large setup violation  
+There is a large setup violation of -2.851 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/sum_reg[15]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#147 Warning
+Large setup violation  
+There is a large setup violation of -2.944 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_input_reg[4]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#148 Warning
+Large setup violation  
+There is a large setup violation of -2.944 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_input_reg[5]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#149 Warning
+Large setup violation  
+There is a large setup violation of -2.944 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_input_reg[6]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#150 Warning
+Large setup violation  
+There is a large setup violation of -2.944 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_input_reg[7]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#151 Warning
+Large setup violation  
+There is a large setup violation of -2.999 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/osc2/phase0/RSTP (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#152 Warning
+Large setup violation  
+There is a large setup violation of -3.039 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/FSM_sequential_state_reg[0]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#153 Warning
+Large setup violation  
+There is a large setup violation of -3.039 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/FSM_sequential_state_reg[1]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#154 Warning
+Large setup violation  
+There is a large setup violation of -3.039 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/FSM_sequential_state_reg[2]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#155 Warning
+Large setup violation  
+There is a large setup violation of -3.040 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[15]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#156 Warning
+Large setup violation  
+There is a large setup violation of -3.040 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[2]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#157 Warning
+Large setup violation  
+There is a large setup violation of -3.040 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[4]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#158 Warning
+Large setup violation  
+There is a large setup violation of -3.040 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[5]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#159 Warning
+Large setup violation  
+There is a large setup violation of -3.040 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[6]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#160 Warning
+Large setup violation  
+There is a large setup violation of -3.044 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/FSM_sequential_state_reg[0]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#161 Warning
+Large setup violation  
+There is a large setup violation of -3.044 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/FSM_sequential_state_reg[1]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#162 Warning
+Large setup violation  
+There is a large setup violation of -3.044 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/FSM_sequential_state_reg[2]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#163 Warning
+Large setup violation  
+There is a large setup violation of -3.078 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and pwm_out/count_reg[1]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#164 Warning
+Large setup violation  
+There is a large setup violation of -3.078 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and pwm_out/count_reg[2]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#165 Warning
+Large setup violation  
+There is a large setup violation of -3.078 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and pwm_out/count_reg[3]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#166 Warning
+Large setup violation  
+There is a large setup violation of -3.078 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and pwm_out/count_reg[4]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#167 Warning
+Large setup violation  
+There is a large setup violation of -3.078 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and pwm_out/count_reg[5]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#168 Warning
+Large setup violation  
+There is a large setup violation of -3.078 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and pwm_out/count_reg[6]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#169 Warning
+Large setup violation  
+There is a large setup violation of -3.078 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and pwm_out/count_reg[7]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#170 Warning
+Large setup violation  
+There is a large setup violation of -3.099 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_input_reg[0]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#171 Warning
+Large setup violation  
+There is a large setup violation of -3.099 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_input_reg[1]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#172 Warning
+Large setup violation  
+There is a large setup violation of -3.099 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_input_reg[2]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#173 Warning
+Large setup violation  
+There is a large setup violation of -3.099 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_input_reg[3]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#174 Warning
+Large setup violation  
+There is a large setup violation of -3.173 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[5]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#175 Warning
+Large setup violation  
+There is a large setup violation of -3.173 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[6]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#176 Warning
+Large setup violation  
+There is a large setup violation of -3.173 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[7]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#177 Warning
+Large setup violation  
+There is a large setup violation of -3.173 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[8]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#178 Warning
+Large setup violation  
+There is a large setup violation of -3.193 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_input_reg[4]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#179 Warning
+Large setup violation  
+There is a large setup violation of -3.193 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_input_reg[5]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#180 Warning
+Large setup violation  
+There is a large setup violation of -3.193 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_input_reg[6]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#181 Warning
+Large setup violation  
+There is a large setup violation of -3.193 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_input_reg[7]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#182 Warning
+Large setup violation  
+There is a large setup violation of -3.194 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[10]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#183 Warning
+Large setup violation  
+There is a large setup violation of -3.194 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[11]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#184 Warning
+Large setup violation  
+There is a large setup violation of -3.194 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[13]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#185 Warning
+Large setup violation  
+There is a large setup violation of -3.194 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[14]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#186 Warning
+Large setup violation  
+There is a large setup violation of -3.204 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[12]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#187 Warning
+Large setup violation  
+There is a large setup violation of -3.204 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[7]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#188 Warning
+Large setup violation  
+There is a large setup violation of -3.275 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[12]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#189 Warning
+Large setup violation  
+There is a large setup violation of -3.275 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[15]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#190 Warning
+Large setup violation  
+There is a large setup violation of -3.275 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[4]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#191 Warning
+Large setup violation  
+There is a large setup violation of -3.317 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[3]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#192 Warning
+Large setup violation  
+There is a large setup violation of -3.317 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[8]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#193 Warning
+Large setup violation  
+There is a large setup violation of -3.317 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[9]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#194 Warning
+Large setup violation  
+There is a large setup violation of -3.330 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[0]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#195 Warning
+Large setup violation  
+There is a large setup violation of -3.330 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[10]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#196 Warning
+Large setup violation  
+There is a large setup violation of -3.340 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/osc2/phase0/RSTP (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#197 Warning
+Large setup violation  
+There is a large setup violation of -3.425 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[11]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#198 Warning
+Large setup violation  
+There is a large setup violation of -3.425 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[13]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#199 Warning
+Large setup violation  
+There is a large setup violation of -3.425 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[14]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#200 Warning
+Large setup violation  
+There is a large setup violation of -3.425 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_output_reg[1]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#201 Warning
+Large setup violation  
+There is a large setup violation of -3.444 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_input_reg[0]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#202 Warning
+Large setup violation  
+There is a large setup violation of -3.444 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_input_reg[1]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#203 Warning
+Large setup violation  
+There is a large setup violation of -3.444 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_input_reg[2]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#204 Warning
+Large setup violation  
+There is a large setup violation of -3.444 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/lpfilter/previous_input_reg[3]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#205 Warning
+Large setup violation  
+There is a large setup violation of -3.474 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[9]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#206 Warning
+Large setup violation  
+There is a large setup violation of -3.481 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth2/osc1/phase0/RSTP (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#207 Warning
+Large setup violation  
+There is a large setup violation of -3.494 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[0]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#208 Warning
+Large setup violation  
+There is a large setup violation of -3.494 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[1]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#209 Warning
+Large setup violation  
+There is a large setup violation of -3.494 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[2]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#210 Warning
+Large setup violation  
+There is a large setup violation of -3.494 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/lpfilter/previous_output_reg[3]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#211 Warning
+Large setup violation  
+There is a large setup violation of -3.690 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and pwm_out/count_reg[0]/R (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#212 Warning
+Large setup violation  
+There is a large setup violation of -3.742 ns between color_blobs/blue_cf/area_out_reg[5]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc2/phase0/A[2] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#213 Warning
+Large setup violation  
+There is a large setup violation of -3.745 ns between color_blobs/blue_cf/area_out_reg[5]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc1/phase0/A[2] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#214 Warning
+Large setup violation  
+There is a large setup violation of -3.801 ns between color_blobs/blue_cf/area_out_reg[11]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc1/phase0/A[3] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#215 Warning
+Large setup violation  
+There is a large setup violation of -3.816 ns between color_blobs/blue_cf/area_out_reg[11]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc2/phase0/A[3] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#216 Warning
+Large setup violation  
+There is a large setup violation of -3.840 ns between db1/clean_out_reg/C (clocked by clk_out1_clk_wiz_0) and synth1/osc1/phase0/RSTP (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#217 Warning
+Large setup violation  
+There is a large setup violation of -3.858 ns between color_blobs/blue_cf/area_out_reg[11]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc2/phase0/A[5] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#218 Warning
+Large setup violation  
+There is a large setup violation of -3.861 ns between color_blobs/blue_cf/area_out_reg[11]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc1/phase0/A[5] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#219 Warning
+Large setup violation  
+There is a large setup violation of -3.945 ns between color_blobs/blue_cf/area_out_reg[11]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc2/phase0/A[4] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#220 Warning
+Large setup violation  
+There is a large setup violation of -3.995 ns between color_blobs/blue_cf/area_out_reg[11]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc1/phase0/A[4] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#221 Warning
+Large setup violation  
+There is a large setup violation of -4.036 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc2/phase0/A[4] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#222 Warning
+Large setup violation  
+There is a large setup violation of -4.107 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc1/phase0/A[3] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#223 Warning
+Large setup violation  
+There is a large setup violation of -4.143 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc2/phase0/A[1] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#224 Warning
+Large setup violation  
+There is a large setup violation of -4.153 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc2/phase0/A[2] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#225 Warning
+Large setup violation  
+There is a large setup violation of -4.228 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc1/phase0/A[5] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#226 Warning
+Large setup violation  
+There is a large setup violation of -4.291 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc1/phase0/A[4] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#227 Warning
+Large setup violation  
+There is a large setup violation of -4.315 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc2/phase0/A[3] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#228 Warning
+Large setup violation  
+There is a large setup violation of -4.335 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc1/phase0/A[2] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#229 Warning
+Large setup violation  
+There is a large setup violation of -4.742 ns between color_blobs/blue_cf/area_out_reg[5]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc2/phase0/A[6] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#230 Warning
+Large setup violation  
+There is a large setup violation of -4.745 ns between color_blobs/blue_cf/area_out_reg[5]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc1/phase0/A[6] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#231 Warning
+Large setup violation  
+There is a large setup violation of -4.828 ns between color_blobs/blue_cf/area_out_reg[5]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc2/phase0/A[9] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#232 Warning
+Large setup violation  
+There is a large setup violation of -4.831 ns between color_blobs/blue_cf/area_out_reg[5]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc1/phase0/A[9] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#233 Warning
+Large setup violation  
+There is a large setup violation of -5.012 ns between color_blobs/blue_cf/area_out_reg[5]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc2/phase0/A[8] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#234 Warning
+Large setup violation  
+There is a large setup violation of -5.015 ns between color_blobs/blue_cf/area_out_reg[5]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc1/phase0/A[8] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#235 Warning
+Large setup violation  
+There is a large setup violation of -5.138 ns between color_blobs/blue_cf/area_out_reg[5]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc2/phase0/A[7] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#236 Warning
+Large setup violation  
+There is a large setup violation of -5.141 ns between color_blobs/blue_cf/area_out_reg[5]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc1/phase0/A[7] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#237 Warning
+Large setup violation  
+There is a large setup violation of -5.186 ns between color_blobs/blue_cf/area_out_reg[5]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc2/phase0/A[10] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#238 Warning
+Large setup violation  
+There is a large setup violation of -5.254 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc2/phase0/A[8] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#239 Warning
+Large setup violation  
+There is a large setup violation of -5.295 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc2/phase0/A[9] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#240 Warning
+Large setup violation  
+There is a large setup violation of -5.318 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc1/phase0/A[7] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#241 Warning
+Large setup violation  
+There is a large setup violation of -5.367 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc2/phase0/A[7] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#242 Warning
+Large setup violation  
+There is a large setup violation of -5.379 ns between color_blobs/blue_cf/area_out_reg[5]/C (clocked by clk_out1_clk_wiz_0) and synth2/osc1/phase0/A[10] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#243 Warning
+Large setup violation  
+There is a large setup violation of -5.397 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc2/phase0/A[6] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#244 Warning
+Large setup violation  
+There is a large setup violation of -5.402 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc2/phase0/A[5] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#245 Warning
+Large setup violation  
+There is a large setup violation of -5.435 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc1/phase0/A[6] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#246 Warning
+Large setup violation  
+There is a large setup violation of -5.447 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc1/phase0/A[9] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#247 Warning
+Large setup violation  
+There is a large setup violation of -5.488 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc1/phase0/A[10] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#248 Warning
+Large setup violation  
+There is a large setup violation of -5.510 ns between color_blobs/red_cf/area_out_reg[12]/C (clocked by clk_out1_clk_wiz_0) and synth1/osc1/phase0/A[8] (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-18#1 Warning
+Missing input or output delay  
+An output delay is missing on aud_pwm relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 TIMING-20#1 Warning

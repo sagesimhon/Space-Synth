@@ -17,10 +17,7 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param tcl.collectionResultDisplayLimit 0
 set_param chipscope.maxJobs 2
-set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -36,19 +33,26 @@ set_property board_part digilentinc.com:nexys4_ddr:part0:1.1 [current_project]
 set_property ip_output_repo {c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.cache/ip} [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib -sv {
+  {C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/amplitude_control.sv}
   {C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_read.sv}
   {C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_to_mask.sv}
   {C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv}
   {C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/debounce.sv}
+  {C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/filter.sv}
+  {C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/filter_coeffs.sv}
+  {C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/mixer.sv}
+  {C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/oscillator.sv}
+  {C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/pwm.sv}
   {C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv}
+  {C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/synthesizer.sv}
   {C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/xvga.sv}
   {C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/top_level.sv}
 }
 read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_mask_bram/blue_mask_bram.xci}}
 set_property used_in_implementation false [get_files -all {{c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_mask_bram/blue_mask_bram_ooc.xdc}}]
 
-read_ip -quiet {{c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci}}
-set_property used_in_implementation false [get_files -all {{c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc}}]
+read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider.xci}}
+set_property used_in_implementation false [get_files -all {{c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider_ooc.xdc}}]
 
 read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_mask_bram/red_mask_bram.xci}}
 set_property used_in_implementation false [get_files -all {{c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_mask_bram/red_mask_bram_ooc.xdc}}]
@@ -59,7 +63,7 @@ set_property used_in_implementation false [get_files -all {{c:/Users/Praj/Docume
 read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/div_gen_0/div_gen_0.xci}}
 set_property used_in_implementation false [get_files -all {{c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/div_gen_0/div_gen_0_ooc.xdc}}]
 
-read_ip -quiet {{c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0.xci}}
+read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0.xci}}
 set_property used_in_implementation false [get_files -all {{c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0_board.xdc}}]
 set_property used_in_implementation false [get_files -all {{c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0.xdc}}]
 set_property used_in_implementation false [get_files -all {{c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0_ooc.xdc}}]

@@ -70,16 +70,10 @@ module top_level(
     logic [7:0] red_center_v_index;
     logic [8:0] red_center_h_index;
     
-    logic [16:0] red_area_valid;
-    assign red_area_valid = red_valid?red_area:red_area_valid;
-    
     logic blue_valid;
     logic [16:0] blue_area;
     logic [7:0] blue_center_v_index;
     logic [8:0] blue_center_h_index;
-    
-    logic [16:0] blue_area_valid;
-    assign blue_area_valid = blue_valid?blue_area:blue_area_valid;
     
     //VGA display 
     logic [10:0] hcount;   
@@ -100,6 +94,9 @@ module top_level(
     logic [11:0] blue_buff;
     logic [16:0] blue_buff_output_pixel_addr;
     
+    //Minimum amount of detected pixels before counting it as an object
+    localparam detection_threshold = 17'd200;
+    
     logic [11:0] current_pixel;
     always_comb begin
         if (sw[2]&&((hcount<320) &&  (vcount<240))) begin //If sw[2] show original image
@@ -107,13 +104,13 @@ module top_level(
             raw_image_output_pixel_addr = hcount+vcount*32'd320;
         end
         else if (~sw[2]&&((hcount<320) &&  (vcount<240))) begin //Otherwise show red mask image
-            //Add green crosshair on center coordinates
-            current_pixel = ((hcount==red_center_h_index) || (vcount==red_center_v_index))?12'h0F0:red_buff;
+            //Add green crosshair on center coordinates (if enough pixels are detected)
+            current_pixel = ((hcount==red_center_h_index) || (vcount==red_center_v_index))?((red_area >= detection_threshold)?12'h0F0:red_buff):red_buff;
             red_buff_output_pixel_addr = hcount+vcount*32'd320;
         end
         else if (~sw[2]&&((hcount>=320) && (hcount<640) && (vcount<240))) begin //Show blue mask image next to it
-            //Add green crosshair on center coordinates
-            current_pixel = ((hcount==blue_center_h_index+320) || (vcount==blue_center_v_index))?12'h0F0:blue_buff;
+            //Add green crosshair on center coordinates (if enough pixels are detected)
+            current_pixel = ((hcount==blue_center_h_index+320) || (vcount==blue_center_v_index))?((blue_area >= detection_threshold)?12'h0F0:blue_buff):blue_buff;
             blue_buff_output_pixel_addr = (hcount-11'd320)+vcount*32'd320;
         end
         else begin
@@ -127,7 +124,89 @@ module top_level(
     assign vga_b = ~blank ? current_pixel[3:0] : 0;
     assign vga_hs = ~hsync;
     assign vga_vs = ~vsync;
-   
+    
+    //Assign synthesizer controls
+    logic signed[7:0] synth1_out;
+    logic signed[7:0] synth2_out;
+    logic signed[7:0] all_synth_out;
+    
+    logic [2:0] synth1_osc2_tune;
+    assign synth1_osc2_tune = 3'd2;
+    
+    logic [1:0] synth1_osc1_shape;
+    assign synth1_osc1_shape = 2'd2;
+    logic [1:0] synth1_osc2_shape;
+    assign synth1_osc2_shape = 2'd3;
+    
+    logic [2:0] synth2_osc2_tune;
+    assign synth2_osc2_tune = 3'd3;
+    
+    logic [1:0] synth2_osc1_shape;
+    assign synth2_osc1_shape = 2'd3;
+    logic [1:0] synth2_osc2_shape;
+    assign synth2_osc2_shape = 2'd2;
+    
+    logic [11:0] synth1_frequency;
+    assign synth1_frequency = (red_area >= detection_threshold)?(12'd200+red_center_v_index<<2):12'd0;
+    
+    logic [11:0] synth2_frequency;
+    assign synth2_frequency = (blue_area >= detection_threshold)?(12'd200+blue_center_v_index<<2):12'd0;
+    
+    logic [7:0] filter_cutoff;
+    assign filter_cutoff = 8'd255;
+    
+    logic [2:0] synth_amplitude;
+    assign synth_amplitude = 3'd7;
+    
+//    logic signed[7:0] lfo_out;
+//    logic [11:0] lfo_frequency;
+//    assign lfo_frequency = red_center_v_index>>3;  
+            
+//    oscillator lfo (
+//        .clk_in(clk_100mhz),
+//        .rst_in(reset),
+//        .step_in(trigger_in),
+//        .shape_in(2'd0),
+//        .frequency_in(lfo_frequency),
+//        .wave_out(lfo_out));
+        
+    synthesizer synth1(
+        .frequency_in(synth1_frequency),
+        .osc2_tune_in(synth1_osc2_tune),
+        .osc1_shape_in(synth1_osc1_shape),
+        .osc2_shape_in(synth1_osc2_shape),
+        .amplitude_in(synth_amplitude),
+        .filter_cutoff_in(filter_cutoff),
+        .trigger_in(sample_trigger),
+        .rst_in(reset), 
+        .clk_in(clk_100mhz),
+        .audio_out(synth1_out));
+        
+    synthesizer synth2(
+        .frequency_in(synth2_frequency),
+        .osc2_tune_in(synth2_osc2_tune),
+        .osc1_shape_in(synth2_osc1_shape),
+        .osc2_shape_in(synth2_osc2_shape),
+        .amplitude_in(synth_amplitude),
+        .filter_cutoff_in(filter_cutoff),
+        .trigger_in(sample_trigger),
+        .rst_in(reset),
+        .clk_in(clk_100mhz),
+        .audio_out(synth2_out));
+        
+    mixer synth_mixer(
+        .wave1_in(synth1_out),
+        .wave2_in(synth2_out),
+        .mixed_out(all_synth_out));
+        
+    pwm pwm_out(
+        .clk_in(clk_100mhz), 
+        .rst_in(reset), 
+        .level_in({~all_synth_out[7],all_synth_out[6:0]}),
+        .pwm_out(pwm_val));
+        
+    assign aud_pwm = pwm_val?1'bZ:1'b0; 
+   //
    //All of the image processing is done inside this big module
    camera_to_mask color_blobs(
     .clk_65mhz(clk_65mhz),
