@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date             : Sat Nov 28 16:03:54 2020
+| Date             : Sat Nov 28 18:36:02 2020
 | Host             : DESKTOP-RLIVKHG running 64-bit major release  (build 9200)
 | Command          : report_power -file top_level_power_routed.rpt -pb top_level_power_summary_routed.pb -rpx top_level_power_routed.rpx
 | Design           : top_level
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.309        |
+| Total On-Chip Power (W)  | 0.315        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.210        |
+| Dynamic (W)              | 0.216        |
 | Device Static (W)        | 0.099        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 83.6         |
@@ -52,22 +52,22 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.017 |        6 |       --- |             --- |
-| Slice Logic             |     0.020 |    12568 |       --- |             --- |
-|   LUT as Logic          |     0.015 |     3152 |     63400 |            4.97 |
-|   CARRY4                |     0.003 |      770 |     15850 |            4.86 |
-|   Register              |     0.002 |     6797 |    126800 |            5.36 |
-|   LUT as Shift Register |    <0.001 |       11 |     19000 |            0.06 |
+| Clocks                  |     0.019 |        8 |       --- |             --- |
+| Slice Logic             |     0.026 |    15611 |       --- |             --- |
+|   LUT as Logic          |     0.019 |     3816 |     63400 |            6.02 |
+|   CARRY4                |     0.004 |      941 |     15850 |            5.94 |
+|   Register              |     0.003 |     8593 |    126800 |            6.78 |
+|   LUT as Shift Register |    <0.001 |        4 |     19000 |            0.02 |
 |   BUFG                  |    <0.001 |        1 |        32 |            3.13 |
 |   F7/F8 Muxes           |    <0.001 |       18 |     63400 |            0.03 |
-|   Others                |     0.000 |     1680 |       --- |             --- |
-| Signals                 |     0.016 |     8461 |       --- |             --- |
-| Block RAM               |     0.012 |     32.5 |       135 |           24.07 |
+|   Others                |     0.000 |     2061 |       --- |             --- |
+| Signals                 |     0.020 |    10393 |       --- |             --- |
+| Block RAM               |     0.007 |       35 |       135 |           25.93 |
 | MMCM                    |     0.122 |        1 |         6 |           16.67 |
-| DSPs                    |     0.004 |       10 |       240 |            4.17 |
-| I/O                     |     0.018 |       71 |       210 |           33.81 |
+| DSPs                    |     0.003 |        9 |       240 |            3.75 |
+| I/O                     |     0.019 |       71 |       210 |           33.81 |
 | Static Power            |     0.099 |          |           |                 |
-| Total                   |     0.309 |          |           |                 |
+| Total                   |     0.315 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -77,7 +77,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.085 |       0.069 |      0.016 |
+| Vccint    |       1.000 |     0.091 |       0.075 |      0.016 |
 | Vccaux    |       1.800 |     0.086 |       0.068 |      0.018 |
 | Vcco33    |       3.300 |     0.009 |       0.005 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -130,14 +130,16 @@ Table of Contents
 2.2 Clock Constraints
 ---------------------
 
-+--------------------+------------------------------------+-----------------+
-| Clock              | Domain                             | Constraint (ns) |
-+--------------------+------------------------------------+-----------------+
-| clk_out1_clk_wiz_0 | clkdivider/inst/clk_out1_clk_wiz_0 |            15.4 |
-| clkfbout_clk_wiz_0 | clkdivider/inst/clkfbout_clk_wiz_0 |            50.0 |
-| sys_clk_pin        | clk_100mhz                         |            10.0 |
-| sys_clk_pin        | clk_100mhz_IBUF_BUFG               |            10.0 |
-+--------------------+------------------------------------+-----------------+
++----------------------+------------------------------------+-----------------+
+| Clock                | Domain                             | Constraint (ns) |
++----------------------+------------------------------------+-----------------+
+| clk_100mhz           | clk_100mhz                         |            10.0 |
+| clk_out1_clk_wiz_0   | clkdivider/inst/clk_out1_clk_wiz_0 |            15.4 |
+| clk_out1_clk_wiz_0_1 | clkdivider/inst/clk_out1_clk_wiz_0 |            15.4 |
+| clkfbout_clk_wiz_0   | clkdivider/inst/clkfbout_clk_wiz_0 |            50.0 |
+| clkfbout_clk_wiz_0_1 | clkdivider/inst/clkfbout_clk_wiz_0 |            50.0 |
+| sys_clk_pin          | clk_100mhz                         |            10.0 |
++----------------------+------------------------------------+-----------------+
 
 
 3. Detailed Reports
@@ -149,32 +151,31 @@ Table of Contents
 +-----------------+-----------+
 | Name            | Power (W) |
 +-----------------+-----------+
-| top_level       |     0.210 |
+| top_level       |     0.216 |
 |   clkdivider    |     0.122 |
 |     inst        |     0.122 |
-|   color_blobs   |     0.060 |
-|     b_mask_bram |     0.002 |
-|       U0        |     0.002 |
-|     blue_cf     |     0.016 |
-|       c_div     |     0.008 |
-|       r_div     |     0.008 |
-|     converter   |     0.015 |
+|   color_blobs   |     0.069 |
+|     b_mask_bram |     0.001 |
+|       U0        |     0.001 |
+|     blue_cf     |     0.018 |
+|       c_div     |     0.009 |
+|       r_div     |     0.009 |
+|     converter   |     0.009 |
 |       h_div     |     0.007 |
-|       s_div     |     0.006 |
-|     frame_bram  |     0.008 |
-|       U0        |     0.008 |
+|     frame_bram  |     0.004 |
+|       U0        |     0.004 |
+|     g_mask_bram |     0.001 |
+|       U0        |     0.001 |
+|     green_cf    |     0.017 |
+|       c_div     |     0.008 |
+|       r_div     |     0.009 |
 |     r_mask_bram |     0.001 |
 |       U0        |     0.001 |
-|     red_cf      |     0.016 |
+|     red_cf      |     0.017 |
 |       c_div     |     0.008 |
 |       r_div     |     0.008 |
-|   synth1        |     0.004 |
-|     lpfilter    |     0.002 |
-|     osc1        |     0.001 |
-|   synth2        |     0.004 |
-|     lpfilter    |     0.002 |
-|     osc1        |     0.001 |
-|     osc2        |     0.001 |
+|   synth1        |     0.002 |
+|   synth2        |     0.002 |
 +-----------------+-----------+
 
 

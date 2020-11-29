@@ -22,6 +22,8 @@ module camera_to_mask(
    input logic [16:0] red_buff_output_pixel_addr, 
    output logic [11:0] blue_buff_out, 
    input logic [16:0] blue_buff_output_pixel_addr,
+   output logic [11:0] green_buff_out, 
+   input logic [16:0] green_buff_output_pixel_addr,
    
    output logic red_center_valid,
    output logic [16:0] red_area_out,
@@ -31,7 +33,12 @@ module camera_to_mask(
    output logic blue_center_valid,
    output logic [16:0] blue_area_out,
    output logic [7:0] blue_center_v_index_out,
-   output logic [8:0] blue_center_h_index_out
+   output logic [8:0] blue_center_h_index_out,
+   
+   output logic green_center_valid,
+   output logic [16:0] green_area_out,
+   output logic [7:0] green_center_v_index_out,
+   output logic [8:0] green_center_h_index_out
    );
  
     logic xclk;
@@ -44,9 +51,11 @@ module camera_to_mask(
     
     logic red_mask_buff_out; 
     logic blue_mask_buff_out;
+    logic green_mask_buff_out;
     logic [15:0] output_pixels;
     logic red_processed_pixels;
     logic blue_processed_pixels;
+    logic green_processed_pixels;
     logic [11:0] raw_image_pixels;
     logic [3:0] red_diff;
     logic [3:0] green_diff;
@@ -84,65 +93,39 @@ module camera_to_mask(
         raw_image_pixels <= {output_pixels[15:12],output_pixels[10:7],output_pixels[4:1]}; //{h[7:0], s[7:0], v[7:0]};
         
         //TODO: put the thresholding in a separate module to make camera_to_mask less bulky
-        //Thresholding Red
-        if (sw[4]) begin //naive method with RGB
-            if ((output_pixels[15:12]>4'b1000)&&(output_pixels[10:7]<4'b1000)&&(output_pixels[4:1]<4'b1000))begin
-                red_processed_pixels <= 1'b1;
-            end else begin
-                red_processed_pixels <= 1'b0;
-            end
-        
-        end else if (sw[7]) begin //sw7 is very noisy
-            if ((s >= 60) && (h <= 15 || h >= 330)) begin 
+        if (sw[7]) begin 
+            //Thresholding Red (Hue 0)
+            if (h >= 350 || h <= 10) begin 
                 red_processed_pixels <= 1'b1;
             end else begin
                 red_processed_pixels <= 1'b0;
             end 
-        
-        end else if (sw[8]) begin //less noisy
-            if ((s >= 60) && (h <= 15 || h >= 330) && (v >= 75)) begin 
-                red_processed_pixels <= 1'b1;
-            end else begin
-                red_processed_pixels <= 1'b0;
-            end 
-        
-        end else if (sw[9]) begin //less noisy but sometimes picks up less
-            if ((s >= 60) && (h <= 15 || h >= 330) && (v >= 90)) begin 
-                red_processed_pixels <= 1'b1;
-            end else begin
-                red_processed_pixels <= 1'b0;
-            end
-        
-        end else if (sw[10]) begin//no saturation check - picks up a bit more noise and other colors    
-            if ((h <= 15 || h >= 330) && (v >= 75)) begin 
-                red_processed_pixels <= 1'b1;
-            end else begin
-                red_processed_pixels <= 1'b0;
-            end 
-        end     
-        
-
-        //Thresholding Blue
-        if (sw[6]) begin //naive method with RGB
-            if ((output_pixels[15:12]<4'b1000)&&(output_pixels[10:7]<4'b1000)&&(output_pixels[4:1]>4'b1000))begin
+            
+            //Thresholding green (Hue 240)
+            if ((h >= 230 && h <= 250)) begin 
                 blue_processed_pixels <= 1'b1;
             end else begin
                 blue_processed_pixels <= 1'b0;
             end
-
-        end else if (sw[7]) begin //initial rough attempt 
-            if ((h >= 193 && h <= 236) && (v >= 75)) begin 
-                blue_processed_pixels <= 1'b1;
+            
+            //Thresholding green (Hue 120)
+            if ((h >= 110 && h <= 120)) begin 
+                green_processed_pixels <= 1'b1;
             end else begin
-                blue_processed_pixels <= 1'b0;
-            end
-        end 
-                                  
+                green_processed_pixels <= 1'b0;
+            end 
+        end
+        else begin
+            red_processed_pixels <= 1'b1;
+            blue_processed_pixels <= 1'b1;
+            green_processed_pixels <= 1'b1;
+        end                         
     end 
     
     //Turn binary masks into colored pixels
     assign red_buff_out = red_mask_buff_out?12'hF00:12'h000;
     assign blue_buff_out = blue_mask_buff_out?12'h00F:12'h000;
+    assign green_buff_out = green_mask_buff_out?12'h0F0:12'h000;
     
    //Read pixels for the camera
    camera_read  my_camera(.p_clock_in(pclk_in),
@@ -185,6 +168,16 @@ module camera_to_mask(
                      .area_out(blue_area_out),
                      .v_index_out(blue_center_v_index_out),
                      .h_index_out(blue_center_h_index_out));
+    
+   //Find center and area of blue pixel mask
+   center_finder green_cf(.clk_in(clk_65mhz),
+                     .v_index_in(v_idx_out),
+                     .h_index_in(h_idx_out), 
+                     .pixel_in(green_processed_pixels),
+                     .valid_out(green_center_valid),
+                     .area_out(green_area_out),
+                     .v_index_out(green_center_v_index_out),
+                     .h_index_out(green_center_h_index_out));
          
     //store processed pixels in frame buffers  
     image_bram frame_bram(.addra(bram_input_pixel_addr), 
@@ -210,6 +203,13 @@ module camera_to_mask(
                              .addrb(blue_buff_output_pixel_addr),
                              .clkb(clk_65mhz),
                              .doutb(blue_mask_buff_out));
-                             
+    
+    green_mask_bram g_mask_bram(.addra(bram_input_pixel_addr), 
+                             .clka(pclk_in), //camera's clock signal 
+                             .dina(green_processed_pixels),
+                             .wea(valid_pixel),
+                             .addrb(green_buff_output_pixel_addr),
+                             .clkb(clk_65mhz),
+                             .doutb(green_mask_buff_out));
                              
 endmodule

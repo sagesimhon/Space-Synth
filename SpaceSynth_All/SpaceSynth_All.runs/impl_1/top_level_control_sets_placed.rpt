@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date         : Sat Nov 28 15:31:59 2020
+| Date         : Sat Nov 28 18:34:46 2020
 | Host         : DESKTOP-RLIVKHG running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_level_control_sets_placed.rpt
 | Design       : top_level
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    31 |
-|    Minimum number of control sets                        |    31 |
+| Total control sets                                       |    34 |
+|    Minimum number of control sets                        |    34 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |   107 |
+| Unused register locations in slices containing registers |   127 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    31 |
-| >= 0 to < 4        |     1 |
-| >= 4 to < 6        |     0 |
-| >= 6 to < 8        |     5 |
+| Total control sets |    34 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     4 |
+| >= 6 to < 8        |     3 |
 | >= 8 to < 10       |     3 |
 | >= 10 to < 12      |     3 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     2 |
-| >= 16              |    17 |
+| >= 16              |    19 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,52 +58,55 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |            6312 |         1175 |
+| No           | No                    | No                     |            7940 |         1410 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              63 |           18 |
-| Yes          | No                    | No                     |             127 |           34 |
+| No           | Yes                   | No                     |              68 |           21 |
+| Yes          | No                    | No                     |             251 |           69 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             295 |           81 |
+| Yes          | Yes                   | No                     |             334 |           90 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+-----------------------------------+------------------------------------------------------------+----------------------------------------------+------------------+----------------+
-|            Clock Signal           |                        Enable Signal                       |               Set/Reset Signal               | Slice Load Count | Bel Load Count |
-+-----------------------------------+------------------------------------------------------------+----------------------------------------------+------------------+----------------+
-|  clkdivider/inst/clk_out1         | db1/new_input_i_1_n_0                                      |                                              |                1 |              1 |
-|  pclk_in                          |                                                            | color_blobs/my_camera/h_idx_out[7]_i_1_n_0   |                2 |              6 |
-|  pclk_in                          | color_blobs/my_camera/h_idx_out[7]_i_2_n_0                 | color_blobs/my_camera/h_idx_out[7]_i_1_n_0   |                2 |              6 |
-|  clk_100mhz_IBUF_BUFG             | synth2/lpfilter/filtered_out[7]_i_1__0_n_0                 |                                              |                2 |              7 |
-|  clk_100mhz_IBUF_BUFG             | synth1/lpfilter/filtered_out[7]_i_1_n_0                    |                                              |                1 |              7 |
-|  clkdivider/inst/clk_out1         |                                                            | color_blobs/converter/s_bottom[7]_i_1_n_0    |                1 |              7 |
-|  pclk_in                          |                                                            |                                              |                4 |              8 |
-|  pclk_in                          | color_blobs/my_camera/pixel_data_out[15]_i_1_n_0           |                                              |                3 |              8 |
-|  pclk_in                          | color_blobs/my_camera/pixel_data_out[7]_i_1_n_0            |                                              |                3 |              8 |
-|  clkdivider/inst/clk_out1         |                                                            | color_blobs/converter/h_bottom[10]_i_1_n_0   |                4 |             10 |
-|  clkdivider/inst/clk_out1         | xvga1/hreset                                               | xvga1/SR[0]                                  |                5 |             10 |
-|  clkdivider/inst/clk_out1         |                                                            | xvga1/hreset                                 |                3 |             11 |
-|  clk_100mhz_IBUF_BUFG             |                                                            | db1/reset                                    |                4 |             14 |
-|  clk_100mhz_IBUF_BUFG             |                                                            | sample_counter[15]_i_1_n_0                   |                4 |             15 |
-| ~xvga1/vcount_out_reg[6]_0        |                                                            |                                              |                5 |             17 |
-| ~xvga1/vga_r_OBUF[3]_inst_i_2_n_0 |                                                            |                                              |                5 |             17 |
-|  xvga1/sw[2][0]                   |                                                            |                                              |                5 |             17 |
-|  pclk_in                          | color_blobs/my_camera/pixel_data_out[7]_i_1_n_0            | color_blobs/my_camera/h_idx_out[7]_i_1_n_0   |                5 |             17 |
-|  clkdivider/inst/clk_out1         | color_blobs/red_cf/h_index_in_prev                         |                                              |                4 |             17 |
-|  clkdivider/inst/clk_out1         | color_blobs/blue_cf/h_index_in_prev[8]_i_1__0_n_0          |                                              |                5 |             17 |
-|  clkdivider/inst/clk_out1         | db1/count                                                  | db1/new_input_i_1_n_0                        |                5 |             20 |
-|  clk_100mhz_IBUF_BUFG             | synth2/lpfilter/previous_output[15]_i_1__0_n_0             | db1/reset                                    |                7 |             24 |
-|  clk_100mhz_IBUF_BUFG             | synth1/lpfilter/previous_output[15]_i_1_n_0                | db1/reset                                    |                7 |             24 |
-|  clkdivider/inst/clk_out1         | color_blobs/my_camera/E[0]                                 |                                              |                8 |             31 |
-|  clkdivider/inst/clk_out1         | color_blobs/my_camera/FSM_sequential_frame_state_reg[1][0] |                                              |                7 |             31 |
-|  clk_100mhz_IBUF_BUFG             | synth1/lpfilter/sum[31]_i_2__0_n_0                         | synth1/lpfilter/sum[31]_i_1__0_n_0           |                8 |             32 |
-|  clk_100mhz_IBUF_BUFG             | synth2/lpfilter/sum[31]_i_2_n_0                            | synth2/lpfilter/sum[31]_i_1_n_0              |                8 |             32 |
-|  clk_100mhz_IBUF_BUFG             |                                                            |                                              |               12 |             44 |
-|  clkdivider/inst/clk_out1         | color_blobs/red_cf/sel                                     | color_blobs/red_cf/clear                     |               17 |             65 |
-|  clkdivider/inst/clk_out1         | color_blobs/blue_cf/num_pixels[0]_i_2__0_n_0               | color_blobs/blue_cf/num_pixels[0]_i_1__0_n_0 |               17 |             65 |
-|  clkdivider/inst/clk_out1         |                                                            |                                              |             1144 |           6220 |
-+-----------------------------------+------------------------------------------------------------+----------------------------------------------+------------------+----------------+
++---------------------------+----------------------------------------------------+-----------------------------------------------+------------------+----------------+
+|        Clock Signal       |                    Enable Signal                   |                Set/Reset Signal               | Slice Load Count | Bel Load Count |
++---------------------------+----------------------------------------------------+-----------------------------------------------+------------------+----------------+
+|  clkdivider/inst/clk_out1 |                                                    | color_blobs/red_cf/hcount_out_reg[7]          |                1 |              4 |
+|  clkdivider/inst/clk_out1 |                                                    | color_blobs/blue_cf/hcount_out_reg[10]_0      |                1 |              4 |
+|  clkdivider/inst/clk_out1 |                                                    | color_blobs/blue_cf/hcount_out_reg[10]        |                1 |              4 |
+|  pclk_in                  |                                                    |                                               |                3 |              5 |
+|  pclk_in                  |                                                    | color_blobs/my_camera/frame_done_out0         |                3 |              6 |
+|  clkdivider/inst/clk_out1 | synth1/lpfilter/filtered_out[7]_i_1_n_0            |                                               |                1 |              7 |
+|  clkdivider/inst/clk_out1 | synth2/lpfilter/filtered_out[7]_i_1__0_n_0         |                                               |                3 |              7 |
+|  pclk_in                  | color_blobs/my_camera/pixel_data_out[15]_i_1_n_0   |                                               |                1 |              8 |
+|  pclk_in                  | color_blobs/my_camera/pixel_data_out[7]_i_1_n_0    |                                               |                1 |              8 |
+|  pclk_in                  | color_blobs/my_camera/h_idx_out[8]_i_1_n_0         |                                               |                2 |              9 |
+|  clkdivider/inst/clk_out1 |                                                    | color_blobs/converter/h_bottom[10]_i_1_n_0    |                3 |             10 |
+|  clkdivider/inst/clk_out1 | xvga1/hreset                                       | xvga1/vcount_out0                             |                3 |             10 |
+|  clkdivider/inst/clk_out1 |                                                    | xvga1/hreset                                  |                3 |             11 |
+|  clkdivider/inst/clk_out1 |                                                    | led_OBUF[15]                                  |                5 |             14 |
+|  clkdivider/inst/clk_out1 |                                                    | sample_counter[15]_i_1_n_0                    |                4 |             15 |
+|  clkdivider/inst/clk_out1 | xvga1/E[0]                                         |                                               |                5 |             17 |
+|  clkdivider/inst/clk_out1 | xvga1/hcount_out_reg[10]_2[0]                      |                                               |                6 |             17 |
+|  pclk_in                  | color_blobs/my_camera/pixel_data_out[7]_i_1_n_0    | color_blobs/my_camera/frame_done_out0         |                5 |             17 |
+|  clkdivider/inst/clk_out1 | xvga1/hcount_out_reg[7]_2[0]                       |                                               |                5 |             17 |
+|  clkdivider/inst/clk_out1 | color_blobs/blue_cf/h_index_in_prev[8]_i_1__0_n_0  |                                               |                5 |             17 |
+|  clkdivider/inst/clk_out1 | xvga1/hcount_out_reg[7]_1[0]                       |                                               |                5 |             17 |
+|  clkdivider/inst/clk_out1 | color_blobs/red_cf/h_index_in_prev                 |                                               |                4 |             17 |
+|  clkdivider/inst/clk_out1 | color_blobs/green_cf/h_index_in_prev[8]_i_1__1_n_0 |                                               |                5 |             17 |
+|  clkdivider/inst/clk_out1 | synth2/lpfilter/previous_input_0                   | led_OBUF[15]                                  |                8 |             24 |
+|  clkdivider/inst/clk_out1 | synth1/lpfilter/previous_input_0                   | led_OBUF[15]                                  |                7 |             24 |
+|  clkdivider/inst/clk_out1 | color_blobs/blue_cf/area_out[16]_i_1__0_n_0        |                                               |               10 |             31 |
+|  clkdivider/inst/clk_out1 | color_blobs/red_cf/h_index_out                     |                                               |                8 |             31 |
+|  clkdivider/inst/clk_out1 | color_blobs/green_cf/area_out[16]_i_1_n_0          |                                               |                8 |             31 |
+|  clkdivider/inst/clk_out1 | synth2/lpfilter/sum[31]_i_2__0_n_0                 | synth2/lpfilter/sum[31]_i_1__0_n_0            |                8 |             32 |
+|  clkdivider/inst/clk_out1 | synth1/lpfilter/sum[31]_i_2_n_0                    | synth1/lpfilter/sum[31]_i_1_n_0               |                8 |             32 |
+|  clkdivider/inst/clk_out1 | color_blobs/blue_cf/num_pixels[0]_i_2__0_n_0       | color_blobs/blue_cf/num_pixels[0]_i_1__0_n_0  |               17 |             65 |
+|  clkdivider/inst/clk_out1 | color_blobs/red_cf/sel                             | color_blobs/red_cf/clear                      |               17 |             65 |
+|  clkdivider/inst/clk_out1 | color_blobs/green_cf/num_pixels[0]_i_2__1_n_0      | color_blobs/green_cf/num_pixels[0]_i_1__1_n_0 |               17 |             65 |
+|  clkdivider/inst/clk_out1 |                                                    |                                               |             1407 |           7939 |
++---------------------------+----------------------------------------------------+-----------------------------------------------+------------------+----------------+
 
 

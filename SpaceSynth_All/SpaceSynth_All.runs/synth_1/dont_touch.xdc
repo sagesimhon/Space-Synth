@@ -3,6 +3,9 @@
 
 # XDC: imports/Lab5a/nexys4ddr_audio.xdc
 
+# IP: ip/green_mask_bram/green_mask_bram.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==green_mask_bram || ORIG_REF_NAME==green_mask_bram} -quiet] -quiet
+
 # IP: ip/blue_mask_bram/blue_mask_bram.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==blue_mask_bram || ORIG_REF_NAME==blue_mask_bram} -quiet] -quiet
 
