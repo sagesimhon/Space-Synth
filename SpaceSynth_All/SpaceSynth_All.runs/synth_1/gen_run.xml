@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1606617129">
-  <File Type="PA-TCL" Name="top_level.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="top_level_drc_synth.rpt"/>
-  <File Type="REPORTS-TCL" Name="top_level_reports.tcl"/>
-  <File Type="RDS-RDS" Name="top_level.vds"/>
-  <File Type="RDS-UTIL" Name="top_level_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="top_level_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="top_level.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="top_level_timing_summary_synth.rpt"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1606870812">
   <File Type="VDS-TIMING-PB" Name="top_level_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="top_level_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="top_level.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="top_level_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="top_level_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="top_level_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="top_level.vds"/>
+  <File Type="REPORTS-TCL" Name="top_level_reports.tcl"/>
+  <File Type="PA-TCL" Name="top_level.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/ip/green_mask_bram/green_mask_bram.xci">
@@ -161,8 +161,8 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="red_mask_bram"/>
+  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
   <BlockFileSet Type="BlockSrcs" Name="image_bram"/>
   <BlockFileSet Type="BlockSrcs" Name="div_gen_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="red_mask_bram"/>
 </GenRun>

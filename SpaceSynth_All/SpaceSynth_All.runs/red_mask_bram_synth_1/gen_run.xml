@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="red_mask_bram_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1606509434">
-  <File Type="PA-TCL" Name="red_mask_bram.tcl"/>
   <File Type="REPORTS-TCL" Name="red_mask_bram_reports.tcl"/>
+  <File Type="PA-TCL" Name="red_mask_bram.tcl"/>
+  <File Type="RDS-DCP" Name="red_mask_bram.dcp"/>
   <File Type="RDS-RDS" Name="red_mask_bram.vds"/>
   <File Type="RDS-UTIL" Name="red_mask_bram_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="red_mask_bram_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="red_mask_bram.dcp"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/red_mask_bram">
     <File Path="$PSRCDIR/sources_1/ip/red_mask_bram/red_mask_bram.xci">
       <FileInfo>

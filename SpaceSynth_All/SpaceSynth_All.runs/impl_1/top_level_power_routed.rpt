@@ -1,8 +1,8 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
-| Tool Version     : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date             : Sat Nov 28 18:36:02 2020
-| Host             : DESKTOP-RLIVKHG running 64-bit major release  (build 9200)
+| Tool Version     : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+| Date             : Tue Dec  1 17:04:16 2020
+| Host             : ubuntu running 64-bit Ubuntu 20.04.1 LTS
 | Command          : report_power -file top_level_power_routed.rpt -pb top_level_power_summary_routed.pb -rpx top_level_power_routed.rpx
 | Design           : top_level
 | Device           : xc7a100tcsg324-1
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.315        |
+| Total On-Chip Power (W)  | 0.318        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.216        |
+| Dynamic (W)              | 0.219        |
 | Device Static (W)        | 0.099        |
 | Effective TJA (C/W)      | 4.6          |
-| Max Ambient (C)          | 83.6         |
-| Junction Temperature (C) | 26.4         |
+| Max Ambient (C)          | 83.5         |
+| Junction Temperature (C) | 26.5         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,22 +52,22 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.019 |        8 |       --- |             --- |
-| Slice Logic             |     0.026 |    15611 |       --- |             --- |
-|   LUT as Logic          |     0.019 |     3816 |     63400 |            6.02 |
-|   CARRY4                |     0.004 |      941 |     15850 |            5.94 |
-|   Register              |     0.003 |     8593 |    126800 |            6.78 |
-|   LUT as Shift Register |    <0.001 |        4 |     19000 |            0.02 |
+| Clocks                  |     0.020 |        8 |       --- |             --- |
+| Slice Logic             |     0.027 |    17185 |       --- |             --- |
+|   LUT as Logic          |     0.021 |     4325 |     63400 |            6.82 |
+|   CARRY4                |     0.004 |     1058 |     15850 |            6.68 |
+|   Register              |     0.003 |     9256 |    126800 |            7.30 |
+|   LUT as Shift Register |    <0.001 |       14 |     19000 |            0.07 |
 |   BUFG                  |    <0.001 |        1 |        32 |            3.13 |
-|   F7/F8 Muxes           |    <0.001 |       18 |     63400 |            0.03 |
-|   Others                |     0.000 |     2061 |       --- |             --- |
-| Signals                 |     0.020 |    10393 |       --- |             --- |
+|   F7/F8 Muxes           |    <0.001 |       19 |     63400 |            0.03 |
+|   Others                |     0.000 |     2254 |       --- |             --- |
+| Signals                 |     0.021 |    11296 |       --- |             --- |
 | Block RAM               |     0.007 |       35 |       135 |           25.93 |
 | MMCM                    |     0.122 |        1 |         6 |           16.67 |
 | DSPs                    |     0.003 |        9 |       240 |            3.75 |
 | I/O                     |     0.019 |       71 |       210 |           33.81 |
 | Static Power            |     0.099 |          |           |                 |
-| Total                   |     0.315 |          |           |                 |
+| Total                   |     0.318 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -77,7 +77,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.091 |       0.075 |      0.016 |
+| Vccint    |       1.000 |     0.095 |       0.078 |      0.016 |
 | Vccaux    |       1.800 |     0.086 |       0.068 |      0.018 |
 | Vcco33    |       3.300 |     0.009 |       0.005 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -151,31 +151,33 @@ Table of Contents
 +-----------------+-----------+
 | Name            | Power (W) |
 +-----------------+-----------+
-| top_level       |     0.216 |
+| top_level       |     0.219 |
 |   clkdivider    |     0.122 |
 |     inst        |     0.122 |
-|   color_blobs   |     0.069 |
+|   color_blobs   |     0.072 |
 |     b_mask_bram |     0.001 |
 |       U0        |     0.001 |
-|     blue_cf     |     0.018 |
-|       c_div     |     0.009 |
-|       r_div     |     0.009 |
-|     converter   |     0.009 |
+|     blue_cf     |     0.016 |
+|       c_div     |     0.008 |
+|       r_div     |     0.008 |
+|     converter   |     0.015 |
 |       h_div     |     0.007 |
+|       s_div     |     0.006 |
 |     frame_bram  |     0.004 |
 |       U0        |     0.004 |
 |     g_mask_bram |     0.001 |
 |       U0        |     0.001 |
-|     green_cf    |     0.017 |
+|     green_cf    |     0.016 |
 |       c_div     |     0.008 |
-|       r_div     |     0.009 |
+|       r_div     |     0.008 |
 |     r_mask_bram |     0.001 |
 |       U0        |     0.001 |
 |     red_cf      |     0.017 |
 |       c_div     |     0.008 |
 |       r_div     |     0.008 |
 |   synth1        |     0.002 |
-|   synth2        |     0.002 |
+|     lpfilter    |     0.001 |
+|   synth2        |     0.003 |
 +-----------------+-----------+
 
 

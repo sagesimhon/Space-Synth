@@ -114,7 +114,49 @@ module camera_to_mask(
             end else begin
                 green_processed_pixels <= 1'b0;
             end 
-        end
+        end else if (sw[8]) begin
+            //Thresholding Red
+            if ((s >= 60) && (h <= 15 || h >= 330) && (v >= 75)) begin 
+                red_processed_pixels <= 1'b1;
+            end else begin
+                red_processed_pixels <= 1'b0;
+            end 
+            
+            //Thresholding Blue
+            if ((h >= 193 && h <= 236) && (v >= 75)) begin 
+                blue_processed_pixels <= 1'b1;
+            end else begin
+                blue_processed_pixels <= 1'b0;
+            end
+            
+            //Thresholding Green (same as sw7)
+            if ((h >= 110 && h <= 120)) begin 
+                green_processed_pixels <= 1'b1;
+            end else begin
+                green_processed_pixels <= 1'b0;
+            end 
+        end else if (sw[9]) begin
+            //Thresholding Red
+            if ((s >= 60) && (h <= 15 || h >= 330) && (v >= 90)) begin 
+                red_processed_pixels <= 1'b1;
+            end else begin
+                red_processed_pixels <= 1'b0;
+            end 
+            
+            //Thresholding Blue
+            if ((h >= 210 && h <= 250) && (v >= 75)) begin 
+                blue_processed_pixels <= 1'b1;
+            end else begin
+                blue_processed_pixels <= 1'b0;
+            end
+            
+            //Thresholding Green 
+            if ((h >= 110 && h <= 120) && (v >= 75)) begin 
+                green_processed_pixels <= 1'b1;
+            end else begin
+                green_processed_pixels <= 1'b0;
+            end 
+        end 
         else begin
             red_processed_pixels <= 1'b1;
             blue_processed_pixels <= 1'b1;

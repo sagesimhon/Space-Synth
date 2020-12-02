@@ -84,8 +84,9 @@ module top_level(
     logic [10:0] hcount;   
     logic [9:0] vcount;   
     logic hsync, vsync, blank;
+    logic [3:0] hsync_buff, vsync_buff, blank_buff = 4'b0;
     xvga xvga1(.vclock_in(clk_65mhz),.hcount_out(hcount),.vcount_out(vcount),
-          .hsync_out(hsync),.vsync_out(vsync),.blank_out(blank));
+          .hsync_out(hsync),.vsync_out(vsync),.blank_out(blank)); //768x1024 using clk_65mhz
     
     //Full color pixel value and index
     logic [11:0] raw_image_buff; 
@@ -142,7 +143,32 @@ module top_level(
     
     logic signed[7:0] lfo_out;
     logic [11:0] lfo_frequency;
+    
+    
+    logic r_bar_1_border, r_bar_2_border, r_bar_3_border, b_bar_1_border, b_bar_2_border, b_bar_3_border, 
+    g_bar_1_border, g_bar_2_border, g_bar_3_border = 1'b0;
+    
+    //TODO remove magic numbers might get points off
+    always_comb begin
+        r_bar_1_border = (((hcount == 10 || hcount == 20) && (vcount <= 751 && vcount >= 510))
+              || ((vcount==751 || vcount==510) && (hcount <= 20 && hcount >= 10)));
+        r_bar_2_border = (((hcount == 110 || hcount == 120) && (vcount <= 751 && vcount >= 430))
+              || ((vcount==751 || vcount==430) && (hcount >= 110 && hcount <= 120)));
+        //assign r_bar_3_border = ((hcount == 10 || hcount == 21) && (vcount==751 || vcount == 511));
+        b_bar_1_border = (((hcount == 330 || hcount == 340) && (vcount <= 751 && vcount >= 510))
+              || ((vcount==751 || vcount==510) && (hcount >= 330 && hcount <= 340)));
+        b_bar_2_border = (((hcount == 430 || hcount == 440) && (vcount <= 751 && vcount >= 430))
+              || ((vcount==751 || vcount==430) && (hcount >= 430 && hcount <= 440)));
+        //assign b_bar_3_border = ((hcount == 430 || hcount == 441) && (vcount==751 || vcount == 431)) ? 12'h111 : 0;
+        g_bar_1_border = (((hcount == 650 || hcount == 660) && (vcount <= 751 && vcount >= 510))
+              || ((vcount==751 || vcount==510) && (hcount >= 650 && hcount <= 660)));
+        g_bar_2_border = (((hcount == 750 || hcount == 760) && (vcount <= 751 && vcount >= 430))
+              || ((vcount==751 || vcount==430) && (hcount >= 750 && hcount <= 760)));
+        //assign g_bar_3_border = ((hcount == 430 || hcount == 441) && (vcount==751 || vcount == 431)) ? 12'h111 : 0;
 
+    end
+    
+    //TODO remove magic numbers (might get points off)
     always_ff @(posedge clk_65mhz) begin
         lfo_frequency <= red_center_v_index>>3;
         synth1_frequency <= (red_area >= detection_threshold)?(12'd200+red_center_v_index<<2):12'd0;
@@ -162,22 +188,66 @@ module top_level(
             current_pixel <= ((hcount==blue_center_h_index+320) || (vcount==blue_center_v_index))?((blue_area >= detection_threshold)?12'hF0F:blue_buff):blue_buff;
             blue_buff_output_pixel_addr <= (hcount-11'd320)+vcount*32'd320;
         end
-        else if (~sw[2]&&((hcount>=640) && (hcount<980) && (vcount<240))) begin //Show green mask image next to it
+        else if (~sw[2]&&((hcount>=640) && (hcount<959) && (vcount<240))) begin //Show green mask image next to it
             //Add green crosshair on center coordinates (if enough pixels are detected)
             current_pixel <= ((hcount==green_center_h_index+640) || (vcount==green_center_v_index))?((green_area >= detection_threshold)?12'hF0F:green_buff):green_buff;
             green_buff_output_pixel_addr <= (hcount-11'd640)+vcount*32'd320;
         end
+        
+        //Show controls as vertical bar graphs
+        else if (~sw[2] && (vcount>=240)) begin 
+            if (hcount<320) begin //Show Red (Left hand) bars at hcount = 10-20, 110-120, 210-220 from vcount = (750 - range(var)) to 750
+                if ((hcount>=10 && hcount<=20) && (vcount>=510 && vcount<=751)) begin //y position of red blob; range = 0 to 239 
+                    current_pixel <= r_bar_1_border?12'hFFF:(vcount-511>red_center_v_index) ? 12'hF00 : 0;
+                end 
+                else if ((hcount>=110 && hcount<=120) && (vcount>=430 && vcount<=751)) begin //x position of red blob; ranges = 0 to 319
+                    current_pixel <= r_bar_2_border?12'hFFF:(vcount-431>red_center_h_index) ? 12'hF00 : 0;
+                end 
+//                else if ((hcount>210 && hcount<=220) && (vcount> && vcount<=750)) begin //area of red blob; ranges = 0 to 76241
+//                end
+                else current_pixel <= 12'h000;
+            end
+            else if (hcount>=320 && hcount<640) begin //Show Blue (Left hand) bars at hcount = 330-340, 430-440, 530-540 from vcount = (750 - range(var)) to 750 
+                if ((hcount>=330 && hcount<=340) && (vcount>=510 && vcount<=751)) begin
+                    current_pixel <= b_bar_1_border?12'hFFF:(vcount-511>blue_center_v_index) ? 12'h00F : 0;
+                end
+                else if ((hcount>=430 && hcount<=440) && (vcount>=430 && vcount<=751)) begin 
+                    current_pixel <= b_bar_2_border?12'hFFF:(vcount-431>blue_center_h_index) ? 12'h00F : 0;
+                end
+                else current_pixel <= 12'h000;
+
+            end 
+            else if (hcount>=640 && hcount<960) begin //Show green (third limb) bars at hcount = 650-660, 750-760, 850-860 from vcount = (750 - range(var)) to 750 
+                if ((hcount>=650 && hcount<=660) && (vcount>=510 && vcount<=751)) begin
+                    current_pixel <= g_bar_1_border?12'hFFF:(vcount-511>green_center_v_index) ? 12'h0F0 : 0;
+                end
+                else if ((hcount>=750 && hcount<=760) && (vcount>=430 && vcount<=751)) begin 
+                    current_pixel <= g_bar_2_border?12'hFFF:(vcount-431>green_center_h_index) ? 12'h0F0 : 0;
+                end
+                else current_pixel <= 12'h000;
+            end  
+        end 
         else begin
             current_pixel <= 12'h000;
-        end     
+        end
+             
     end
     
+    
+    
+    always_ff @(posedge clk_65mhz) begin
+        //right shift buffers and insert new value on left
+        hsync_buff <= {hsync, hsync_buff[3:1]};
+        vsync_buff <= {vsync, vsync_buff[3:1]};
+        blank_buff <= {blank, blank_buff[3:1]};
+
+    end 
     // the following lines are required for the Nexys4 VGA circuit - do not change
-    assign vga_r = ~blank ? current_pixel[11:8]: 0;
-    assign vga_g = ~blank ? current_pixel[7:4] : 0;
-    assign vga_b = ~blank ? current_pixel[3:0] : 0;
-    assign vga_hs = ~hsync;
-    assign vga_vs = ~vsync;
+    assign vga_r = ~blank_buff[0] ? current_pixel[11:8]: 0;
+    assign vga_g = ~blank_buff[0] ? current_pixel[7:4] : 0;
+    assign vga_b = ~blank_buff[0] ? current_pixel[3:0] : 0;
+    assign vga_hs = ~hsync_buff[0];
+    assign vga_vs = ~vsync_buff[0];
     
          
 //    oscillator lfo (
