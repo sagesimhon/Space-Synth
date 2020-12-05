@@ -2,12 +2,12 @@
 # Vivado v2019.2 (64-bit)
 # SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
 # IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
-# Start of session at: Sat Nov 28 18:32:12 2020
-# Process ID: 17992
-# Current directory: C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1
+# Start of session at: Fri Dec  4 21:49:55 2020
+# Process ID: 476
+# Current directory: C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1
 # Command line: vivado.exe -log top_level.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_level.tcl
-# Log file: C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/top_level.vds
-# Journal file: C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1\vivado.jou
+# Log file: C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/top_level.vds
+# Journal file: C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
 source top_level.tcl -notrace
 Command: synth_design -top top_level -part xc7a100tcsg324-1
@@ -16,16 +16,16 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 12980 
+INFO: Helper process launched with PID 15920 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 821.816 ; gain = 233.758
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 822.363 ; gain = 233.828
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'top_level' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/top_level.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'top_level' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/top_level.sv:3]
 	Parameter SAMPLE_COUNT bound to: 1354 - type: integer 
 	Parameter detection_threshold bound to: 17'b00000000011001000 
-INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-17992-DESKTOP-RLIVKHG/realtime/clk_wiz_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (1#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-17992-DESKTOP-RLIVKHG/realtime/clk_wiz_0_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'xvga' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/xvga.sv:22]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-476-DESKTOP-RLIVKHG/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (1#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-476-DESKTOP-RLIVKHG/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'xvga' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/xvga.sv:22]
 	Parameter DISPLAY_WIDTH bound to: 1024 - type: integer 
 	Parameter DISPLAY_HEIGHT bound to: 768 - type: integer 
 	Parameter H_FP bound to: 24 - type: integer 
@@ -34,8 +34,19 @@ INFO: [Synth 8-6157] synthesizing module 'xvga' [C:/Users/Praj/Documents/2020 Fa
 	Parameter V_FP bound to: 3 - type: integer 
 	Parameter V_SYNC_PULSE bound to: 6 - type: integer 
 	Parameter V_BP bound to: 29 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'xvga' (2#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/xvga.sv:22]
-INFO: [Synth 8-6157] synthesizing module 'synthesizer' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/synthesizer.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'xvga' (2#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/xvga.sv:22]
+INFO: [Synth 8-6157] synthesizing module 'oscillator' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/oscillator.sv:2]
+	Parameter SINE bound to: 2'b00 
+	Parameter SQUARE bound to: 2'b01 
+	Parameter TRIANGLE bound to: 2'b10 
+	Parameter SAW bound to: 2'b11 
+INFO: [Synth 8-6157] synthesizing module 'sine_lut' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/oscillator.sv:56]
+INFO: [Synth 8-6155] done synthesizing module 'sine_lut' (3#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/oscillator.sv:56]
+WARNING: [Synth 8-6014] Unused sequential element dir_flag_reg was removed.  [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/oscillator.sv:27]
+INFO: [Synth 8-6155] done synthesizing module 'oscillator' (4#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/oscillator.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'amplitude_control' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/amplitude_control.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'amplitude_control' (5#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/amplitude_control.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'synthesizer' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/synthesizer.sv:1]
 	Parameter OCTAVEp3 bound to: 3'b110 
 	Parameter OCTAVEp2 bound to: 3'b101 
 	Parameter OCTAVEp1 bound to: 3'b100 
@@ -43,73 +54,61 @@ INFO: [Synth 8-6157] synthesizing module 'synthesizer' [C:/Users/Praj/Documents/
 	Parameter OCTAVEm1 bound to: 3'b010 
 	Parameter OCTAVEm2 bound to: 3'b001 
 	Parameter OCTAVEm3 bound to: 3'b000 
-INFO: [Synth 8-6157] synthesizing module 'oscillator' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/oscillator.sv:2]
-	Parameter SINE bound to: 2'b00 
-	Parameter SQUARE bound to: 2'b01 
-	Parameter TRIANGLE bound to: 2'b10 
-	Parameter SAW bound to: 2'b11 
-INFO: [Synth 8-6157] synthesizing module 'sine_lut' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/oscillator.sv:56]
-INFO: [Synth 8-6155] done synthesizing module 'sine_lut' (3#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/oscillator.sv:56]
-WARNING: [Synth 8-6014] Unused sequential element dir_flag_reg was removed.  [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/oscillator.sv:27]
-INFO: [Synth 8-6155] done synthesizing module 'oscillator' (4#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/oscillator.sv:2]
-INFO: [Synth 8-6157] synthesizing module 'mixer' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/mixer.sv:2]
-INFO: [Synth 8-6155] done synthesizing module 'mixer' (5#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/mixer.sv:2]
-INFO: [Synth 8-6157] synthesizing module 'filter' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/filter.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'mixer' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/mixer.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'mixer' (6#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/mixer.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'filter' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/filter.sv:2]
 	Parameter DO_NOTHING bound to: 3'b000 
 	Parameter B0_TERM bound to: 3'b001 
 	Parameter B1_TERM bound to: 3'b010 
 	Parameter A1_TERM bound to: 3'b011 
 	Parameter DONE bound to: 3'b100 
-INFO: [Synth 8-6157] synthesizing module 'filter_coeffs' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/filter_coeffs.sv:3]
-INFO: [Synth 8-6155] done synthesizing module 'filter_coeffs' (6#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/filter_coeffs.sv:3]
-INFO: [Synth 8-6155] done synthesizing module 'filter' (7#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/filter.sv:2]
-WARNING: [Synth 8-7023] instance 'lpfilter' of module 'filter' has 7 connections declared, but only 6 given [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/synthesizer.sv:43]
-INFO: [Synth 8-6157] synthesizing module 'amplitude_control' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/amplitude_control.sv:2]
-INFO: [Synth 8-6155] done synthesizing module 'amplitude_control' (8#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/amplitude_control.sv:2]
-INFO: [Synth 8-6155] done synthesizing module 'synthesizer' (9#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/synthesizer.sv:1]
-INFO: [Synth 8-6157] synthesizing module 'pwm' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/pwm.sv:2]
-INFO: [Synth 8-6155] done synthesizing module 'pwm' (10#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/pwm.sv:2]
-INFO: [Synth 8-6157] synthesizing module 'camera_to_mask' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_to_mask.sv:3]
-INFO: [Synth 8-6157] synthesizing module 'camera_read' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_read.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'filter_coeffs' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/filter_coeffs.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'filter_coeffs' (7#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/filter_coeffs.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'filter' (8#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/filter.sv:2]
+WARNING: [Synth 8-7023] instance 'lpfilter' of module 'filter' has 7 connections declared, but only 6 given [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/synthesizer.sv:43]
+INFO: [Synth 8-6155] done synthesizing module 'synthesizer' (9#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/synthesizer.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'pwm' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/pwm.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'pwm' (10#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/pwm.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'camera_to_mask' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_to_mask.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'camera_read' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_read.sv:1]
 	Parameter WAIT_FRAME_START bound to: 0 - type: integer 
 	Parameter ROW_CAPTURE bound to: 1 - type: integer 
 	Parameter DISPLAY_WIDTH bound to: 319 - type: integer 
 	Parameter DISPLAY_HEIGHT bound to: 239 - type: integer 
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_read.sv:25]
-INFO: [Synth 8-6155] done synthesizing module 'camera_read' (11#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_read.sv:1]
-INFO: [Synth 8-6157] synthesizing module 'rgb2hsv' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:8]
-INFO: [Synth 8-6157] synthesizing module 'div_gen_0' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-17992-DESKTOP-RLIVKHG/realtime/div_gen_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'div_gen_0' (12#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-17992-DESKTOP-RLIVKHG/realtime/div_gen_0_stub.v:6]
-WARNING: [Synth 8-7023] instance 's_div' of module 'div_gen_0' has 7 connections declared, but only 6 given [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:36]
-WARNING: [Synth 8-7023] instance 'h_div' of module 'div_gen_0' has 7 connections declared, but only 6 given [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:46]
-INFO: [Synth 8-6155] done synthesizing module 'rgb2hsv' (13#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:8]
-INFO: [Synth 8-6157] synthesizing module 'center_finder' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv:1]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_read.sv:25]
+INFO: [Synth 8-6155] done synthesizing module 'camera_read' (11#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_read.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'rgb2hsv' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:8]
+INFO: [Synth 8-6157] synthesizing module 'div_gen_0' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-476-DESKTOP-RLIVKHG/realtime/div_gen_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'div_gen_0' (12#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-476-DESKTOP-RLIVKHG/realtime/div_gen_0_stub.v:6]
+WARNING: [Synth 8-7023] instance 's_div' of module 'div_gen_0' has 7 connections declared, but only 6 given [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:36]
+WARNING: [Synth 8-7023] instance 'h_div' of module 'div_gen_0' has 7 connections declared, but only 6 given [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:46]
+INFO: [Synth 8-6155] done synthesizing module 'rgb2hsv' (13#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:8]
+INFO: [Synth 8-6157] synthesizing module 'center_finder' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv:1]
 	Parameter MAX_V_IDX bound to: 8'b11101111 
 	Parameter MAX_H_IDX bound to: 9'b000000000 
 	Parameter INITIALIZE bound to: 0 - type: integer 
 	Parameter IDLE bound to: 1 - type: integer 
 	Parameter NEWPIXEL bound to: 2 - type: integer 
 	Parameter DONE bound to: 3 - type: integer 
-INFO: [Synth 8-226] default block is never used [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv:36]
-INFO: [Synth 8-6157] synthesizing module 'average_divider' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-17992-DESKTOP-RLIVKHG/realtime/average_divider_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'average_divider' (14#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-17992-DESKTOP-RLIVKHG/realtime/average_divider_stub.v:6]
-WARNING: [Synth 8-7023] instance 'r_div' of module 'average_divider' has 7 connections declared, but only 6 given [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv:103]
-WARNING: [Synth 8-7023] instance 'c_div' of module 'average_divider' has 7 connections declared, but only 6 given [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv:111]
-INFO: [Synth 8-6155] done synthesizing module 'center_finder' (15#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv:1]
-WARNING: [Synth 8-7023] instance 'red_cf' of module 'center_finder' has 9 connections declared, but only 8 given [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_to_mask.sv:153]
-WARNING: [Synth 8-7023] instance 'blue_cf' of module 'center_finder' has 9 connections declared, but only 8 given [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_to_mask.sv:163]
-WARNING: [Synth 8-7023] instance 'green_cf' of module 'center_finder' has 9 connections declared, but only 8 given [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_to_mask.sv:173]
-INFO: [Synth 8-6157] synthesizing module 'image_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-17992-DESKTOP-RLIVKHG/realtime/image_bram_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'image_bram' (16#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-17992-DESKTOP-RLIVKHG/realtime/image_bram_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'red_mask_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-17992-DESKTOP-RLIVKHG/realtime/red_mask_bram_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'red_mask_bram' (17#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-17992-DESKTOP-RLIVKHG/realtime/red_mask_bram_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'blue_mask_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-17992-DESKTOP-RLIVKHG/realtime/blue_mask_bram_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'blue_mask_bram' (18#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-17992-DESKTOP-RLIVKHG/realtime/blue_mask_bram_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'green_mask_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-17992-DESKTOP-RLIVKHG/realtime/green_mask_bram_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'green_mask_bram' (19#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-17992-DESKTOP-RLIVKHG/realtime/green_mask_bram_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'camera_to_mask' (20#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_to_mask.sv:3]
-WARNING: [Synth 8-6014] Unused sequential element lfo_frequency_reg was removed.  [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/top_level.sv:147]
-INFO: [Synth 8-6155] done synthesizing module 'top_level' (21#1) [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/top_level.sv:3]
+INFO: [Synth 8-226] default block is never used [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv:36]
+INFO: [Synth 8-6157] synthesizing module 'average_divider' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-476-DESKTOP-RLIVKHG/realtime/average_divider_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'average_divider' (14#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-476-DESKTOP-RLIVKHG/realtime/average_divider_stub.v:6]
+WARNING: [Synth 8-7023] instance 'r_div' of module 'average_divider' has 7 connections declared, but only 6 given [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv:103]
+WARNING: [Synth 8-7023] instance 'c_div' of module 'average_divider' has 7 connections declared, but only 6 given [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv:111]
+INFO: [Synth 8-6155] done synthesizing module 'center_finder' (15#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv:1]
+WARNING: [Synth 8-7023] instance 'red_cf' of module 'center_finder' has 9 connections declared, but only 8 given [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_to_mask.sv:158]
+WARNING: [Synth 8-7023] instance 'blue_cf' of module 'center_finder' has 9 connections declared, but only 8 given [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_to_mask.sv:168]
+WARNING: [Synth 8-7023] instance 'green_cf' of module 'center_finder' has 9 connections declared, but only 8 given [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_to_mask.sv:178]
+INFO: [Synth 8-6157] synthesizing module 'image_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-476-DESKTOP-RLIVKHG/realtime/image_bram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'image_bram' (16#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-476-DESKTOP-RLIVKHG/realtime/image_bram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'red_mask_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-476-DESKTOP-RLIVKHG/realtime/red_mask_bram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'red_mask_bram' (17#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-476-DESKTOP-RLIVKHG/realtime/red_mask_bram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blue_mask_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-476-DESKTOP-RLIVKHG/realtime/blue_mask_bram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blue_mask_bram' (18#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-476-DESKTOP-RLIVKHG/realtime/blue_mask_bram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'green_mask_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-476-DESKTOP-RLIVKHG/realtime/green_mask_bram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'green_mask_bram' (19#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-476-DESKTOP-RLIVKHG/realtime/green_mask_bram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'camera_to_mask' (20#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_to_mask.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'top_level' (21#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/top_level.sv:3]
 WARNING: [Synth 8-3917] design top_level has port aud_sd driven by constant 1
 WARNING: [Synth 8-3331] design center_finder has unconnected port rst_in
 WARNING: [Synth 8-3331] design rgb2hsv has unconnected port reset
@@ -155,7 +154,7 @@ WARNING: [Synth 8-3331] design camera_to_mask has unconnected port vcount[0]
 WARNING: [Synth 8-3331] design top_level has unconnected port btnu
 WARNING: [Synth 8-3331] design top_level has unconnected port btnd
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 898.559 ; gain = 310.500
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 899.355 ; gain = 310.820
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -168,74 +167,74 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 898.559 ; gain = 310.500
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 899.355 ; gain = 310.820
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 898.559 ; gain = 310.500
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 899.355 ; gain = 310.820
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.075 . Memory (MB): peak = 898.559 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.061 . Memory (MB): peak = 899.355 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/green_mask_bram/green_mask_bram/red_mask_bram_in_context.xdc] for cell 'color_blobs/g_mask_bram'
-Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/green_mask_bram/green_mask_bram/red_mask_bram_in_context.xdc] for cell 'color_blobs/g_mask_bram'
-Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_mask_bram/blue_mask_bram/red_mask_bram_in_context.xdc] for cell 'color_blobs/b_mask_bram'
-Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_mask_bram/blue_mask_bram/red_mask_bram_in_context.xdc] for cell 'color_blobs/b_mask_bram'
-Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/red_cf/r_div'
-Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/red_cf/r_div'
-Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/red_cf/c_div'
-Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/red_cf/c_div'
-Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/blue_cf/r_div'
-Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/blue_cf/r_div'
-Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/blue_cf/c_div'
-Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/blue_cf/c_div'
-Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/green_cf/r_div'
-Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/green_cf/r_div'
-Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/green_cf/c_div'
-Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/green_cf/c_div'
-Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_mask_bram/red_mask_bram/red_mask_bram_in_context.xdc] for cell 'color_blobs/r_mask_bram'
-Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_mask_bram/red_mask_bram/red_mask_bram_in_context.xdc] for cell 'color_blobs/r_mask_bram'
-Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/image_bram/image_bram/image_bram_in_context.xdc] for cell 'color_blobs/frame_bram'
-Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/image_bram/image_bram/image_bram_in_context.xdc] for cell 'color_blobs/frame_bram'
-Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/div_gen_0/div_gen_0/div_gen_0_in_context.xdc] for cell 'color_blobs/converter/s_div'
-Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/div_gen_0/div_gen_0/div_gen_0_in_context.xdc] for cell 'color_blobs/converter/s_div'
-Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/div_gen_0/div_gen_0/div_gen_0_in_context.xdc] for cell 'color_blobs/converter/h_div'
-Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/div_gen_0/div_gen_0/div_gen_0_in_context.xdc] for cell 'color_blobs/converter/h_div'
-Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clkdivider'
-Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clkdivider'
-Parsing XDC File [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc]
-WARNING: [Vivado 12-584] No ports matched 'ca'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:65]
-WARNING: [Vivado 12-584] No ports matched 'cb'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:66]
-WARNING: [Vivado 12-584] No ports matched 'cc'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:67]
-WARNING: [Vivado 12-584] No ports matched 'cd'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:68]
-WARNING: [Vivado 12-584] No ports matched 'ce'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:69]
-WARNING: [Vivado 12-584] No ports matched 'cf'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:70]
-WARNING: [Vivado 12-584] No ports matched 'cg'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:71]
-WARNING: [Vivado 12-584] No ports matched 'dp'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:73]
-WARNING: [Vivado 12-584] No ports matched 'an[0]'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:75]
-WARNING: [Vivado 12-584] No ports matched 'an[1]'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:76]
-WARNING: [Vivado 12-584] No ports matched 'an[2]'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:77]
-WARNING: [Vivado 12-584] No ports matched 'an[3]'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:78]
-WARNING: [Vivado 12-584] No ports matched 'an[4]'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:79]
-WARNING: [Vivado 12-584] No ports matched 'an[5]'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:80]
-WARNING: [Vivado 12-584] No ports matched 'an[6]'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:81]
-WARNING: [Vivado 12-584] No ports matched 'an[7]'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:82]
-WARNING: [Vivado 12-584] No ports matched 'vauxn3'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:167]
-WARNING: [Vivado 12-584] No ports matched 'vauxp3'. [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:168]
-Finished Parsing XDC File [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc]
-WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/top_level_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_level_propImpl.xdc].
+Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/green_mask_bram/green_mask_bram/red_mask_bram_in_context.xdc] for cell 'color_blobs/g_mask_bram'
+Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/green_mask_bram/green_mask_bram/red_mask_bram_in_context.xdc] for cell 'color_blobs/g_mask_bram'
+Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_mask_bram/blue_mask_bram/red_mask_bram_in_context.xdc] for cell 'color_blobs/b_mask_bram'
+Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_mask_bram/blue_mask_bram/red_mask_bram_in_context.xdc] for cell 'color_blobs/b_mask_bram'
+Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/red_cf/r_div'
+Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/red_cf/r_div'
+Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/red_cf/c_div'
+Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/red_cf/c_div'
+Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/blue_cf/r_div'
+Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/blue_cf/r_div'
+Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/blue_cf/c_div'
+Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/blue_cf/c_div'
+Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/green_cf/r_div'
+Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/green_cf/r_div'
+Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/green_cf/c_div'
+Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider/col_divider_in_context.xdc] for cell 'color_blobs/green_cf/c_div'
+Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_mask_bram/red_mask_bram/red_mask_bram_in_context.xdc] for cell 'color_blobs/r_mask_bram'
+Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_mask_bram/red_mask_bram/red_mask_bram_in_context.xdc] for cell 'color_blobs/r_mask_bram'
+Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/image_bram/image_bram/image_bram_in_context.xdc] for cell 'color_blobs/frame_bram'
+Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/image_bram/image_bram/image_bram_in_context.xdc] for cell 'color_blobs/frame_bram'
+Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/div_gen_0/div_gen_0/div_gen_0_in_context.xdc] for cell 'color_blobs/converter/s_div'
+Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/div_gen_0/div_gen_0/div_gen_0_in_context.xdc] for cell 'color_blobs/converter/s_div'
+Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/div_gen_0/div_gen_0/div_gen_0_in_context.xdc] for cell 'color_blobs/converter/h_div'
+Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/div_gen_0/div_gen_0/div_gen_0_in_context.xdc] for cell 'color_blobs/converter/h_div'
+Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clkdivider'
+Finished Parsing XDC File [c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clkdivider'
+Parsing XDC File [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc]
+WARNING: [Vivado 12-584] No ports matched 'ca'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:65]
+WARNING: [Vivado 12-584] No ports matched 'cb'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:66]
+WARNING: [Vivado 12-584] No ports matched 'cc'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:67]
+WARNING: [Vivado 12-584] No ports matched 'cd'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:68]
+WARNING: [Vivado 12-584] No ports matched 'ce'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:69]
+WARNING: [Vivado 12-584] No ports matched 'cf'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:70]
+WARNING: [Vivado 12-584] No ports matched 'cg'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:71]
+WARNING: [Vivado 12-584] No ports matched 'dp'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:73]
+WARNING: [Vivado 12-584] No ports matched 'an[0]'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:75]
+WARNING: [Vivado 12-584] No ports matched 'an[1]'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:76]
+WARNING: [Vivado 12-584] No ports matched 'an[2]'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:77]
+WARNING: [Vivado 12-584] No ports matched 'an[3]'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:78]
+WARNING: [Vivado 12-584] No ports matched 'an[4]'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:79]
+WARNING: [Vivado 12-584] No ports matched 'an[5]'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:80]
+WARNING: [Vivado 12-584] No ports matched 'an[6]'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:81]
+WARNING: [Vivado 12-584] No ports matched 'an[7]'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:82]
+WARNING: [Vivado 12-584] No ports matched 'vauxn3'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:167]
+WARNING: [Vivado 12-584] No ports matched 'vauxp3'. [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc:168]
+Finished Parsing XDC File [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/top_level_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_level_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_level_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Parsing XDC File [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/dont_touch.xdc]
-Finished Parsing XDC File [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/dont_touch.xdc]
+Parsing XDC File [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1014.414 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1016.324 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.030 . Memory (MB): peak = 1014.414 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 1016.324 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'color_blobs/b_mask_bram' at clock pin 'clkb' is different from the actual clock period '15.385', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'color_blobs/frame_bram' at clock pin 'clkb' is different from the actual clock period '15.385', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'color_blobs/g_mask_bram' at clock pin 'clkb' is different from the actual clock period '15.385', this can lead to different synthesis results.
@@ -249,20 +248,20 @@ WARNING: [Timing 38-316] Clock period '1000.000' specified during out-of-context
 WARNING: [Timing 38-316] Clock period '1000.000' specified during out-of-context synthesis of instance 'color_blobs/red_cf/c_div' at clock pin 'aclk' is different from the actual clock period '15.385', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '1000.000' specified during out-of-context synthesis of instance 'color_blobs/red_cf/r_div' at clock pin 'aclk' is different from the actual clock period '15.385', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1017.383 ; gain = 429.324
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1019.438 ; gain = 430.902
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1017.383 ; gain = 429.324
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1019.438 ; gain = 430.902
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property IO_BUFFER_TYPE = NONE for clk_100mhz. (constraint file  {c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0/clk_wiz_0_in_context.xdc}, line 3).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for clk_100mhz. (constraint file  {c:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0/clk_wiz_0_in_context.xdc}, line 4).
+Applied set_property IO_BUFFER_TYPE = NONE for clk_100mhz. (constraint file  {c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0/clk_wiz_0_in_context.xdc}, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for clk_100mhz. (constraint file  {c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0/clk_wiz_0_in_context.xdc}, line 4).
 Applied set_property DONT_TOUCH = true for color_blobs/g_mask_bram. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for color_blobs/b_mask_bram. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for color_blobs/red_cf/c_div. (constraint file  auto generated constraint, line ).
@@ -277,21 +276,21 @@ Applied set_property DONT_TOUCH = true for color_blobs/converter/h_div. (constra
 Applied set_property DONT_TOUCH = true for color_blobs/converter/s_div. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for clkdivider. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1017.383 ; gain = 429.324
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1019.438 ; gain = 430.902
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'filter'
 INFO: [Synth 8-802] inferred FSM for state register 'FSM_state_reg' in module 'camera_read'
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <multiplier> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:98]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:98]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <multiplier> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:93]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:93]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <multiplier> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:92]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:92]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <multiplier> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:88]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:88]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <multiplier> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:48]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:48]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:120]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <multiplier> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:98]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:98]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <multiplier> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:93]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:93]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <multiplier> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:92]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:92]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <multiplier> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:88]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:88]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <multiplier> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:48]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:48]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:120]
 INFO: [Synth 8-802] inferred FSM for state register 'frame_state_reg' in module 'center_finder__xdcDup__1'
 INFO: [Synth 8-802] inferred FSM for state register 'frame_state_reg' in module 'center_finder__xdcDup__2'
 INFO: [Synth 8-802] inferred FSM for state register 'frame_state_reg' in module 'center_finder'
@@ -340,7 +339,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'frame_state_reg' using enc
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'frame_state_reg' using encoding 'sequential' in module 'center_finder'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1017.383 ; gain = 429.324
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1019.438 ; gain = 430.902
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -356,9 +355,10 @@ Detailed RTL Component Info :
 	   2 Input     32 Bit       Adders := 2     
 	   3 Input     17 Bit       Adders := 2     
 	   2 Input     16 Bit       Adders := 2     
-	   2 Input     11 Bit       Adders := 1     
-	   2 Input     10 Bit       Adders := 3     
-	   2 Input      9 Bit       Adders := 3     
+	   3 Input     12 Bit       Adders := 2     
+	   2 Input     11 Bit       Adders := 2     
+	   2 Input     10 Bit       Adders := 2     
+	   2 Input      9 Bit       Adders := 1     
 	   2 Input      8 Bit       Adders := 5     
 	   3 Input      8 Bit       Adders := 3     
 	   2 Input      2 Bit       Adders := 1     
@@ -368,31 +368,32 @@ Detailed RTL Component Info :
 	               17 Bit    Registers := 7     
 	               16 Bit    Registers := 8     
 	               15 Bit    Registers := 2     
-	               12 Bit    Registers := 4     
+	               12 Bit    Registers := 5     
 	               11 Bit    Registers := 1     
 	               10 Bit    Registers := 1     
 	                9 Bit    Registers := 7     
-	                8 Bit    Registers := 85    
+	                8 Bit    Registers := 89    
+	                3 Bit    Registers := 3     
 	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 25    
 +---ROMs : 
-	                              ROMs := 8     
+	                              ROMs := 9     
 +---Muxes : 
 	   5 Input     32 Bit        Muxes := 2     
 	   5 Input     16 Bit        Muxes := 4     
 	   3 Input     16 Bit        Muxes := 1     
 	   2 Input     16 Bit        Muxes := 7     
-	   2 Input     12 Bit        Muxes := 7     
+	   2 Input     12 Bit        Muxes := 8     
 	   2 Input      9 Bit        Muxes := 2     
-	   2 Input      8 Bit        Muxes := 19    
-	   4 Input      8 Bit        Muxes := 4     
+	   2 Input      8 Bit        Muxes := 21    
+	   4 Input      8 Bit        Muxes := 5     
 	   3 Input      8 Bit        Muxes := 1     
 	   2 Input      4 Bit        Muxes := 3     
-	   5 Input      3 Bit        Muxes := 2     
+	   5 Input      3 Bit        Muxes := 4     
 	   4 Input      2 Bit        Muxes := 3     
 	   2 Input      2 Bit        Muxes := 9     
-	   2 Input      1 Bit        Muxes := 23    
-	   4 Input      1 Bit        Muxes := 17    
+	   2 Input      1 Bit        Muxes := 28    
+	   4 Input      1 Bit        Muxes := 19    
 	   5 Input      1 Bit        Muxes := 12    
 	   3 Input      1 Bit        Muxes := 12    
 ---------------------------------------------------------------------------------
@@ -407,15 +408,19 @@ Detailed RTL Component Info :
 +---Adders : 
 	   3 Input     17 Bit       Adders := 2     
 	   2 Input     16 Bit       Adders := 1     
-	   2 Input     10 Bit       Adders := 2     
-	   2 Input      9 Bit       Adders := 2     
+	   3 Input     12 Bit       Adders := 2     
+	   2 Input     11 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 1     
 +---Registers : 
 	               17 Bit    Registers := 4     
 	               16 Bit    Registers := 1     
-	               12 Bit    Registers := 3     
+	               12 Bit    Registers := 4     
+	                3 Bit    Registers := 3     
 +---Muxes : 
 	   2 Input     12 Bit        Muxes := 7     
 	   2 Input      4 Bit        Muxes := 3     
+	   5 Input      3 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 4     
 Module xvga 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -549,6 +554,9 @@ Detailed RTL Component Info :
 	                8 Bit    Registers := 2     
 	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 9     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Hierarchical Component Statistics
 ---------------------------------------------------------------------------------
@@ -565,6 +573,10 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 Warning: Parallel synthesis criteria is not met 
+DSP Report: Generating DSP phase0, operation Mode is: C+((A:0x15d86)*B)'.
+DSP Report: register phase_step_reg is absorbed into DSP phase0.
+DSP Report: operator phase_step0 is absorbed into DSP phase0.
+DSP Report: operator phase0 is absorbed into DSP phase0.
 DSP Report: Generating DSP osc2/phase0, operation Mode is: C+((A:0x15d86)*B)'.
 DSP Report: register osc2/phase_step_reg is absorbed into DSP osc2/phase0.
 DSP Report: operator osc2/phase_step0 is absorbed into DSP osc2/phase0.
@@ -589,8 +601,8 @@ DSP Report: Generating DSP lpfilter/mult_out, operation Mode is: A2*B2.
 DSP Report: register lpfilter/mult2_reg is absorbed into DSP lpfilter/mult_out.
 DSP Report: register lpfilter/mult1_reg is absorbed into DSP lpfilter/mult_out.
 DSP Report: operator lpfilter/mult_out is absorbed into DSP lpfilter/mult_out.
-INFO: [Synth 8-4471] merging register 'converter/delta_reg[7:0]' into 'converter/delta_reg[7:0]' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:80]
-INFO: [Synth 8-4471] merging register 'converter/delta_reg[7:0]' into 'converter/delta_reg[7:0]' [C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:80]
+INFO: [Synth 8-4471] merging register 'converter/delta_reg[7:0]' into 'converter/delta_reg[7:0]' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:80]
+INFO: [Synth 8-4471] merging register 'converter/delta_reg[7:0]' into 'converter/delta_reg[7:0]' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:80]
 DSP Report: Generating DSP converter/h_top_reg, operation Mode is: (A*(B:0xff))'.
 DSP Report: register converter/h_top_reg is absorbed into DSP converter/h_top_reg.
 DSP Report: operator h_top0 is absorbed into DSP converter/h_top_reg.
@@ -714,6 +726,10 @@ INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[11][2]' (
 INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[11][3]' (FD) to 'color_blobs/converter/h_add_reg[11][5]'
 INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[11][4]' (FD) to 'color_blobs/converter/h_add_reg[11][6]'
 INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[11][5]' (FD) to 'color_blobs/converter/h_add_reg[11][7]'
+INFO: [Synth 8-3886] merging instance 'lfo_frequency_reg[8]' (FDR) to 'synth1_frequency_reg[0]'
+INFO: [Synth 8-3886] merging instance 'lfo_frequency_reg[9]' (FDR) to 'synth1_frequency_reg[0]'
+INFO: [Synth 8-3886] merging instance 'lfo_frequency_reg[10]' (FDR) to 'synth1_frequency_reg[0]'
+INFO: [Synth 8-3886] merging instance 'lfo_frequency_reg[11]' (FDR) to 'synth1_frequency_reg[0]'
 INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[12][0]' (FD) to 'color_blobs/converter/h_add_reg[12][4]'
 INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[12][1]' (FD) to 'color_blobs/converter/h_add_reg[12][5]'
 INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[12][2]' (FD) to 'color_blobs/converter/h_add_reg[12][4]'
@@ -726,33 +742,46 @@ INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[13][2]' (
 INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[13][3]' (FD) to 'color_blobs/converter/h_add_reg[13][5]'
 INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[13][4]' (FD) to 'color_blobs/converter/h_add_reg[13][6]'
 INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[13][5]' (FD) to 'color_blobs/converter/h_add_reg[13][7]'
+INFO: [Synth 8-3886] merging instance 'lfo/square_wave_reg[1]' (FDE) to 'lfo/square_wave_reg[0]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lfo/triangle_wave_reg[1] )
+INFO: [Synth 8-3886] merging instance 'lfo/square_wave_reg[0]' (FDE) to 'lfo/square_wave_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lfo/triangle_wave_reg[0] )
+INFO: [Synth 8-3886] merging instance 'lfo/square_wave_reg[2]' (FDE) to 'lfo/square_wave_reg[3]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lfo/triangle_wave_reg[2] )
+INFO: [Synth 8-3886] merging instance 'lfo/square_wave_reg[3]' (FDE) to 'lfo/square_wave_reg[4]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lfo/triangle_wave_reg[3] )
+INFO: [Synth 8-3886] merging instance 'lfo/square_wave_reg[4]' (FDE) to 'lfo/square_wave_reg[5]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lfo/triangle_wave_reg[4] )
+INFO: [Synth 8-3886] merging instance 'lfo/square_wave_reg[5]' (FDE) to 'lfo/square_wave_reg[6]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lfo/triangle_wave_reg[5] )
+INFO: [Synth 8-3886] merging instance 'lfo/square_wave_reg[6]' (FDE) to 'lfo/square_wave_reg[7]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lfo/triangle_wave_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lfo/square_wave_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lfo/triangle_wave_reg[7] )
 INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[14][0]' (FD) to 'color_blobs/converter/h_add_reg[14][4]'
 INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[14][1]' (FD) to 'color_blobs/converter/h_add_reg[14][5]'
 INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[14][2]' (FD) to 'color_blobs/converter/h_add_reg[14][4]'
 INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[14][3]' (FD) to 'color_blobs/converter/h_add_reg[14][5]'
 INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[14][4]' (FD) to 'color_blobs/converter/h_add_reg[14][6]'
-INFO: [Synth 8-3886] merging instance 'color_blobs/converter/h_add_reg[14][5]' (FD) to 'color_blobs/converter/h_add_reg[14][7]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_r_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_g_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_b_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_r_reg[1] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_g_reg[1] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_b_reg[1] )
-INFO: [Synth 8-3886] merging instance 'color_blobs/converter/my_g_reg[4]' (FD) to 'color_blobs/raw_image_pixels_reg[4]'
-INFO: [Synth 8-3886] merging instance 'color_blobs/converter/my_g_reg[5]' (FD) to 'color_blobs/raw_image_pixels_reg[5]'
-INFO: [Synth 8-3886] merging instance 'color_blobs/converter/my_g_reg[6]' (FD) to 'color_blobs/raw_image_pixels_reg[6]'
-INFO: [Synth 8-3886] merging instance 'color_blobs/converter/my_g_reg[7]' (FD) to 'color_blobs/raw_image_pixels_reg[7]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_r_reg[2] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_b_reg[2] )
-INFO: [Synth 8-3886] merging instance 'color_blobs/converter/my_r_reg[4]' (FD) to 'color_blobs/raw_image_pixels_reg[8]'
-INFO: [Synth 8-3886] merging instance 'color_blobs/converter/my_b_reg[4]' (FD) to 'color_blobs/raw_image_pixels_reg[0]'
-INFO: [Synth 8-3886] merging instance 'color_blobs/converter/my_r_reg[5]' (FD) to 'color_blobs/raw_image_pixels_reg[9]'
-INFO: [Synth 8-3886] merging instance 'color_blobs/converter/my_b_reg[5]' (FD) to 'color_blobs/raw_image_pixels_reg[1]'
-INFO: [Synth 8-3886] merging instance 'color_blobs/converter/my_r_reg[6]' (FD) to 'color_blobs/raw_image_pixels_reg[10]'
-INFO: [Synth 8-3886] merging instance 'color_blobs/converter/my_b_reg[6]' (FD) to 'color_blobs/raw_image_pixels_reg[2]'
-INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\synth1_frequency_reg[11] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\synth2_frequency_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\synth1_frequency_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\synth2_frequency_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/s_bottom_reg[8] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/s_bottom_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/s_bottom_reg[10] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/s_bottom_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/s_bottom_reg[12] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/s_bottom_reg[13] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/s_bottom_reg[14] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/s_bottom_reg[15] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/h_bottom_reg[15] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\synth1/osc2/triangle_wave_reg[1] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\synth1/osc2/triangle_wave_reg[2] )
@@ -772,11 +801,63 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (\synth2/o
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\synth2/osc1/square_wave_reg[7] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\synth2/osc1/triangle_wave_reg[7] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\synth2/osc2/square_wave_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/min_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_r_delay1_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_r_delay1_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_r_delay1_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_g_delay1_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_g_delay1_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/max_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_b_delay1_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_b_delay1_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_b_delay1_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/max_reg[1] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/min_reg[1] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/min_reg[1] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/delta_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_r_delay2_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_r_delay2_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_r_delay2_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_g_delay2_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_g_delay2_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[0][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_b_delay2_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[0][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_b_delay2_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/my_b_delay2_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[1][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[1][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[2][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[2][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[3][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[3][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[4][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[4][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[5][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[5][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[6][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[6][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[7][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[7][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[8][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[8][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[9][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[9][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[10][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[10][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[11][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[11][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[12][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[12][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[13][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[13][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[14][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[14][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[15][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[15][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[16][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\color_blobs/converter/v_delay_reg[16][0] )
+INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1017.383 ; gain = 429.324
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 1019.438 ; gain = 430.902
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -786,6 +867,7 @@ ROM:
 +------------+------------------------+---------------+----------------+
 |Module Name | RTL Object             | Depth x Width | Implemented As | 
 +------------+------------------------+---------------+----------------+
+|oscillator  | lut_1/amp_out          | 256x8         | Block RAM      | 
 |synthesizer | lpfilter/fc/b0_out_reg | 256x15        | Block RAM      | 
 |synthesizer | lpfilter/fc/a1_out_reg | 256x16        | Block RAM      | 
 |synthesizer | osc2/lut_1/amp_out     | 256x8         | Block RAM      | 
@@ -801,6 +883,7 @@ DSP: Preliminary Mapping	Report (see note below)
 +------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 |Module Name | DSP Mapping        | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
 +------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|oscillator  | C+((A:0x15d86)*B)' | 12     | 17     | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 1    | 0    | 
 |oscillator  | C+((A:0x15d86)*B)' | 12     | 17     | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 1    | 0    | 
 |oscillator  | C+((A:0x15d86)*B)' | 12     | 17     | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 1    | 0    | 
 |filter      | A2*B2              | 16     | 16     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 0    | 0    | 
@@ -826,13 +909,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:38 ; elapsed = 00:00:38 . Memory (MB): peak = 1051.703 ; gain = 463.645
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 1061.391 ; gain = 472.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 1103.383 ; gain = 515.324
+Finished Timing Optimization : Time (s): cpu = 00:00:43 ; elapsed = 00:00:43 . Memory (MB): peak = 1114.676 ; gain = 526.141
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -848,7 +931,7 @@ INFO: [Synth 8-7053] The timing for the instance synth1/lpfilter/fc/b0_out_reg (
 INFO: [Synth 8-7053] The timing for the instance synth1/lpfilter/fc/a1_out_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7053] The timing for the instance synth1/lpfilter/fc/a1_out_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1103.383 ; gain = 515.324
+Finished Technology Mapping : Time (s): cpu = 00:00:44 ; elapsed = 00:00:45 . Memory (MB): peak = 1114.676 ; gain = 526.141
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -874,13 +957,13 @@ INFO: [Synth 8-5365] Flop synth2/osc2/triangle_wave_reg[7] is being inverted and
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 1103.383 ; gain = 515.324
+Finished IO Insertion : Time (s): cpu = 00:00:49 ; elapsed = 00:00:50 . Memory (MB): peak = 1117.047 ; gain = 528.512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 1103.383 ; gain = 515.324
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:49 ; elapsed = 00:00:50 . Memory (MB): peak = 1117.047 ; gain = 528.512
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -899,25 +982,25 @@ Report Check Netlist:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 1103.383 ; gain = 515.324
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:50 ; elapsed = 00:00:50 . Memory (MB): peak = 1117.047 ; gain = 528.512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 1103.383 ; gain = 515.324
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:50 ; elapsed = 00:00:50 . Memory (MB): peak = 1117.047 ; gain = 528.512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 1103.383 ; gain = 515.324
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:50 ; elapsed = 00:00:50 . Memory (MB): peak = 1117.047 ; gain = 528.512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 1103.383 ; gain = 515.324
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:50 ; elapsed = 00:00:50 . Memory (MB): peak = 1117.047 ; gain = 528.512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -929,6 +1012,7 @@ Static Shift Register Report:
 +------------+------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 |top_level   | color_blobs/converter/h_add_reg[18][7]   | 18     | 2     | NO           | NO                 | YES               | 0      | 2       | 
 |top_level   | color_blobs/converter/h_negative_reg[18] | 18     | 1     | NO           | NO                 | YES               | 0      | 1       | 
+|top_level   | color_blobs/converter/v_reg[7]           | 20     | 6     | NO           | NO                 | YES               | 0      | 6       | 
 +------------+------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 
 ---------------------------------------------------------------------------------
@@ -969,76 +1053,81 @@ Report Cell Usage:
 |12    |image_bram          |     1|
 |13    |red_mask_bram       |     1|
 |14    |BUFG                |     1|
-|15    |CARRY4              |   133|
-|16    |DSP48E1             |     4|
-|17    |DSP48E1_1           |     2|
-|18    |DSP48E1_5           |     1|
-|19    |DSP48E1_6           |     2|
-|20    |LUT1                |    30|
-|21    |LUT2                |   285|
-|22    |LUT3                |    76|
-|23    |LUT4                |   124|
-|24    |LUT5                |   118|
-|25    |LUT6                |   145|
-|26    |RAMB18E1            |     1|
+|15    |CARRY4              |   137|
+|16    |DSP48E1             |     1|
+|17    |DSP48E1_1           |     4|
+|18    |DSP48E1_2           |     2|
+|19    |DSP48E1_6           |     1|
+|20    |DSP48E1_7           |     2|
+|21    |LUT1                |    30|
+|22    |LUT2                |   274|
+|23    |LUT3                |    92|
+|24    |LUT4                |   150|
+|25    |LUT5                |   134|
+|26    |LUT6                |   167|
 |27    |RAMB18E1_1          |     1|
-|28    |SRLC32E             |     3|
-|29    |FDRE                |   836|
-|30    |FDSE                |    15|
-|31    |IBUF                |    30|
-|32    |OBUF                |    39|
-|33    |OBUFT               |     1|
+|28    |RAMB18E1_2          |     1|
+|29    |RAMB18E1_3          |     1|
+|30    |SRLC32E             |     9|
+|31    |FDRE                |   879|
+|32    |FDSE                |    15|
+|33    |IBUF                |    30|
+|34    |OBUF                |    39|
+|35    |OBUFT               |     1|
 +------+--------------------+------+
 
 Report Instance Areas: 
 +------+--------------+-------------------------+------+
 |      |Instance      |Module                   |Cells |
 +------+--------------+-------------------------+------+
-|1     |top           |                         |  2223|
-|2     |  color_blobs |camera_to_mask           |  1459|
-|3     |    blue_cf   |center_finder__xdcDup__2 |   260|
-|4     |    converter |rgb2hsv                  |   447|
-|5     |    green_cf  |center_finder            |   254|
-|6     |    my_camera |camera_read              |   168|
-|7     |    red_cf    |center_finder__xdcDup__1 |   261|
-|8     |  pwm_out     |pwm                      |    26|
-|9     |  synth1      |synthesizer              |   193|
-|10    |    lpfilter  |filter_3                 |   154|
-|11    |      fc      |filter_coeffs            |    18|
-|12    |    osc1      |oscillator_4             |    24|
-|13    |    osc2      |oscillator_5             |     8|
-|14    |    oscmixer  |mixer_6                  |     7|
-|15    |  synth2      |synthesizer_0            |   197|
-|16    |    lpfilter  |filter                   |   153|
-|17    |    osc1      |oscillator               |    15|
-|18    |    osc2      |oscillator_1             |    22|
-|19    |    oscmixer  |mixer_2                  |     7|
-|20    |  synth_mixer |mixer                    |     7|
-|21    |  xvga1       |xvga                     |   153|
+|1     |top           |                         |  2347|
+|2     |  color_blobs |camera_to_mask           |  1501|
+|3     |    blue_cf   |center_finder__xdcDup__2 |   254|
+|4     |    converter |rgb2hsv                  |   494|
+|5     |    green_cf  |center_finder            |   265|
+|6     |    my_camera |camera_read              |   172|
+|7     |    red_cf    |center_finder__xdcDup__1 |   260|
+|8     |  lfo         |oscillator               |    51|
+|9     |  pwm_out     |pwm                      |    24|
+|10    |  synth1      |synthesizer              |   207|
+|11    |    lpfilter  |filter_4                 |   167|
+|12    |      fc      |filter_coeffs            |    18|
+|13    |    osc1      |oscillator_5             |    30|
+|14    |    osc2      |oscillator_6             |     8|
+|15    |    oscmixer  |mixer_7                  |     2|
+|16    |  synth2      |synthesizer_0            |   200|
+|17    |    lpfilter  |filter                   |   160|
+|18    |    osc1      |oscillator_1             |    16|
+|19    |    osc2      |oscillator_2             |    22|
+|20    |    oscmixer  |mixer_3                  |     2|
+|21    |  synth_mixer |mixer                    |     5|
+|22    |  xvga1       |xvga                     |   161|
 +------+--------------+-------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 1103.383 ; gain = 515.324
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:50 ; elapsed = 00:00:50 . Memory (MB): peak = 1117.047 ; gain = 528.512
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 43 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:35 ; elapsed = 00:00:43 . Memory (MB): peak = 1103.383 ; gain = 396.500
-Synthesis Optimization Complete : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 1103.383 ; gain = 515.324
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:40 ; elapsed = 00:00:47 . Memory (MB): peak = 1117.047 ; gain = 408.430
+Synthesis Optimization Complete : Time (s): cpu = 00:00:50 ; elapsed = 00:00:51 . Memory (MB): peak = 1117.047 ; gain = 528.512
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.045 . Memory (MB): peak = 1112.230 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 144 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.052 . Memory (MB): peak = 1129.098 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 150 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1112.230 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1132.098 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-218 Infos, 128 Warnings, 0 Critical Warnings and 0 Errors encountered.
+287 Infos, 127 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:52 ; elapsed = 00:00:54 . Memory (MB): peak = 1112.230 ; gain = 813.531
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1112.230 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:56 ; elapsed = 00:00:58 . Memory (MB): peak = 1132.098 ; gain = 833.496
+INFO: [Common 17-600] The following parameters have non-default value.
+tcl.collectionResultDisplayLimit
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1132.098 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
-INFO: [Common 17-1381] The checkpoint 'C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/synth_1/top_level.dcp' has been generated.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/top_level.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_level_utilization_synth.rpt -pb top_level_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat Nov 28 18:33:11 2020...
+INFO: [Common 17-206] Exiting Vivado at Fri Dec  4 21:50:58 2020...

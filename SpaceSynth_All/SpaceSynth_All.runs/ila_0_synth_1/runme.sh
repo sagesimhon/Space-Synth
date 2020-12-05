@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/Praj/Documents/2020 Fall/6.111/SpaceSynth_All/SpaceSynth_All.runs/ila_0_synth_1'
+HD_PWD='C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/ila_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

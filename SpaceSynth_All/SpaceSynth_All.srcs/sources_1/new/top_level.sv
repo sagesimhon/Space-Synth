@@ -84,6 +84,7 @@ module top_level(
     logic [10:0] hcount;   
     logic [9:0] vcount;   
     logic hsync, vsync, blank;
+    
     xvga xvga1(.vclock_in(clk_65mhz),.hcount_out(hcount),.vcount_out(vcount),
           .hsync_out(hsync),.vsync_out(vsync),.blank_out(blank));
     
@@ -115,7 +116,7 @@ module top_level(
     logic signed[7:0] all_synth_out;
     
     logic [2:0] synth1_osc2_tune;
-    assign synth1_osc2_tune = 3'd2;
+    assign synth1_osc2_tune = 3'd1;
     
     logic [1:0] synth1_osc1_shape;
     assign synth1_osc1_shape = 2'd2;
@@ -123,7 +124,7 @@ module top_level(
     assign synth1_osc2_shape = 2'd3;
     
     logic [2:0] synth2_osc2_tune;
-    assign synth2_osc2_tune = 3'd3;
+    assign synth2_osc2_tune = 3'd2;
     
     logic [1:0] synth2_osc1_shape;
     assign synth2_osc1_shape = 2'd3;
@@ -137,33 +138,52 @@ module top_level(
     logic [7:0] filter_cutoff;
     assign filter_cutoff = 8'd255;
     
-    logic [2:0] synth_amplitude;
-    assign synth_amplitude = 3'd7;
+    logic [2:0] synth1_amplitude;
+    logic [2:0] synth2_amplitude;
     
     logic signed[7:0] lfo_out;
+    logic signed[7:0] lfo_osc_out;
     logic [11:0] lfo_frequency;
+    logic [2:0] lfo_amplitude;
 
     always_ff @(posedge clk_65mhz) begin
-        lfo_frequency <= red_center_v_index>>3;
-        synth1_frequency <= (red_area >= detection_threshold)?(12'd200+red_center_v_index<<2):12'd0;
-        synth2_frequency <= (blue_area >= detection_threshold)?(12'd200+blue_center_v_index<<2):12'd0;
+
+        lfo_frequency <= (red_area >= detection_threshold)?(red_area>>9):12'd0;
+        lfo_amplitude <= (green_area >= detection_threshold)?(green_area>>10):3'd0;
+        synth1_frequency <= (red_area >= detection_threshold)?(12'd200+(red_center_h_index<<2)+lfo_out<<<3):12'd0;
+        synth2_frequency <= (green_area >= detection_threshold)?(12'd200+(green_center_h_index<<2)+lfo_out<<<3):12'd0;
         
+        if (red_center_v_index < 80)begin
+            synth1_amplitude <= (red_area >= detection_threshold)?3'd7:3'd0;
+        end else if (red_center_v_index >= 80 && red_center_v_index < 160)begin
+            synth1_amplitude <= (red_area >= detection_threshold)?3'd6:3'd0;
+        end else if (red_center_v_index >= 160 && red_center_v_index < 240)begin
+            synth1_amplitude <= (red_area >= detection_threshold)?3'd5:3'd0;
+        end
+        if (green_center_v_index < 80)begin
+            synth2_amplitude <= (green_area >= detection_threshold)?3'd7:3'd0;
+        end else if (green_center_v_index >= 80 && green_center_v_index < 160)begin
+            synth2_amplitude <= (green_area >= detection_threshold)?3'd6:3'd0;
+        end else if (green_center_v_index >= 160 && green_center_v_index < 240)begin
+            synth2_amplitude <= (green_area >= detection_threshold)?3'd5:3'd0;
+        end
+       
         if (sw[2]&&((hcount<320) &&  (vcount<240))) begin //If sw[2] show original image
             current_pixel <= raw_image_buff;
             raw_image_output_pixel_addr <= hcount+vcount*32'd320;
         end
         else if (~sw[2]&&((hcount<320) &&  (vcount<240))) begin //Otherwise show red mask image
-            //Add green crosshair on center coordinates (if enough pixels are detected)
+            //Add purple crosshair on center coordinates (if enough pixels are detected)
             current_pixel <= ((hcount==red_center_h_index) || (vcount==red_center_v_index))?((red_area >= detection_threshold)?12'hF0F:red_buff):red_buff;
             red_buff_output_pixel_addr <= hcount+vcount*32'd320;
         end
         else if (~sw[2]&&((hcount>=320) && (hcount<640) && (vcount<240))) begin //Show blue mask image next to it
-            //Add green crosshair on center coordinates (if enough pixels are detected)
+            //Add purple crosshair on center coordinates (if enough pixels are detected)
             current_pixel <= ((hcount==blue_center_h_index+320) || (vcount==blue_center_v_index))?((blue_area >= detection_threshold)?12'hF0F:blue_buff):blue_buff;
             blue_buff_output_pixel_addr <= (hcount-11'd320)+vcount*32'd320;
         end
         else if (~sw[2]&&((hcount>=640) && (hcount<980) && (vcount<240))) begin //Show green mask image next to it
-            //Add green crosshair on center coordinates (if enough pixels are detected)
+            //Add purple crosshair on center coordinates (if enough pixels are detected)
             current_pixel <= ((hcount==green_center_h_index+640) || (vcount==green_center_v_index))?((green_area >= detection_threshold)?12'hF0F:green_buff):green_buff;
             green_buff_output_pixel_addr <= (hcount-11'd640)+vcount*32'd320;
         end
@@ -180,20 +200,25 @@ module top_level(
     assign vga_vs = ~vsync;
     
          
-//    oscillator lfo (
-//        .clk_in(clk_65mhz),
-//        .rst_in(reset),
-//        .step_in(trigger_in),
-//        .shape_in(2'd0),
-//        .frequency_in(lfo_frequency),
-//        .wave_out(lfo_out));
-        
+    oscillator lfo (
+        .clk_in(clk_65mhz),
+        .rst_in(reset),
+        .step_in(sample_trigger),
+        .shape_in(2'd0),
+        .frequency_in(lfo_frequency),
+        .wave_out(lfo_osc_out));
+    
+    amplitude_control lfo_amp (
+        .amplitude_in(lfo_amplitude), 
+        .signal_in(lfo_osc_out), 
+        .signal_out(lfo_out));  
+             
     synthesizer synth1(
         .frequency_in(synth1_frequency),
         .osc2_tune_in(synth1_osc2_tune),
         .osc1_shape_in(synth1_osc1_shape),
         .osc2_shape_in(synth1_osc2_shape),
-        .amplitude_in(synth_amplitude),
+        .amplitude_in(synth1_amplitude),
         .filter_cutoff_in(filter_cutoff),
         .trigger_in(sample_trigger),
         .rst_in(reset), 
@@ -205,7 +230,7 @@ module top_level(
         .osc2_tune_in(synth2_osc2_tune),
         .osc1_shape_in(synth2_osc1_shape),
         .osc2_shape_in(synth2_osc2_shape),
-        .amplitude_in(synth_amplitude),
+        .amplitude_in(synth2_amplitude),
         .filter_cutoff_in(filter_cutoff),
         .trigger_in(sample_trigger),
         .rst_in(reset),
@@ -264,5 +289,5 @@ module top_level(
     .green_center_v_index_out(green_center_v_index),
     .green_center_h_index_out(green_center_h_index)
    );
-                               
+                   
 endmodule

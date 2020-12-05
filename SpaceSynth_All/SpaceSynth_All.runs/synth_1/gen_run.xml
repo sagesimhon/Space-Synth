@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1606617129">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1607147392">
   <File Type="PA-TCL" Name="top_level.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="top_level_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="top_level_reports.tcl"/>
@@ -141,7 +141,7 @@
     <Filter Type="Constrs"/>
     <File Path="$PSRCDIR/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../Lab5a/nexys4ddr_audio.xdc"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Lab5a/nexys4ddr_audio.xdc"/>
         <Attr Name="ImportTime" Val="1602269836"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>

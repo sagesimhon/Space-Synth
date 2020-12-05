@@ -3,7 +3,7 @@ module oscillator ( input clk_in, input rst_in, //clock and reset
                     input step_in, //trigger a phase step (rate at which you run sine generator)
                     input [1:0] shape_in,
                     input [11:0] frequency_in,
-                    output logic [7:0] wave_out); //output wave   
+                    output logic signed [7:0] wave_out); //output wave   
     
     parameter SINE = 2'd0;
     parameter SQUARE = 2'd1;

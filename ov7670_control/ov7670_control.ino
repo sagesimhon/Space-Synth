@@ -105,6 +105,8 @@ uint8_t settings[][2] = {
     {0x02, 0x40}, //reg gain (default 80)
     {0x6a, 0x40}, //green gain (default not sure!)
     //{0x13, 0x00}, //disable all automatic features!! (including automatic white balance)
+
+    {0x1E,0x20}//Mirror video
 }; 
 uint8_t output_state;
 

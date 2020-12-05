@@ -117,11 +117,4 @@ module center_finder(input clk_in, input rst_in, //clock and reset
 		.m_axis_dout_tdata(v_quotient)         
 		);
 
-//    ila_0 my_ila(.clk(clk_in),     
-//                                .probe0(v_index_in), 
-//                                .probe1(h_index_in),
-//                                .probe2(frame_state),
-//                                .probe3(divide_enable),
-//                                .probe4(v_index_out));
-
 endmodule

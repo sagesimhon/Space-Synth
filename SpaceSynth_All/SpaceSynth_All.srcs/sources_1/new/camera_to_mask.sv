@@ -90,30 +90,35 @@ module camera_to_mask(
         xclk_count <= xclk_count + 2'b01;
         
         //Just raw image from camera truncated to 12 bits
-        raw_image_pixels <= {output_pixels[15:12],output_pixels[10:7],output_pixels[4:1]}; //{h[7:0], s[7:0], v[7:0]};
+        if (h_idx_out > 8) begin 
+            raw_image_pixels <= {output_pixels[15:12],output_pixels[10:7],output_pixels[4:1]}; //{h[7:0], s[7:0], v[7:0]};
+        end else begin
+            raw_image_pixels <= 12'h000;
+        end 
         
-        //TODO: put the thresholding in a separate module to make camera_to_mask less bulky
         if (sw[7]) begin 
-            //Thresholding Red (Hue 0)
-            if (h >= 350 || h <= 10) begin 
+            
+            //Thresholding green (Hue 85)
+            if ((h >= 83 && h <= 125) && v > 110 && s > 110 && h_idx_out > 8) begin 
+                green_processed_pixels <= 1'b1;
+                red_processed_pixels <= 1'b0;
+                blue_processed_pixels <= 1'b0;
+            //Thresholding blue (Hue 175)
+            end else if ((h >= 168 && h <= 172) && v > 160 && s > 30 && h_idx_out > 8) begin 
+                blue_processed_pixels <= 1'b1;
+                green_processed_pixels <= 1'b0;
+                red_processed_pixels <= 1'b0;
+            //Thresholding red (Hue 0)
+            end else if ((h >= 253 || h <= 2) && v > 110 && s > 80 && h_idx_out > 8) begin 
                 red_processed_pixels <= 1'b1;
+                green_processed_pixels <= 1'b0;
+                blue_processed_pixels <= 1'b0;
             end else begin
                 red_processed_pixels <= 1'b0;
-            end 
-            
-            //Thresholding green (Hue 240)
-            if ((h >= 230 && h <= 250)) begin 
-                blue_processed_pixels <= 1'b1;
-            end else begin
-                blue_processed_pixels <= 1'b0;
-            end
-            
-            //Thresholding green (Hue 120)
-            if ((h >= 110 && h <= 120)) begin 
-                green_processed_pixels <= 1'b1;
-            end else begin
                 green_processed_pixels <= 1'b0;
+                blue_processed_pixels <= 1'b0;
             end 
+            
         end
         else begin
             red_processed_pixels <= 1'b1;
