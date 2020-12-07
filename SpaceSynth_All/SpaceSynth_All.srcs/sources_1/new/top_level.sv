@@ -145,8 +145,10 @@ module top_level(
     logic signed[7:0] lfo_osc_out;
     logic [11:0] lfo_frequency;
     logic [2:0] lfo_amplitude;
+    logic [1:0] lfo_shape;
+    assign lfo_shape = sw[1:0];
     
-        logic r_bar_1_border, r_bar_2_border, r_bar_3_border, b_bar_1_border, b_bar_2_border, b_bar_3_border, 
+    logic r_bar_1_border, r_bar_2_border, r_bar_3_border, b_bar_1_border, b_bar_2_border, b_bar_3_border, 
     g_bar_1_border, g_bar_2_border, g_bar_3_border = 1'b0;
     
     logic [8:0] red_area_scaled, blue_area_scaled, green_area_scaled; //area right shifted by 8 (76800/256 normalizes to 300)
@@ -162,21 +164,50 @@ module top_level(
               || ((vcount==751 || vcount==510) && (hcount >= 330 && hcount <= 340)));
         b_bar_2_border = (((hcount == 430 || hcount == 440) && (vcount <= 751 && vcount >= 430))
               || ((vcount==751 || vcount==430) && (hcount >= 430 && hcount <= 440)));
-        //assign b_bar_3_border = ((hcount == 430 || hcount == 441) && (vcount==751 || vcount == 431)) ? 12'h111 : 0;
+        b_bar_3_border = (((hcount == 530 || hcount == 540) && (vcount<=751 && vcount >= 449)) 
+              || ((vcount==751 || vcount==449) && (hcount >= 530 && hcount <= 540)));
         g_bar_1_border = (((hcount == 650 || hcount == 660) && (vcount <= 751 && vcount >= 510))
               || ((vcount==751 || vcount==510) && (hcount >= 650 && hcount <= 660)));
         g_bar_2_border = (((hcount == 750 || hcount == 760) && (vcount <= 751 && vcount >= 430))
               || ((vcount==751 || vcount==430) && (hcount >= 750 && hcount <= 760)));
-        //assign g_bar_3_border = ((hcount == 430 || hcount == 441) && (vcount==751 || vcount == 431)) ? 12'h111 : 0;
-
+        g_bar_3_border = (((hcount == 850 || hcount == 860) && (vcount<=751 && vcount >= 449)) 
+              || ((vcount==751 || vcount==449) && (hcount >= 850 && hcount <= 860)));
     end
     
     always_ff @(posedge clk_65mhz) begin
 
-        lfo_frequency <= (red_area >= detection_threshold)?(red_area>>9):12'd0;
-        lfo_amplitude <= (green_area >= detection_threshold)?(green_area>>10):3'd0;
-        synth1_frequency <= (red_area >= detection_threshold)?(12'd200+(red_center_h_index<<2)+lfo_out<<<3):12'd0;
-        synth2_frequency <= (green_area >= detection_threshold)?(12'd200+(green_center_h_index<<2)+lfo_out<<<3):12'd0;
+        lfo_frequency <= sw[14]?((red_area >= detection_threshold)?(red_area>>9):12'd0):12'd0;
+        lfo_amplitude <= sw[14]?((green_area >= detection_threshold)?(green_area>>10):3'd0):3'd0;
+        synth1_frequency <= (red_area >= detection_threshold)?(12'd200+(red_center_h_index<<1)+lfo_out<<<3):12'd0;
+        synth2_frequency <= (green_area >= detection_threshold)?(12'd200+(green_center_h_index<<1)+lfo_out<<<3):12'd0;
+        
+        if (red_center_v_index < 120)begin
+            synth1_amplitude <= (red_area >= detection_threshold)?3'd7:3'd0;
+        end else if (red_center_v_index >= 120 && red_center_v_index < 240)begin
+            synth1_amplitude <= (red_area >= detection_threshold)?3'd6:3'd0;
+        end
+        if (green_center_v_index < 120)begin
+            synth2_amplitude <= (green_area >= detection_threshold)?3'd7:3'd0;
+        end else if (green_center_v_index >= 120 && green_center_v_index < 240)begin
+            synth2_amplitude <= (green_area >= detection_threshold)?3'd6:3'd0;
+        end
+        
+                     
+        red_area_scaled <= red_area>>4;
+        if (red_area_scaled > 9'd299) begin
+            red_area_scaled <= 9'd299;
+        end
+        
+        blue_area_scaled <= blue_area>>4;
+        if (blue_area_scaled > 9'd299) begin
+            blue_area_scaled <= 9'd299;
+        end
+        
+        green_area_scaled <= green_area>>4;
+        if (green_area_scaled > 9'd299) begin
+            green_area_scaled <= 9'd299;
+        end
+        
         
         if (sw[2]&&((hcount<320) &&  (vcount<240))) begin //If sw[2] show original image
             current_pixel <= raw_image_buff;
@@ -197,37 +228,42 @@ module top_level(
             current_pixel <= ((hcount==green_center_h_index+640) || (vcount==green_center_v_index))?((green_area >= detection_threshold)?12'hF0F:green_buff):green_buff;
             green_buff_output_pixel_addr <= (hcount-11'd640)+vcount*32'd320;
         end
-        
         //Show controls as vertical bar graphs
         else if (~sw[2] && (vcount>=240)) begin 
             if (hcount<320) begin //Show Red (Left hand) bars at hcount = 10-20, 110-120, 210-220 from vcount = (750 - range(var)) to 750
                 if ((hcount>=10 && hcount<=20) && (vcount>=510 && vcount<=751)) begin //y position of red blob; range = 0 to 239 
-                    current_pixel <= r_bar_1_border?12'hFFF:(vcount-511>red_center_v_index) ? 12'hF00 : 0;
+                    current_pixel <= r_bar_1_border?12'hFFF:(vcount-511>red_center_v_index) ? ((red_area >= detection_threshold)? ((red_center_v_index>8'd120)?12'hA00:12'hF00):12'h000): 12'h000;
                 end 
                 else if ((hcount>=110 && hcount<=120) && (vcount>=430 && vcount<=751)) begin //x position of red blob; ranges = 0 to 319
-                    current_pixel <= r_bar_2_border?12'hFFF:(vcount-431>red_center_h_index) ? 12'hF00 : 0;
+                    current_pixel <= r_bar_2_border?12'hFFF:(vcount-431>(319-red_center_h_index)) ? ((red_area >= detection_threshold)? 12'hF00:12'h000): 12'h000;
                 end 
                 else if ((hcount>=210 && hcount<=220) && (vcount>=449 && vcount<=751)) begin //area of red blob; ranges = 0 to 76800 --> 450-750 for 300 buckets
-                    current_pixel <= r_bar_3_border?12'hFFF:(vcount-449<=red_area_scaled) ? 12'hF00 : 0;
+                    current_pixel <= r_bar_3_border?12'hFFF:(vcount-449>(300-red_area_scaled)) ? ((red_area >= detection_threshold)? 12'hF00:12'h000): 12'h000;
                 end
                 else current_pixel <= 12'h000;
             end
             else if (hcount>=320 && hcount<640) begin //Show Blue (Left hand) bars at hcount = 330-340, 430-440, 530-540 from vcount = (750 - range(var)) to 750 
                 if ((hcount>=330 && hcount<=340) && (vcount>=510 && vcount<=751)) begin
-                    current_pixel <= b_bar_1_border?12'hFFF:(vcount-511>blue_center_v_index) ? 12'h00F : 0;
+                    current_pixel <= b_bar_1_border?12'hFFF:(vcount-511>blue_center_v_index) ?((blue_area >= detection_threshold)? 12'h00F:12'h000): 12'h000;
                 end
                 else if ((hcount>=430 && hcount<=440) && (vcount>=430 && vcount<=751)) begin 
-                    current_pixel <= b_bar_2_border?12'hFFF:(vcount-431>blue_center_h_index) ? 12'h00F : 0;
+                    current_pixel <= b_bar_2_border?12'hFFF:(vcount-431>(319-blue_center_h_index)) ?((blue_area >= detection_threshold)? 12'h00F:12'h000): 12'h000;
+                end
+                else if ((hcount>=530 && hcount<=540) && (vcount>=449 && vcount<=751)) begin //area of blue blob; ranges = 0 to 76800 --> 450-750 for 300 buckets
+                    current_pixel <= b_bar_3_border?12'hFFF:(vcount-449>(300-blue_area_scaled)) ? ((blue_area >= detection_threshold)? 12'h00F:12'h000): 12'h000;
                 end
                 else current_pixel <= 12'h000;
 
             end 
             else if (hcount>=640 && hcount<960) begin //Show green (third limb) bars at hcount = 650-660, 750-760, 850-860 from vcount = (750 - range(var)) to 750 
                 if ((hcount>=650 && hcount<=660) && (vcount>=510 && vcount<=751)) begin
-                    current_pixel <= g_bar_1_border?12'hFFF:(vcount-511>green_center_v_index) ? 12'h0F0 : 0;
+                    current_pixel <= g_bar_1_border?12'hFFF:(vcount-511>green_center_v_index) ? ((green_area >= detection_threshold)?  ((green_center_v_index>8'd120)?12'h0A0:12'h0F0):12'h000): 12'h000;
                 end
                 else if ((hcount>=750 && hcount<=760) && (vcount>=430 && vcount<=751)) begin 
-                    current_pixel <= g_bar_2_border?12'hFFF:(vcount-431>green_center_h_index) ? 12'h0F0 : 0;
+                    current_pixel <= g_bar_2_border?12'hFFF:(vcount-431>(319-green_center_h_index)) ? ((green_area >= detection_threshold)? 12'h0F0:12'h000): 12'h000;
+                end
+                else if ((hcount>=850 && hcount<=860) && (vcount>=449 && vcount<=751)) begin //area of green blob; ranges = 0 to 76800 --> 450-750 for 300 buckets
+                    current_pixel <= g_bar_3_border?12'hFFF:(vcount-449>(300-green_area_scaled)) ? ((green_area >= detection_threshold)? 12'h0F0:12'h000): 12'h000;
                 end
                 else current_pixel <= 12'h000;
             end  
@@ -255,7 +291,7 @@ module top_level(
         .clk_in(clk_65mhz),
         .rst_in(reset),
         .step_in(sample_trigger),
-        .shape_in(2'd0),
+        .shape_in(lfo_shape),
         .frequency_in(lfo_frequency),
         .wave_out(lfo_osc_out));
     
@@ -341,9 +377,4 @@ module top_level(
     .green_center_h_index_out(green_center_h_index)
    );
                    
-                   ila_1 my_ila(.clk(clk_65mhz),
-                                .probe_0(red_area_scaled),
-                                .probe_1(vcount),
-                                .probe_2(hcount),
-                                .probe_3(vcount-450<=red_area_scaled));
 endmodule
