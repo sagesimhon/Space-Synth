@@ -84,7 +84,7 @@ module top_level(
     logic [10:0] hcount;   
     logic [9:0] vcount;   
     logic hsync, vsync, blank;
-    logic [3:0] hsync_buff, vsync_buff, blank_buff = 4'b0;
+    logic [4:0] hsync_buff, vsync_buff, blank_buff = 5'b0;
     xvga xvga1(.vclock_in(clk_65mhz),.hcount_out(hcount),.vcount_out(vcount),
           .hsync_out(hsync),.vsync_out(vsync),.blank_out(blank)); //768x1024 using clk_65mhz
     
@@ -149,13 +149,15 @@ module top_level(
         logic r_bar_1_border, r_bar_2_border, r_bar_3_border, b_bar_1_border, b_bar_2_border, b_bar_3_border, 
     g_bar_1_border, g_bar_2_border, g_bar_3_border = 1'b0;
     
+    logic [8:0] red_area_scaled, blue_area_scaled, green_area_scaled; //area right shifted by 8 (76800/256 normalizes to 300)
     //TODO remove magic numbers might get points off
     always_comb begin
         r_bar_1_border = (((hcount == 10 || hcount == 20) && (vcount <= 751 && vcount >= 510))
               || ((vcount==751 || vcount==510) && (hcount <= 20 && hcount >= 10)));
         r_bar_2_border = (((hcount == 110 || hcount == 120) && (vcount <= 751 && vcount >= 430))
               || ((vcount==751 || vcount==430) && (hcount >= 110 && hcount <= 120)));
-        //assign r_bar_3_border = ((hcount == 10 || hcount == 21) && (vcount==751 || vcount == 511));
+        r_bar_3_border = (((hcount == 210 || hcount == 220) && (vcount<=751 && vcount >= 449)) 
+              || ((vcount==751 || vcount==449) && (hcount >= 210 && hcount <= 220)));
         b_bar_1_border = (((hcount == 330 || hcount == 340) && (vcount <= 751 && vcount >= 510))
               || ((vcount==751 || vcount==510) && (hcount >= 330 && hcount <= 340)));
         b_bar_2_border = (((hcount == 430 || hcount == 440) && (vcount <= 751 && vcount >= 430))
@@ -205,8 +207,9 @@ module top_level(
                 else if ((hcount>=110 && hcount<=120) && (vcount>=430 && vcount<=751)) begin //x position of red blob; ranges = 0 to 319
                     current_pixel <= r_bar_2_border?12'hFFF:(vcount-431>red_center_h_index) ? 12'hF00 : 0;
                 end 
-//                else if ((hcount>210 && hcount<=220) && (vcount> && vcount<=750)) begin //area of red blob; ranges = 0 to 76241
-//                end
+                else if ((hcount>=210 && hcount<=220) && (vcount>=449 && vcount<=751)) begin //area of red blob; ranges = 0 to 76800 --> 450-750 for 300 buckets
+                    current_pixel <= r_bar_3_border?12'hFFF:(vcount-449<=red_area_scaled) ? 12'hF00 : 0;
+                end
                 else current_pixel <= 12'h000;
             end
             else if (hcount>=320 && hcount<640) begin //Show Blue (Left hand) bars at hcount = 330-340, 430-440, 530-540 from vcount = (750 - range(var)) to 750 
@@ -236,9 +239,9 @@ module top_level(
     
     always_ff @(posedge clk_65mhz) begin
         //right shift buffers and insert new value on left
-        hsync_buff <= {hsync, hsync_buff[3:1]};
-        vsync_buff <= {vsync, vsync_buff[3:1]};
-        blank_buff <= {blank, blank_buff[3:1]};
+        hsync_buff <= {hsync, hsync_buff[4:1]};
+        vsync_buff <= {vsync, vsync_buff[4:1]};
+        blank_buff <= {blank, blank_buff[4:1]};
 
     end 
     // the following lines are required for the Nexys4 VGA circuit - do not change
@@ -338,4 +341,9 @@ module top_level(
     .green_center_h_index_out(green_center_h_index)
    );
                    
+                   ila_1 my_ila(.clk(clk_65mhz),
+                                .probe_0(red_area_scaled),
+                                .probe_1(vcount),
+                                .probe_2(hcount),
+                                .probe_3(vcount-450<=red_area_scaled));
 endmodule
