@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date         : Mon Dec  7 21:24:56 2020
+| Date         : Tue Dec  8 00:22:40 2020
 | Host         : DESKTOP-RLIVKHG running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_level_control_sets_placed.rpt
 | Design       : top_level
@@ -27,7 +27,7 @@ Table of Contents
 |    Minimum number of control sets                        |    45 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |   180 |
+| Unused register locations in slices containing registers |   184 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -58,12 +58,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |            8613 |         1547 |
+| No           | No                    | No                     |            8609 |         1524 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |             178 |           53 |
+| No           | Yes                   | No                     |             178 |           50 |
 | Yes          | No                    | No                     |             235 |           79 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             378 |          108 |
+| Yes          | Yes                   | No                     |             378 |          107 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -78,46 +78,46 @@ Table of Contents
 |  clkdivider/inst/clk_out1               |                                                    | color_blobs/red_cf/area_out_reg[11]_2[1]      |                1 |              2 |
 |  pclk_in                                |                                                    |                                               |                2 |              5 |
 |  pclk_in                                | color_blobs/my_camera/h_idx_out[7]_i_2_n_0         | color_blobs/my_camera/h_idx_out[7]_i_1_n_0    |                2 |              6 |
-|  clkdivider/inst/clk_out1               |                                                    | color_blobs/converter/s_bottom[7]_i_1_n_0     |                2 |              7 |
-|  pclk_in                                | color_blobs/my_camera/pixel_data_out[7]_i_1_n_0    |                                               |                2 |              8 |
-|  pclk_in                                | color_blobs/my_camera/pixel_data_out[15]_i_1_n_0   |                                               |                2 |              8 |
+|  clkdivider/inst/clk_out1               |                                                    | color_blobs/converter/s_bottom[7]_i_1_n_0     |                1 |              7 |
+|  pclk_in                                | color_blobs/my_camera/pixel_data_out[15]_i_1_n_0   |                                               |                4 |              8 |
+|  pclk_in                                | color_blobs/my_camera/pixel_data_out[7]_i_1_n_0    |                                               |                4 |              8 |
 |  clkdivider/inst/clk_out1               |                                                    | color_blobs/green_cf/SS[0]                    |                3 |              8 |
 |  pclk_in                                |                                                    | color_blobs/my_camera/h_idx_out[7]_i_1_n_0    |                3 |              9 |
+|  clkdivider/inst/clk_out1               |                                                    | color_blobs/green_cf/area_out_reg[12]_1[0]    |                2 |              9 |
 |  clkdivider/inst/clk_out1               |                                                    | color_blobs/red_cf/SR[0]                      |                2 |              9 |
-|  clkdivider/inst/clk_out1               |                                                    | color_blobs/blue_cf/area_out_reg[12]_0[0]     |                2 |              9 |
-|  clkdivider/inst/clk_out1               |                                                    | color_blobs/green_cf/area_out_reg[12]_1[0]    |                4 |              9 |
-|  clkdivider/inst/clk_out1               | xvga1/hreset                                       | xvga1/SR[0]                                   |                5 |             10 |
+|  clkdivider/inst/clk_out1               |                                                    | color_blobs/blue_cf/area_out_reg[12]_0[0]     |                3 |              9 |
+|  clkdivider/inst/clk_out1               | xvga1/hreset                                       | xvga1/SR[0]                                   |                4 |             10 |
 |  clkdivider/inst/clk_out1               |                                                    | color_blobs/green_cf/area_out_reg[11]_2[0]    |                3 |             10 |
 |  clkdivider/inst/clk_out1               |                                                    | color_blobs/converter/h_bottom[10]_i_1_n_0    |                4 |             10 |
 |  clkdivider/inst/clk_out1               |                                                    | color_blobs/red_cf/area_out_reg[11]_2[0]      |                3 |             10 |
 |  clkdivider/inst/clk_out1               |                                                    | xvga1/hreset                                  |                5 |             11 |
-|  clkdivider/inst/clk_out1               | xvga1/E[0]                                         |                                               |                6 |             12 |
-|  clkdivider/inst/clk_out1               |                                                    | synth_blob/pixel_out[11]_i_1_n_0              |                4 |             12 |
-|  clkdivider/inst/clk_out1               |                                                    | led_OBUF[15]                                  |                6 |             13 |
+|  clkdivider/inst/clk_out1               |                                                    | synth_blob/pixel_out[11]_i_1_n_0              |                3 |             12 |
+|  clkdivider/inst/clk_out1               | xvga1/E[0]                                         |                                               |                7 |             12 |
+|  clkdivider/inst/clk_out1               |                                                    | led_OBUF[15]                                  |                5 |             13 |
+|  clkdivider/inst/clk_out1               |                                                    | synth1/osc2/wave_out[14]_i_1_n_0              |                3 |             14 |
 |  clkdivider/inst/clk_out1               |                                                    | synth1/osc1/wave_out[14]_i_1_n_0              |                2 |             14 |
 |  clkdivider/inst/clk_out1               |                                                    | synth2/osc1/wave_out[14]_i_1__0_n_0           |                2 |             14 |
-|  clkdivider/inst/clk_out1               |                                                    | synth1/osc2/wave_out[14]_i_1_n_0              |                2 |             14 |
+|  clkdivider/inst/clk_out1               | synth2/lpfilter/filtered_out[15]_i_1__0_n_0        |                                               |                5 |             15 |
+|  clkdivider/inst/clk_out1               | synth1/lpfilter/filtered_out[15]_i_1_n_0           |                                               |                8 |             15 |
 |  clkdivider/inst/clk_out1               |                                                    | lfo/sample_trigger                            |                4 |             15 |
-|  clkdivider/inst/clk_out1               | synth1/lpfilter/filtered_out[15]_i_1_n_0           |                                               |                6 |             15 |
-|  clkdivider/inst/clk_out1               | synth2/lpfilter/filtered_out[15]_i_1__0_n_0        |                                               |                6 |             15 |
-|  clkdivider/inst/clk_out1               | lfo/triangle_wave[15]_i_1_n_0                      |                                               |                5 |             16 |
-|  clkdivider/inst/clk_out1               | color_blobs/green_cf/h_index_in_prev[8]_i_1__1_n_0 |                                               |                4 |             17 |
-|  clkdivider/inst/clk_out1               | color_blobs/red_cf/h_index_in_prev                 |                                               |                4 |             17 |
+|  clkdivider/inst/clk_out1               | lfo/triangle_wave[15]_i_1_n_0                      |                                               |                2 |             16 |
+|  clkdivider/inst/clk_out1               | color_blobs/green_cf/h_index_in_prev[8]_i_1__1_n_0 |                                               |                6 |             17 |
+|  clkdivider/inst/clk_out1               | xvga1/sw[2][0]                                     |                                               |                3 |             17 |
 |  clkdivider/inst/clk_out1               | color_blobs/blue_cf/h_index_in_prev[8]_i_1__0_n_0  |                                               |                4 |             17 |
-|  clkdivider/inst/clk_out1               | xvga1/current_pixel169_out                         |                                               |                5 |             17 |
+|  clkdivider/inst/clk_out1               | color_blobs/red_cf/h_index_in_prev                 |                                               |                4 |             17 |
 |  pclk_in                                | color_blobs/my_camera/pixel_data_out[7]_i_1_n_0    | color_blobs/my_camera/h_idx_out[7]_i_1_n_0    |                5 |             17 |
-|  clkdivider/inst/clk_out1               | lfo/sample_trigger                                 | led_OBUF[15]                                  |               10 |             20 |
-|  clkdivider/inst/clk_out1               | color_blobs/green_cf/area_out[16]_i_1_n_0          |                                               |               10 |             31 |
-|  clkdivider/inst/clk_out1               | color_blobs/red_cf/area_out[16]_i_1__1_n_0         |                                               |               10 |             31 |
-|  clkdivider/inst/clk_out1               | color_blobs/blue_cf/area_out[16]_i_1__0_n_0        |                                               |               15 |             31 |
-|  clkdivider/inst/clk_out1               | synth1/lpfilter/sum[31]_i_2_n_0                    | synth1/lpfilter/sum[31]_i_1_n_0               |                7 |             32 |
-|  clkdivider/inst/clk_out1               | synth2/lpfilter/sum[31]_i_2__0_n_0                 | synth2/lpfilter/sum[31]_i_1__0_n_0            |                6 |             32 |
-|  clkdivider/inst/clk_out1               | synth1/lpfilter/previous_input_0                   | led_OBUF[15]                                  |               10 |             33 |
-|  clkdivider/inst/clk_out1               | synth2/lpfilter/previous_input_0                   | led_OBUF[15]                                  |               12 |             33 |
+|  clkdivider/inst/clk_out1               | lfo/sample_trigger                                 | led_OBUF[15]                                  |               11 |             20 |
+|  clkdivider/inst/clk_out1               | color_blobs/green_cf/area_out[16]_i_1_n_0          |                                               |               12 |             31 |
+|  clkdivider/inst/clk_out1               | color_blobs/blue_cf/area_out[16]_i_1__0_n_0        |                                               |                8 |             31 |
+|  clkdivider/inst/clk_out1               | color_blobs/red_cf/area_out[16]_i_1__1_n_0         |                                               |               12 |             31 |
+|  clkdivider/inst/clk_out1               | synth2/lpfilter/sum[31]_i_2__0_n_0                 | synth2/lpfilter/sum[31]_i_1__0_n_0            |                7 |             32 |
+|  clkdivider/inst/clk_out1               | synth1/lpfilter/sum[31]_i_2_n_0                    | synth1/lpfilter/sum[31]_i_1_n_0               |                6 |             32 |
+|  clkdivider/inst/clk_out1               | synth2/lpfilter/previous_input_0                   | led_OBUF[15]                                  |                9 |             33 |
+|  clkdivider/inst/clk_out1               | synth1/lpfilter/previous_input_0                   | led_OBUF[15]                                  |               12 |             33 |
 |  clkdivider/inst/clk_out1               | color_blobs/green_cf/num_pixels[0]_i_2__1_n_0      | color_blobs/green_cf/num_pixels[0]_i_1__1_n_0 |               17 |             65 |
-|  clkdivider/inst/clk_out1               | color_blobs/red_cf/sel                             | color_blobs/red_cf/clear                      |               17 |             65 |
 |  clkdivider/inst/clk_out1               | color_blobs/blue_cf/num_pixels[0]_i_2__0_n_0       | color_blobs/blue_cf/num_pixels[0]_i_1__0_n_0  |               17 |             65 |
-|  clkdivider/inst/clk_out1               |                                                    |                                               |             1543 |           8620 |
+|  clkdivider/inst/clk_out1               | color_blobs/red_cf/sel                             | color_blobs/red_cf/clear                      |               17 |             65 |
+|  clkdivider/inst/clk_out1               |                                                    |                                               |             1520 |           8616 |
 +-----------------------------------------+----------------------------------------------------+-----------------------------------------------+------------------+----------------+
 
 

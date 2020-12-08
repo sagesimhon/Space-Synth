@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date             : Mon Dec  7 21:27:15 2020
+| Date             : Tue Dec  8 00:24:12 2020
 | Host             : DESKTOP-RLIVKHG running 64-bit major release  (build 9200)
 | Command          : report_power -file top_level_power_routed.rpt -pb top_level_power_summary_routed.pb -rpx top_level_power_routed.rpx
 | Design           : top_level
@@ -30,11 +30,11 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.338        |
+| Total On-Chip Power (W)  | 0.326        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.233        |
-| Device Static (W)        | 0.104        |
+| Dynamic (W)              | 0.224        |
+| Device Static (W)        | 0.102        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 83.5         |
 | Junction Temperature (C) | 26.5         |
@@ -52,22 +52,22 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.022 |        8 |       --- |             --- |
-| Slice Logic             |     0.030 |    18751 |       --- |             --- |
-|   LUT as Logic          |     0.023 |     5080 |     63400 |            8.01 |
-|   CARRY4                |     0.004 |     1124 |     15850 |            7.09 |
-|   Register              |     0.003 |     9404 |    126800 |            7.42 |
+| Clocks                  |     0.021 |        8 |       --- |             --- |
+| Slice Logic             |     0.028 |    18356 |       --- |             --- |
+|   LUT as Logic          |     0.021 |     4967 |     63400 |            7.83 |
+|   CARRY4                |     0.004 |     1121 |     15850 |            7.07 |
+|   Register              |     0.003 |     9400 |    126800 |            7.41 |
 |   LUT as Shift Register |    <0.001 |       14 |     19000 |            0.07 |
 |   BUFG                  |    <0.001 |        1 |        32 |            3.13 |
-|   F7/F8 Muxes           |    <0.001 |      163 |     63400 |            0.26 |
-|   Others                |     0.000 |     2461 |       --- |             --- |
-| Signals                 |     0.029 |    13031 |       --- |             --- |
-| Block RAM               |     0.012 |    130.5 |       135 |           96.67 |
+|   F7/F8 Muxes           |    <0.001 |       75 |     63400 |            0.12 |
+|   Others                |     0.000 |     2369 |       --- |             --- |
+| Signals                 |     0.023 |    12550 |       --- |             --- |
+| Block RAM               |     0.012 |     85.5 |       135 |           63.33 |
 | MMCM                    |     0.122 |        1 |         6 |           16.67 |
-| DSPs                    |     0.005 |       11 |       240 |            4.58 |
+| DSPs                    |     0.005 |       10 |       240 |            4.17 |
 | I/O                     |     0.014 |       62 |       210 |           29.52 |
-| Static Power            |     0.104 |          |           |                 |
-| Total                   |     0.338 |          |           |                 |
+| Static Power            |     0.102 |          |           |                 |
+| Total                   |     0.326 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -77,7 +77,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.116 |       0.097 |      0.019 |
+| Vccint    |       1.000 |     0.105 |       0.087 |      0.018 |
 | Vccaux    |       1.800 |     0.086 |       0.068 |      0.018 |
 | Vcco33    |       3.300 |     0.008 |       0.004 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -86,7 +86,7 @@ Table of Contents
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccbram   |       1.000 |     0.004 |       0.001 |      0.003 |
+| Vccbram   |       1.000 |     0.003 |       0.001 |      0.002 |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |
@@ -151,10 +151,10 @@ Table of Contents
 +-----------------+-----------+
 | Name            | Power (W) |
 +-----------------+-----------+
-| top_level       |     0.233 |
+| top_level       |     0.224 |
 |   clkdivider    |     0.122 |
 |     inst        |     0.122 |
-|   color_blobs   |     0.074 |
+|   color_blobs   |     0.073 |
 |     b_mask_bram |     0.001 |
 |       U0        |     0.001 |
 |     blue_cf     |     0.016 |
@@ -169,7 +169,7 @@ Table of Contents
 |       U0        |     0.001 |
 |     green_cf    |     0.017 |
 |       c_div     |     0.008 |
-|       r_div     |     0.009 |
+|       r_div     |     0.008 |
 |     r_mask_bram |     0.001 |
 |       U0        |     0.001 |
 |     red_cf      |     0.017 |
@@ -178,12 +178,12 @@ Table of Contents
 |   lfo           |     0.001 |
 |   synth1        |     0.004 |
 |     lpfilter    |     0.002 |
-|   synth2        |     0.005 |
+|   synth2        |     0.004 |
 |     lpfilter    |     0.003 |
 |       fc        |     0.001 |
-|   synth_blob    |     0.011 |
-|     rom1        |     0.005 |
-|       U0        |     0.005 |
+|   synth_blob    |     0.003 |
+|     rom1        |     0.001 |
+|       U0        |     0.001 |
 |   xvga1         |     0.001 |
 +-----------------+-----------+
 

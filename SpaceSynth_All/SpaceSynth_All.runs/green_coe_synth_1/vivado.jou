@@ -2,8 +2,8 @@
 # Vivado v2019.2 (64-bit)
 # SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
 # IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
-# Start of session at: Mon Dec  7 21:13:05 2020
-# Process ID: 3368
+# Start of session at: Mon Dec  7 23:58:19 2020
+# Process ID: 11392
 # Current directory: C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/green_coe_synth_1
 # Command line: vivado.exe -log green_coe.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source green_coe.tcl
 # Log file: C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/green_coe_synth_1/green_coe.vds

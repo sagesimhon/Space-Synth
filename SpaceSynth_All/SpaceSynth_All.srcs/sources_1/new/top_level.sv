@@ -167,8 +167,8 @@ module top_level(
     logic [8:0] red_area_scaled, blue_area_scaled, green_area_scaled; 
     
     //Image of Synth
-    logic [10:0] x_in = 5;
-    logic [9:0] y_in = 250;
+    logic [10:0] x_in = 0;
+    logic [9:0] y_in = 240;
     logic [11:0] synth_pix;
     
     always_comb begin
@@ -317,15 +317,15 @@ module top_level(
             //green_buff_output_pixel_addr <= (hcount-11'd640)+vcount*32'd320;
         end
         
-        //BOTTOM OF VGA
-        else if ((vcount>=240) && sw[3]) begin //attempt to show synth
+        //Show labels in middle
+        else if ((vcount>=240)&& (vcount< 430)) begin
             current_pixel <= synth_pix; 
         end 
         
         /*
         *Show controls as vertical bar graphs on the bottom of the screen
         */
-        else if (~sw[3] && ~sw[2] && (vcount>=240)) begin 
+        else if (~sw[2] && (vcount>=430)) begin 
             if (hcount<320) begin //Show Red (Left hand) bars at hcount = 10-20, 110-120, 210-220 from vcount = (750 - range(var)) to 750
                 if ((hcount>=10 && hcount<=20) && (vcount>=510 && vcount<=751)) begin //y position of red blob; range = 0 to 239 
                      current_pixel <= r_bar_1_border?12'hFFF:(vcount-511>red_center_v_index) ? ((red_area >= detection_threshold)? ((red_center_v_index>8'd120)?12'hA00:12'hF99):12'h000): 12'h000;              

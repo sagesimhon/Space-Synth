@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="green_coe_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1607404381">
+<GenRun Id="green_coe_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1607414295">
   <File Type="PA-TCL" Name="green_coe.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="green_coe_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="green_coe_reports.tcl"/>
   <File Type="RDS-RDS" Name="green_coe.vds"/>
   <File Type="RDS-UTIL" Name="green_coe_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="green_coe_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="green_coe.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="green_coe_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="green_coe_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/green_coe">
     <File Path="$PSRCDIR/sources_1/ip/green_coe/green_coe.xci">
       <FileInfo>
@@ -42,9 +39,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

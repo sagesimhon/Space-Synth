@@ -84,10 +84,10 @@ set rc [catch {
   read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/image_bram/image_bram.xci}}
   read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/div_gen_0/div_gen_0.xci}}
   read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0.xci}}
-  read_ip -quiet {{c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_coe/red_coe.xci}}
-  read_ip -quiet {{c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_coe/blue_coe.xci}}
-  read_ip -quiet {{c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/green_coe/green_coe.xci}}
-  read_ip -quiet {{c:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/image_rom_1/image_rom_1.xci}}
+  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_coe/red_coe.xci}}
+  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_coe/blue_coe.xci}}
+  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/green_coe/green_coe.xci}}
+  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/image_rom_1/image_rom_1.xci}}
   read_xdc {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc}}
   link_design -top top_level -part xc7a100tcsg324-1
   close_msg_db -file init_design.pb

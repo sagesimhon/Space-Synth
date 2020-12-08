@@ -2,8 +2,8 @@
 # Vivado v2019.2 (64-bit)
 # SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
 # IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
-# Start of session at: Mon Dec  7 21:21:07 2020
-# Process ID: 10824
+# Start of session at: Tue Dec  8 00:19:43 2020
+# Process ID: 5500
 # Current directory: C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1
 # Command line: vivado.exe -log top_level.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_level.tcl
 # Log file: C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/top_level.vds
@@ -16,9 +16,9 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 19288 
+INFO: Helper process launched with PID 22912 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 823.727 ; gain = 234.504
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 823.387 ; gain = 234.539
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top_level' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/top_level.sv:3]
 	Parameter SAMPLE_COUNT bound to: 1354 - type: integer 
@@ -31,8 +31,8 @@ INFO: [Synth 8-6157] synthesizing module 'top_level' [C:/Users/Praj/Documents/20
 	Parameter preset1 bound to: 2'b00 
 	Parameter preset2 bound to: 2'b01 
 	Parameter preset3 bound to: 2'b10 
-INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/clk_wiz_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (1#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (1#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/clk_wiz_0_stub.v:5]
 INFO: [Synth 8-6157] synthesizing module 'xvga' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/xvga.sv:22]
 	Parameter DISPLAY_WIDTH bound to: 1024 - type: integer 
 	Parameter DISPLAY_HEIGHT bound to: 768 - type: integer 
@@ -84,8 +84,8 @@ INFO: [Synth 8-6157] synthesizing module 'camera_read' [C:/Users/Praj/Documents/
 INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_read.sv:25]
 INFO: [Synth 8-6155] done synthesizing module 'camera_read' (11#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_read.sv:1]
 INFO: [Synth 8-6157] synthesizing module 'rgb2hsv' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:8]
-INFO: [Synth 8-6157] synthesizing module 'div_gen_0' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/div_gen_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'div_gen_0' (12#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/div_gen_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'div_gen_0' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/div_gen_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'div_gen_0' (12#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/div_gen_0_stub.v:6]
 WARNING: [Synth 8-7023] instance 's_div' of module 'div_gen_0' has 7 connections declared, but only 6 given [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:36]
 WARNING: [Synth 8-7023] instance 'h_div' of module 'div_gen_0' has 7 connections declared, but only 6 given [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:46]
 INFO: [Synth 8-6155] done synthesizing module 'rgb2hsv' (13#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/rgb_to_hsv.sv:8]
@@ -97,31 +97,32 @@ INFO: [Synth 8-6157] synthesizing module 'center_finder' [C:/Users/Praj/Document
 	Parameter NEWPIXEL bound to: 2 - type: integer 
 	Parameter DONE bound to: 3 - type: integer 
 INFO: [Synth 8-226] default block is never used [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv:36]
-INFO: [Synth 8-6157] synthesizing module 'average_divider' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/average_divider_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'average_divider' (14#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/average_divider_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'average_divider' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/average_divider_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'average_divider' (14#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/average_divider_stub.v:6]
 WARNING: [Synth 8-7023] instance 'r_div' of module 'average_divider' has 7 connections declared, but only 6 given [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv:107]
 WARNING: [Synth 8-7023] instance 'c_div' of module 'average_divider' has 7 connections declared, but only 6 given [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv:115]
 INFO: [Synth 8-6155] done synthesizing module 'center_finder' (15#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv:1]
-INFO: [Synth 8-6157] synthesizing module 'image_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/image_bram_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'image_bram' (16#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/image_bram_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'red_mask_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/red_mask_bram_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'red_mask_bram' (17#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/red_mask_bram_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'blue_mask_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/blue_mask_bram_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'blue_mask_bram' (18#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/blue_mask_bram_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'green_mask_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/green_mask_bram_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'green_mask_bram' (19#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/green_mask_bram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'image_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/image_bram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'image_bram' (16#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/image_bram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'red_mask_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/red_mask_bram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'red_mask_bram' (17#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/red_mask_bram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blue_mask_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/blue_mask_bram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blue_mask_bram' (18#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/blue_mask_bram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'green_mask_bram' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/green_mask_bram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'green_mask_bram' (19#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/green_mask_bram_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'camera_to_mask' (20#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_to_mask.sv:3]
 INFO: [Synth 8-6157] synthesizing module 'image_ROM_synth' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/image_ROM_synth.sv:3]
-	Parameter WIDTH bound to: 750 - type: integer 
-	Parameter HEIGHT bound to: 503 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'image_rom_1' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/image_rom_1_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'image_rom_1' (21#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/image_rom_1_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'red_coe' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/red_coe_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'red_coe' (22#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/red_coe_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'green_coe' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/green_coe_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'green_coe' (23#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/green_coe_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'blue_coe' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/blue_coe_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'blue_coe' (24#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-10824-DESKTOP-RLIVKHG/realtime/blue_coe_stub.v:6]
+	Parameter WIDTH bound to: 1024 - type: integer 
+	Parameter HEIGHT bound to: 190 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'image_rom_1' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/image_rom_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'image_rom_1' (21#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/image_rom_1_stub.v:6]
+WARNING: [Synth 8-689] width (19) of port connection 'addra' does not match port width (18) of module 'image_rom_1' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/image_ROM_synth.sv:16]
+INFO: [Synth 8-6157] synthesizing module 'red_coe' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/red_coe_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'red_coe' (22#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/red_coe_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'green_coe' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/green_coe_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'green_coe' (23#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/green_coe_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blue_coe' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/blue_coe_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blue_coe' (24#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/.Xil/Vivado-5500-DESKTOP-RLIVKHG/realtime/blue_coe_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'image_ROM_synth' (25#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/image_ROM_synth.sv:3]
 WARNING: [Synth 8-87] always_comb on 'region_reg' did not result in combinational logic [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/top_level.sv:199]
 INFO: [Synth 8-6155] done synthesizing module 'top_level' (26#1) [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/top_level.sv:3]
@@ -133,7 +134,7 @@ WARNING: [Synth 8-3331] design camera_to_mask has unconnected port jd_p[1]
 WARNING: [Synth 8-3331] design camera_to_mask has unconnected port jd_p[0]
 WARNING: [Synth 8-3331] design amplitude_control has unconnected port amplitude_in[3]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 901.086 ; gain = 311.863
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 900.191 ; gain = 311.344
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -146,12 +147,12 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 901.086 ; gain = 311.863
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 900.191 ; gain = 311.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 901.086 ; gain = 311.863
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 900.191 ; gain = 311.344
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.103 . Memory (MB): peak = 901.086 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.079 . Memory (MB): peak = 900.191 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -198,11 +199,11 @@ Parsing XDC File [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSyn
 Finished Parsing XDC File [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1024.121 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1023.426 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 1024.121 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 1023.426 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'color_blobs/b_mask_bram' at clock pin 'clkb' is different from the actual clock period '15.385', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'color_blobs/frame_bram' at clock pin 'clkb' is different from the actual clock period '15.385', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'color_blobs/g_mask_bram' at clock pin 'clkb' is different from the actual clock period '15.385', this can lead to different synthesis results.
@@ -220,14 +221,14 @@ WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context s
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'synth_blob/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'synth_blob/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1027.109 ; gain = 437.887
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1026.508 ; gain = 437.660
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1027.109 ; gain = 437.887
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1026.508 ; gain = 437.660
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -252,7 +253,7 @@ Applied set_property DONT_TOUCH = true for synth_blob/bcm. (constraint file  aut
 Applied set_property DONT_TOUCH = true for synth_blob/gcm. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for synth_blob/rom1. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1027.109 ; gain = 437.887
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1026.508 ; gain = 437.660
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'filter'
 INFO: [Synth 8-802] inferred FSM for state register 'FSM_state_reg' in module 'camera_read'
@@ -318,7 +319,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'frame_state_reg' using enc
 INFO: [Synth 8-3354] encoded FSM with state register 'frame_state_reg' using encoding 'sequential' in module 'center_finder'
 WARNING: [Synth 8-327] inferring latch for variable 'region_reg' [C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/top_level.sv:199]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1027.109 ; gain = 437.887
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1026.508 ; gain = 437.660
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -368,7 +369,7 @@ Detailed RTL Component Info :
 	   4 Input     16 Bit        Muxes := 5     
 	   5 Input     16 Bit        Muxes := 2     
 	   3 Input     16 Bit        Muxes := 1     
-	   2 Input     12 Bit        Muxes := 36    
+	   2 Input     12 Bit        Muxes := 35    
 	   4 Input     12 Bit        Muxes := 1     
 	   6 Input     12 Bit        Muxes := 2     
 	   2 Input      9 Bit        Muxes := 2     
@@ -413,7 +414,7 @@ Detailed RTL Component Info :
 	                5 Bit    Registers := 3     
 	                4 Bit    Registers := 4     
 +---Muxes : 
-	   2 Input     12 Bit        Muxes := 35    
+	   2 Input     12 Bit        Muxes := 34    
 	   4 Input     12 Bit        Muxes := 1     
 	   6 Input     12 Bit        Muxes := 2     
 	   2 Input      8 Bit        Muxes := 3     
@@ -612,9 +613,6 @@ INFO: [Synth 8-4471] merging register 'converter/delta_reg[7:0]' into 'converter
 DSP Report: Generating DSP converter/h_top_reg, operation Mode is: (A*(B:0xff))'.
 DSP Report: register converter/h_top_reg is absorbed into DSP converter/h_top_reg.
 DSP Report: operator h_top0 is absorbed into DSP converter/h_top_reg.
-DSP Report: Generating DSP image_addr, operation Mode is: C+A*(B:0x2ee).
-DSP Report: operator image_addr is absorbed into DSP image_addr.
-DSP Report: operator image_addr0 is absorbed into DSP image_addr.
 DSP Report: Generating DSP red_buff_output_pixel_addr, operation Mode is: C+A*(B:0x140).
 DSP Report: operator red_buff_output_pixel_addr is absorbed into DSP red_buff_output_pixel_addr.
 DSP Report: operator red_buff_output_pixel_addr0 is absorbed into DSP red_buff_output_pixel_addr.
@@ -828,7 +826,7 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (synth2/\o
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (synth2/\osc1/triangle_wave_reg[15] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (synth2/\osc2/triangle_wave_reg[15] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1027.109 ; gain = 437.887
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1026.508 ; gain = 437.660
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -851,21 +849,20 @@ ROM:
 
 
 DSP: Preliminary Mapping	Report (see note below)
-+----------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name     | DSP Mapping        | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+----------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|oscillator      | C+((A:0x15d86)*B)' | 12     | 17     | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 1    | 0    | 
-|oscillator      | C+((A:0x15d86)*B)' | 12     | 17     | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 1    | 0    | 
-|oscillator      | C+((A:0x15d86)*B)' | 12     | 17     | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 1    | 0    | 
-|filter          | A2*B2              | 17     | 16     | -      | -      | 33     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|oscillator      | C+((A:0x15d86)*B)' | 12     | 17     | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 1    | 0    | 
-|oscillator      | C+((A:0x15d86)*B)' | 12     | 17     | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 1    | 0    | 
-|filter          | A2*B2              | 17     | 16     | -      | -      | 33     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|rgb2hsv         | (A*(B:0xff))'      | 16     | 8      | -      | -      | 16     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|image_ROM_synth | C+A*(B:0x2ee)      | 19     | 10     | 11     | -      | 19     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
-|top_level       | C+A*(B:0x140)      | 10     | 9      | 11     | -      | 17     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
-|top_level       | A*(B:0x140)        | 10     | 9      | -      | -      | 19     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-+----------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
++------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping        | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|oscillator  | C+((A:0x15d86)*B)' | 12     | 17     | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 1    | 0    | 
+|oscillator  | C+((A:0x15d86)*B)' | 12     | 17     | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 1    | 0    | 
+|oscillator  | C+((A:0x15d86)*B)' | 12     | 17     | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 1    | 0    | 
+|filter      | A2*B2              | 17     | 16     | -      | -      | 33     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|oscillator  | C+((A:0x15d86)*B)' | 12     | 17     | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 1    | 0    | 
+|oscillator  | C+((A:0x15d86)*B)' | 12     | 17     | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 1    | 0    | 
+|filter      | A2*B2              | 17     | 16     | -      | -      | 33     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|rgb2hsv     | (A*(B:0xff))'      | 16     | 8      | -      | -      | 16     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|top_level   | C+A*(B:0x140)      | 10     | 9      | 11     | -      | 17     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|top_level   | A*(B:0x140)        | 10     | 9      | -      | -      | 19     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
 ---------------------------------------------------------------------------------
@@ -881,13 +878,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:50 ; elapsed = 00:00:51 . Memory (MB): peak = 1058.078 ; gain = 468.855
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 1059.559 ; gain = 470.711
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:51 ; elapsed = 00:00:52 . Memory (MB): peak = 1074.328 ; gain = 485.105
+Finished Timing Optimization : Time (s): cpu = 00:00:44 ; elapsed = 00:00:45 . Memory (MB): peak = 1075.543 ; gain = 486.695
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -903,7 +900,7 @@ INFO: [Synth 8-223] decloning instance 'synth1/lpfilter/fc/a1_out_reg' (RAMB18E1
 INFO: [Synth 8-7053] The timing for the instance synth2/lpfilter/fc/b0_out_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7053] The timing for the instance synth2/lpfilter/fc/a1_out_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:53 ; elapsed = 00:00:55 . Memory (MB): peak = 1105.539 ; gain = 516.316
+Finished Technology Mapping : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 1108.223 ; gain = 519.375
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -927,13 +924,13 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:58 ; elapsed = 00:01:00 . Memory (MB): peak = 1110.699 ; gain = 521.477
+Finished IO Insertion : Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 1115.105 ; gain = 526.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:58 ; elapsed = 00:01:00 . Memory (MB): peak = 1110.699 ; gain = 521.477
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 1115.105 ; gain = 526.258
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -952,25 +949,25 @@ Report Check Netlist:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 1110.699 ; gain = 521.477
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:52 ; elapsed = 00:00:53 . Memory (MB): peak = 1115.105 ; gain = 526.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 1110.699 ; gain = 521.477
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:52 ; elapsed = 00:00:53 . Memory (MB): peak = 1115.105 ; gain = 526.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 1111.691 ; gain = 522.469
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:52 ; elapsed = 00:00:53 . Memory (MB): peak = 1115.105 ; gain = 526.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 1111.691 ; gain = 522.469
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:52 ; elapsed = 00:00:53 . Memory (MB): peak = 1115.105 ; gain = 526.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1034,46 +1031,45 @@ Report Cell Usage:
 |16    |red_coe             |     1|
 |17    |red_mask_bram       |     1|
 |18    |BUFG                |     1|
-|19    |CARRY4              |   222|
+|19    |CARRY4              |   219|
 |20    |DSP48E1             |     3|
 |21    |DSP48E1_1           |     2|
 |22    |DSP48E1_2           |     1|
-|23    |DSP48E1_4           |     1|
-|24    |DSP48E1_5           |     1|
-|25    |DSP48E1_6           |     2|
-|26    |DSP48E1_7           |     1|
-|27    |LUT1                |    60|
-|28    |LUT2                |   494|
-|29    |LUT3                |   185|
-|30    |LUT4                |   265|
-|31    |LUT5                |   227|
-|32    |LUT6                |   377|
-|33    |MUXF7               |     1|
-|34    |RAMB18E1_1          |     1|
-|35    |RAMB18E1_2          |     1|
-|36    |RAMB18E1_3          |     2|
-|37    |RAMB18E1_4          |     1|
-|38    |SRL16E              |     3|
-|39    |SRLC32E             |     9|
-|40    |FDRE                |   929|
-|41    |FDSE                |    65|
-|42    |LD                  |     2|
-|43    |IBUF                |    27|
-|44    |OBUF                |    33|
-|45    |OBUFT               |     1|
+|23    |DSP48E1_5           |     1|
+|24    |DSP48E1_6           |     2|
+|25    |DSP48E1_7           |     1|
+|26    |LUT1                |    51|
+|27    |LUT2                |   490|
+|28    |LUT3                |   182|
+|29    |LUT4                |   288|
+|30    |LUT5                |   202|
+|31    |LUT6                |   406|
+|32    |MUXF7               |     1|
+|33    |RAMB18E1_1          |     1|
+|34    |RAMB18E1_2          |     1|
+|35    |RAMB18E1_3          |     2|
+|36    |RAMB18E1_4          |     1|
+|37    |SRL16E              |     3|
+|38    |SRLC32E             |     9|
+|39    |FDRE                |   929|
+|40    |FDSE                |    65|
+|41    |LD                  |     2|
+|42    |IBUF                |    27|
+|43    |OBUF                |    33|
+|44    |OBUFT               |     1|
 +------+--------------------+------+
 
 Report Instance Areas: 
 +------+--------------+-------------------------+------+
 |      |Instance      |Module                   |Cells |
 +------+--------------+-------------------------+------+
-|1     |top           |                         |  3325|
-|2     |  color_blobs |camera_to_mask           |  1630|
-|3     |    blue_cf   |center_finder__xdcDup__2 |   290|
+|1     |top           |                         |  3332|
+|2     |  color_blobs |camera_to_mask           |  1641|
+|3     |    blue_cf   |center_finder__xdcDup__2 |   296|
 |4     |    converter |rgb2hsv                  |   476|
-|5     |    green_cf  |center_finder            |   330|
+|5     |    green_cf  |center_finder            |   329|
 |6     |    my_camera |camera_read              |   163|
-|7     |    red_cf    |center_finder__xdcDup__1 |   303|
+|7     |    red_cf    |center_finder__xdcDup__1 |   309|
 |8     |  lfo         |oscillator               |   179|
 |9     |  pwm_out     |pwm                      |    17|
 |10    |  synth1      |synthesizer              |   331|
@@ -1087,34 +1083,34 @@ Report Instance Areas:
 |18    |    osc1      |oscillator_1             |    59|
 |19    |    osc2      |oscillator_2             |     6|
 |20    |    oscmixer  |mixer_3                  |     4|
-|21    |  synth_blob  |image_ROM_synth          |    77|
+|21    |  synth_blob  |image_ROM_synth          |    49|
 |22    |  synth_mixer |mixer                    |    15|
-|23    |  xvga1       |xvga                     |   533|
+|23    |  xvga1       |xvga                     |   554|
 +------+--------------+-------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 1111.691 ; gain = 522.469
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:52 ; elapsed = 00:00:53 . Memory (MB): peak = 1115.105 ; gain = 526.258
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:48 ; elapsed = 00:00:57 . Memory (MB): peak = 1111.691 ; gain = 396.445
-Synthesis Optimization Complete : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 1111.691 ; gain = 522.469
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:42 ; elapsed = 00:00:50 . Memory (MB): peak = 1115.105 ; gain = 399.941
+Synthesis Optimization Complete : Time (s): cpu = 00:00:52 ; elapsed = 00:00:54 . Memory (MB): peak = 1115.105 ; gain = 526.258
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.077 . Memory (MB): peak = 1124.754 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 241 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.124 . Memory (MB): peak = 1127.152 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 237 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 1 inverter(s) to 2 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1124.754 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1127.152 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 2 instances were transformed.
   LD => LDCE (inverted pins: G): 2 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-295 Infos, 36 Warnings, 0 Critical Warnings and 0 Errors encountered.
+295 Infos, 37 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:07 ; elapsed = 00:01:10 . Memory (MB): peak = 1124.754 ; gain = 826.820
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1124.754 ; gain = 0.000
+synth_design: Time (s): cpu = 00:01:00 ; elapsed = 00:01:01 . Memory (MB): peak = 1127.152 ; gain = 828.613
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1127.152 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/top_level.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_level_utilization_synth.rpt -pb top_level_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Dec  7 21:22:23 2020...
+INFO: [Common 17-206] Exiting Vivado at Tue Dec  8 00:20:50 2020...
