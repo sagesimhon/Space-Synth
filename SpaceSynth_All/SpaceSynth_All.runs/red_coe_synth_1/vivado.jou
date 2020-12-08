@@ -1,12 +1,12 @@
 #-----------------------------------------------------------
 # Vivado v2019.2 (64-bit)
-# SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
 # IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
-# Start of session at: Mon Dec  7 16:09:51 2020
-# Process ID: 130076
-# Current directory: /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.runs/red_coe_synth_1
-# Command line: vivado -log red_coe.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source red_coe.tcl
-# Log file: /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.runs/red_coe_synth_1/red_coe.vds
-# Journal file: /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.runs/red_coe_synth_1/vivado.jou
+# Start of session at: Mon Dec  7 21:10:36 2020
+# Process ID: 22648
+# Current directory: C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/red_coe_synth_1
+# Command line: vivado.exe -log red_coe.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source red_coe.tcl
+# Log file: C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/red_coe_synth_1/red_coe.vds
+# Journal file: C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/red_coe_synth_1\vivado.jou
 #-----------------------------------------------------------
 source red_coe.tcl -notrace

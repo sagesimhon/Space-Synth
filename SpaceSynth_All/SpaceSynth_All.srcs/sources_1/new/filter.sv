@@ -1,9 +1,8 @@
 //First Order IIR
 module filter ( input logic [7:0] frequency_in,
-                input logic signed [7:0] waveform_in,
+                input logic signed [15:0] waveform_in,
                 input step_in, input rst_in, input clk_in,
-                output logic signed [7:0] filtered_out,
-                output logic ready_out);
+                output logic signed [15:0] filtered_out);
         
         parameter DO_NOTHING = 3'd0;
         parameter B0_TERM = 3'd1;
@@ -18,12 +17,12 @@ module filter ( input logic [7:0] frequency_in,
         logic signed [31:0] sum;
         
         //Single multiplier
-        logic signed [15:0] mult2;
+        logic signed [16:0] mult2;
         logic signed [15:0] mult1;
         logic signed [31:0] mult_out;
         assign mult_out = mult1*mult2;
         
-        logic signed [7:0] previous_input;
+        logic signed [15:0] previous_input;
         logic signed [31:0] previous_output;
         
         logic [2:0] state;
@@ -32,7 +31,6 @@ module filter ( input logic [7:0] frequency_in,
             if (rst_in)begin
                 previous_input <= 8'b0;
                 previous_output <= 8'b0;
-                ready_out <= 1'b0;
                 state <= DO_NOTHING;
             end else begin
                 if (step_in) begin
@@ -44,7 +42,6 @@ module filter ( input logic [7:0] frequency_in,
                 
                 case(state)
                     DO_NOTHING: begin
-                            ready_out <= 1'b0;
                           end
                     B0_TERM: begin
                             sum <= sum + (mult_out>>>15);
@@ -63,18 +60,9 @@ module filter ( input logic [7:0] frequency_in,
                             state <= DONE;
                           end
                     DONE: begin
-                            filtered_out [0] <= sum [1];
-                            filtered_out [1] <= sum [2];
-                            filtered_out [2] <= sum [3];
-                            filtered_out [3] <= sum [4];
-                            filtered_out [4] <= sum [5];
-                            filtered_out [5] <= sum [6];
-                            filtered_out [6] <= sum [7];
-                            filtered_out [7] <= sum [31];
-                            //filtered_out <= sum;
+                            filtered_out <= {sum[31],sum[15:1]};
                             previous_input <= waveform_in;
                             previous_output <= sum;
-                            ready_out <= 1'b1;
                             state <= DO_NOTHING;
                           end
                     default: state <= DO_NOTHING;

@@ -5,16 +5,13 @@ module camera_to_mask(
    
    input logic reset, 
    
-   input logic [15:0] sw,
+   input logic [3:0] thresh_on,
    
    input logic [7:0] ja_p, //pixel data from camera
    input logic [2:0] jb_p, //other data from camera (including clock return)
    input logic [2:0] jd_p,
    output logic  jbclk_p, //clock FPGA drives the camera with
    output logic  jdclk_p,
-
-   input logic [10:0] hcount,//vga pixel on current line
-   input logic [9:0] vcount, //vga line number
 
    output logic [11:0] raw_image_buff_out, 
    input logic [16:0] raw_image_output_pixel_addr,
@@ -57,8 +54,6 @@ module camera_to_mask(
     logic blue_processed_pixels;
     logic green_processed_pixels;
     logic [11:0] raw_image_pixels;
-    //logic [11:0] raw_image_pixels_delayed;
-    logic [11:0] raw_image_buff [21:0]; 
     logic [3:0] red_diff;
     logic [3:0] green_diff;
     logic [3:0] blue_diff;
@@ -72,13 +67,7 @@ module camera_to_mask(
     logic [8:0] h_idx_out;
     
     logic [16:0] bram_input_pixel_addr;
-    logic [16:0] bram_buff [22:0];
-    logic [16:0] bram_input_pixel_addr_delayed;
-    logic [4:0] bram_addr_delay_state = 0; 
-//    logic [84:0] bram_input_addr_buff = 85'b0; //17*5
-    logic [4:0] raw_delay_state = 0; 
-    genvar i; 
-    genvar j; 
+
     //clock signal from FPGA to camera module
     assign xclk = (xclk_count >2'b01); // 25% speed of 65 mhz clock
     assign jbclk_p = xclk; // drives camera
@@ -96,46 +85,24 @@ module camera_to_mask(
         href_in <= href_buff;
         pixel_in <= pixel_buff;
         xclk_count <= xclk_count + 2'b01;
-   end 
-   
-   generate  
-        for (j = 1; j < 22; j = j+1) begin
-            always_ff @(posedge pclk_in) begin
-                raw_image_buff[j] <= raw_image_buff[j-1];
-            end
-        end
-    
-    endgenerate 
-    
-   generate 
-        for (i = 1; i < 23; i = i+1) begin
-            always_ff @(posedge pclk_in) begin
-                bram_buff[i] <= bram_buff[i-1];
-            end
-        end
-    
-    endgenerate
-    
-   always_ff @(posedge pclk_in) begin      
+        
         //Just raw image from camera truncated to 12 bits
         raw_image_pixels <= {output_pixels[15:12],output_pixels[10:7],output_pixels[4:1]}; //{h[7:0], s[7:0], v[7:0]};
-        
-        raw_image_buff[0] <= raw_image_pixels;
-       
-        if (sw[7]) begin 
-            
+
+        if (thresh_on[0]) begin 
+
             //Thresholding green (Hue 85)
             if ((h >= 83 && h <= 125) && v > 110 && s > 110) begin 
                 green_processed_pixels <= 1'b1;
                 red_processed_pixels <= 1'b0;
                 blue_processed_pixels <= 1'b0;
             //Thresholding blue (Hue 175)
-            end else if ((h >= 168 && h <= 172) && v > 160 && s > 30) begin 
+            end else if ((h >= 168 && h <= 172) && v > 200 && s > 30) begin 
                 blue_processed_pixels <= 1'b1;
                 green_processed_pixels <= 1'b0;
                 red_processed_pixels <= 1'b0;
             //Thresholding red (Hue 0)
-            end else if ((h >= 253 || h <= 2) && v > 90 && s > 80) begin 
+            end else if ((h >= 253 || h <= 2) && v > 110 && s > 80) begin 
                 red_processed_pixels <= 1'b1;
                 green_processed_pixels <= 1'b0;
                 blue_processed_pixels <= 1'b0;
@@ -144,8 +111,9 @@ module camera_to_mask(
                 green_processed_pixels <= 1'b0;
                 blue_processed_pixels <= 1'b0;
             end 
-         end else if (sw[8]) begin 
             
+        end
+        else if (thresh_on[1]) begin 
             //Thresholding green (Hue 85)
             if (h >= 83) begin 
                 green_processed_pixels <= 1'b1;
@@ -166,9 +134,9 @@ module camera_to_mask(
                 green_processed_pixels <= 1'b0;
                 blue_processed_pixels <= 1'b0;
             end     
-          
-          end else if (sw[9]) begin 
-            
+
+          end else if (thresh_on[2]) begin 
+
             //Thresholding green (Hue 85)
             if ((h >= 83 && h <= 125) && v > 110 && s > 110) begin 
                 green_processed_pixels <= 1'b1;
@@ -190,9 +158,9 @@ module camera_to_mask(
                 blue_processed_pixels <= 1'b0;
             end   
         end
-        
-         else if (sw[10]) begin 
-            
+
+         else if (thresh_on[3]) begin 
+
             //Thresholding green (Hue 85)
             if ((h >= 83 && h <= 125) && v > 110 && s > 110) begin 
                 green_processed_pixels <= 1'b1;
@@ -212,17 +180,14 @@ module camera_to_mask(
                 red_processed_pixels <= 1'b0;
                 green_processed_pixels <= 1'b0;
                 blue_processed_pixels <= 1'b0;
-            end   
-        end
+            end 
+        end  
         else begin
             red_processed_pixels <= 1'b1;
             blue_processed_pixels <= 1'b1;
             green_processed_pixels <= 1'b1;
-        end  
-
-        bram_buff[0] <= bram_input_pixel_addr;
-
-  
+        end   
+                   
     end 
     
     //Turn binary masks into colored pixels
@@ -240,10 +205,10 @@ module camera_to_mask(
                           .frame_done_out(frame_done_out),
                           .v_idx_out(v_idx_out),
                           .h_idx_out(h_idx_out),
-                          .pixel_addr_out(bram_input_pixel_addr));//delay*
+                          .pixel_addr_out(bram_input_pixel_addr));
    
    //Convert RGB pixels to HSV color space
-   rgb2hsv converter(.clock(pclk_in), 
+   rgb2hsv converter(.clock(clk_65mhz), 
                         .reset(reset),
                         .r({output_pixels[15:11], 3'b000}),
                         .g({output_pixels[10:5], 2'b00}),
@@ -254,6 +219,7 @@ module camera_to_mask(
    
    //Find center and area of red pixel mask
    center_finder red_cf(.clk_in(clk_65mhz),
+                         .rst_in(reset),
                          .v_index_in(v_idx_out),
                          .h_index_in(h_idx_out), 
                          .pixel_in(red_processed_pixels),
@@ -264,6 +230,7 @@ module camera_to_mask(
    
    //Find center and area of blue pixel mask
    center_finder blue_cf(.clk_in(clk_65mhz),
+                     .rst_in(reset),
                      .v_index_in(v_idx_out),
                      .h_index_in(h_idx_out), 
                      .pixel_in(blue_processed_pixels),
@@ -274,6 +241,7 @@ module camera_to_mask(
     
    //Find center and area of blue pixel mask
    center_finder green_cf(.clk_in(clk_65mhz),
+                     .rst_in(reset),
                      .v_index_in(v_idx_out),
                      .h_index_in(h_idx_out), 
                      .pixel_in(green_processed_pixels),
@@ -291,7 +259,7 @@ module camera_to_mask(
                              .clkb(clk_65mhz),
                              .doutb(raw_image_buff_out));
     
-    red_mask_bram r_mask_bram(.addra(bram_buff[21]), 
+    red_mask_bram r_mask_bram(.addra(bram_input_pixel_addr), 
                              .clka(pclk_in), //camera's clock signal 
                              .dina(red_processed_pixels),
                              .wea(valid_pixel),
@@ -299,7 +267,7 @@ module camera_to_mask(
                              .clkb(clk_65mhz),
                              .doutb(red_mask_buff_out));
     
-    blue_mask_bram b_mask_bram(.addra(bram_buff[21]), 
+    blue_mask_bram b_mask_bram(.addra(bram_input_pixel_addr), 
                              .clka(pclk_in), //camera's clock signal 
                              .dina(blue_processed_pixels),
                              .wea(valid_pixel),
@@ -307,21 +275,12 @@ module camera_to_mask(
                              .clkb(clk_65mhz),
                              .doutb(blue_mask_buff_out));
     
-    green_mask_bram g_mask_bram(.addra(bram_buff[21]), 
+    green_mask_bram g_mask_bram(.addra(bram_input_pixel_addr), 
                              .clka(pclk_in), //camera's clock signal 
                              .dina(green_processed_pixels),
                              .wea(valid_pixel),
                              .addrb(green_buff_output_pixel_addr),
                              .clkb(clk_65mhz),
                              .doutb(green_mask_buff_out));
-//    ila_2 my_ila(.clk(clk_65mhz),
-//                 .probe0(green_buff_output_pixel_addr),   //17 bit
-//                 .probe1(green_addr_buff[0]), //17 bit
-//                 .probe2(green_addr_buff[1]),
-//                 .probe3(green_addr_buff[2]),
-//                 .probe4(green_addr_buff[3]),
-//                 .probe5(green_mask_buff_out),
-//                 .probe6(hcount));
-                 
                                       
 endmodule

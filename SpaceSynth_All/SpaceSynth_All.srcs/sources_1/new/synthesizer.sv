@@ -2,17 +2,17 @@ module synthesizer (input logic [11:0] frequency_in,
                     input logic [2:0] osc2_tune_in,
                     input logic [1:0] osc1_shape_in,
                     input logic [1:0] osc2_shape_in,
-                    input logic [2:0] amplitude_in,
+                    input logic [3:0] amplitude_in,
                     input logic [7:0] filter_cutoff_in,
                     input trigger_in, input rst_in, input clk_in,
-                    output logic signed [7:0] audio_out
+                    output logic signed [15:0] audio_out
                     );
     
     //Intermediates
-    logic signed [7:0] oscillator1_output;
-    logic signed [7:0] oscillator2_output;
-    logic signed [7:0] mixer_out;
-    logic signed [7:0] filter_out;             
+    logic signed [15:0] oscillator1_output;
+    logic signed [15:0] oscillator2_output;
+    logic signed [15:0] mixer_out;
+    logic signed [15:0] filter_out;             
     
     //Osc 2 Tuning
     parameter OCTAVEp3 = 3'd6;

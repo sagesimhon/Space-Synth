@@ -3,17 +3,14 @@
 module top_level(
        //FPGA controls and displays
        input clk_100mhz,
-       input btnc, btnu, btnl, btnr, btnd,
        input[15:0] sw,
-       output led16_b, led16_g, led16_r,
-       output led17_b, led17_g, led17_r,
        output[15:0] led,
         
        //PMOD pins for camera
-       input [7:0] ja, //pixel data from camera
-       input [2:0] jb, //other data from camera (including clock return)
+       input [7:0] ja, 
+       input [2:0] jb,
        input [2:0] jd,
-       output   jbclk, //clock FPGA drives the camera with
+       output   jbclk, 
        output   jdclk,
     
        //VGA circuit
@@ -41,10 +38,10 @@ module top_level(
     
     assign aud_sd = 1;
         
-    parameter SINE = 2'd0;
-    parameter SQUARE = 2'd1;
-    parameter TRIANGLE = 2'd2;
-    parameter SAW = 2'd3;
+    localparam SINE = 2'd0;
+    localparam SQUARE = 2'd1;
+    localparam TRIANGLE = 2'd2;
+    localparam SAW = 2'd3;
     
     //Generate trigger signal for audio samples
     assign sample_trigger = (sample_counter == SAMPLE_COUNT);
@@ -56,16 +53,7 @@ module top_level(
         end
     end
 
-    //in case buttons are to be used
-    assign led16_r = btnl;                  // left button -> red led
-    assign led16_g = btnc;                  // center button -> green led
-    assign led16_b = btnr;                  // right button -> blue led
-    assign led17_r = btnl;
-    assign led17_g = btnc;
-    assign led17_b = btnr;
     assign led = sw;
-
-    // btnc button is user reset
     logic reset;
     assign reset = sw[15];
     
@@ -115,150 +103,202 @@ module top_level(
     //Current display pixel
     logic [11:0] current_pixel;
     
-    //Synthesizer controls
-    logic signed[7:0] synth1_out;
-    logic signed[7:0] synth2_out;
-    logic signed[7:0] all_synth_out;
+    //Synthesizer outputs
+    logic signed[15:0] synth1_out;
+    logic signed[15:0] synth2_out;
+    logic signed[15:0] all_synth_out;
     
-    logic [2:0] synth1_osc2_tune;
-    assign synth1_osc2_tune = 3'd1;
-    
+    //Synth oscillator waveform shapes
     logic [1:0] synth1_osc1_shape;
     logic [1:0] synth1_osc2_shape;
-    
-    logic [2:0] synth2_osc2_tune;
-    assign synth2_osc2_tune = 3'd2;
     
     logic [1:0] synth2_osc1_shape;
     logic [1:0] synth2_osc2_shape;
     
-    logic [11:0] synth1_frequency;
+    //Synth oscillator tuning. Tune synth 1 one octave down
+    // and synth 2 two octaves down. Other combos work, but aren't
+    // as pleasing as this. So we'll keep em constant for now
+    logic [2:0] synth1_osc2_tune;
+    assign synth1_osc2_tune = 3'd2;
     
+    logic [2:0] synth2_osc2_tune;
+    assign synth2_osc2_tune = 3'd3;
+    
+    
+    //Frequency variables. The synths have a max input frequency
+    // of 2^12 or 4096Hz
+    logic [11:0] synth1_frequency;
     logic [11:0] synth2_frequency;
     
+    //Filter cutoff frequency. A '0' is a cutoff frequency of 100hz
+    // and '255' is a cutoff frequency of 5000Hz. It's good enough
     logic [7:0] filter_cutoff;
-    //assign filter_cutoff = 8'd255;
     
-    logic [2:0] synth1_amplitude;
-    logic [2:0] synth2_amplitude;
+    //Synth amplitude. Since we're using 16bit (signed) audio signals,
+    // we can shift for 16 different volume levels 
+    logic [3:0] synth1_amplitude;
+    logic [3:0] synth2_amplitude;
     
-    logic signed[7:0] lfo_out;
-    logic signed[7:0] lfo_osc_out;
+    //Switch to enable/disable LFO
+    logic lfo_enabled;
+    assign lfo_enabled = sw[14];
+    
+    //Complentary variables for LFO. Works the same way as the synth oscillators.
+    logic signed[15:0] lfo_out;
+    logic signed[15:0] lfo_osc_out;
     logic [11:0] lfo_frequency;
-    logic [2:0] lfo_amplitude;
+    logic [3:0] lfo_amplitude;
     logic [1:0] lfo_shape;
-    assign lfo_shape = sw[1:0];
+    assign lfo_shape = sw[1:0]; //LFO shape is assignable via switches.
     
+    //Variables for changing waveshape presets 
     logic [1:0] region;
-    logic [1:0][1:0] waveshape;
-        logic r_bar_1_border, r_bar_2_border, r_bar_3_border, b_bar_1_border, b_bar_2_border, b_bar_3_border, 
-    g_bar_1_border, g_bar_2_border, g_bar_3_border = 1'b0;
+    logic [3:0] waveshape;
+    logic [11:0] waveshape_bar_color;
+    localparam preset1 = 2'd0;
+    localparam preset2 = 2'd1;
+    localparam preset3 = 2'd2;
     
-    logic [8:0] red_area_scaled, blue_area_scaled, green_area_scaled; //area right shifted by 8 (76800/256 normalizes to 300)
+    //'Boolean' values for knowing when to draw borders for bar graphs
+    logic r_bar_1_border, r_bar_2_border, r_bar_3_border, b_bar_1_border, b_bar_2_border, b_bar_3_border, 
+        g_bar_1_border, g_bar_2_border, g_bar_3_border = 1'b0;
+    
+    //pixel area scaled by right shifting by 8 (76800/256 normalizes to 300)
+    logic [8:0] red_area_scaled, blue_area_scaled, green_area_scaled; 
     
     //Image of Synth
     logic [10:0] x_in = 5;
     logic [9:0] y_in = 250;
     logic [11:0] synth_pix;
     
-    //TODO remove magic numbers might get points off
     always_comb begin
+        //Figure out when to draw border for the bar graphs 
         r_bar_1_border = (((hcount == 10 || hcount == 20) && (vcount <= 751 && vcount >= 510))
               || ((vcount==751 || vcount==510) && (hcount <= 20 && hcount >= 10)));
         r_bar_2_border = (((hcount == 110 || hcount == 120) && (vcount <= 751 && vcount >= 430))
               || ((vcount==751 || vcount==430) && (hcount >= 110 && hcount <= 120)));
         r_bar_3_border = (((hcount == 210 || hcount == 220) && (vcount<=751 && vcount >= 449)) 
               || ((vcount==751 || vcount==449) && (hcount >= 210 && hcount <= 220)));
+        
         b_bar_1_border = (((hcount == 330 || hcount == 340) && (vcount <= 751 && vcount >= 510))
               || ((vcount==751 || vcount==510) && (hcount >= 330 && hcount <= 340)));
         b_bar_2_border = (((hcount == 430 || hcount == 440) && (vcount <= 751 && vcount >= 430))
               || ((vcount==751 || vcount==430) && (hcount >= 430 && hcount <= 440)));
         b_bar_3_border = (((hcount == 530 || hcount == 540) && (vcount<=751 && vcount >= 449)) 
               || ((vcount==751 || vcount==449) && (hcount >= 530 && hcount <= 540)));
+        
         g_bar_1_border = (((hcount == 650 || hcount == 660) && (vcount <= 751 && vcount >= 510))
               || ((vcount==751 || vcount==510) && (hcount >= 650 && hcount <= 660)));
         g_bar_2_border = (((hcount == 750 || hcount == 760) && (vcount <= 751 && vcount >= 430))
               || ((vcount==751 || vcount==430) && (hcount >= 750 && hcount <= 760)));
         g_bar_3_border = (((hcount == 850 || hcount == 860) && (vcount<=751 && vcount >= 449)) 
               || ((vcount==751 || vcount==449) && (hcount >= 850 && hcount <= 860)));
-
-        region = (blue_center_h_index < 426) ? 2'b0 : (blue_center_h_index < 533) ? 2'b1 : 2'b10;
+        
+        //Switch waveshape preset based on what region we're in (but only if we're above the detection threshold!)
+        if(blue_area >= detection_threshold) begin
+            region = (blue_center_h_index < 106) ? 2'b0 : (blue_center_h_index < 213) ? 2'b1 : 2'b10;
+        end
         synth1_osc1_shape = waveshape[0];
         synth1_osc2_shape = waveshape[1];
         synth2_osc1_shape = waveshape[2];
-        synth2_osc2_shape = waveshape[3];
-        
+        synth2_osc2_shape = waveshape[3];   
     end
     
     assign blue_buff_output_pixel_addr = (hcount-11'd320)+vcount*32'd320;
     assign red_buff_output_pixel_addr = hcount+vcount*32'd320;
     assign green_buff_output_pixel_addr = (hcount-11'd640)+vcount*32'd320;
-
+    
     always_ff @(posedge clk_65mhz) begin
-
-        lfo_frequency <= (red_area < lfo_threshold) ? 12'd0 : red_area >= (red_area >= detection_threshold)?(red_area>>9):12'd0; //*mixing --> lowers amp if 0?
-        lfo_amplitude <= (green_area < lfo_threshold) ? 3'd0 : (green_area >= detection_threshold)?(green_area>>10):3'd0; 
-        synth1_frequency <= (red_area >= detection_threshold)?(12'd200+(red_center_h_index<<1)+lfo_out<<<3):12'd0;
-        synth2_frequency <= (green_area >= detection_threshold)?(12'd200+(green_center_h_index<<1)+lfo_out<<<3):12'd0;        
         
-        red_area_scaled <= red_area>>4;
-        if (red_area_scaled > 9'd299) begin
-            red_area_scaled <= 9'd299;
-        end
-
-        blue_area_scaled <= blue_area>>4;
-        if (blue_area_scaled > 9'd299) begin
-            blue_area_scaled <= 9'd299;
-        end
-
-        green_area_scaled <= green_area>>4;
-        if (green_area_scaled > 9'd299) begin
-            green_area_scaled <= 9'd299;
-        end
-
-
-        filter_cutoff <= (green_center_h_index - red_center_h_index) <= 255 ? (green_center_h_index - red_center_h_index) : 255; //*abs value? currently only works if green is to the right of red
+        /*
+        *LFO frequency and depth are proportional to area of both hands(red and green)
+        */
+        lfo_frequency <= (lfo_enabled)? (red_area >= detection_threshold)?(red_area>>9):12'd0:12'd0;//(red_area < lfo_threshold) 
+        lfo_amplitude <= (lfo_enabled)? (green_area >= detection_threshold)?(green_area>>10):4'd0:4'd0 ;//(green_area < lfo_threshold)
         
+        /*
+        *Synth frequencies is proportional to vertical positions of each hand(red and green) and influenced by LFO
+        * Frequency for both senthesizers is determined by taking a base frequency of 100Hz and adding the 
+        * horizontal position of the hand as well as the signal from the LFO. If the frequency drops below zero, 
+        * (which it will, since we're working with low frequencies here) give 0 frequency rather than letting
+        * it rollover
+        */
+        synth1_frequency <= (red_area >= detection_threshold)?(lfo_enabled?(($signed(lfo_out+12'd200+red_center_h_index) >= 12'sd0)?(12'd200+red_center_h_index+lfo_out):12'd0):(12'd200+red_center_h_index)):12'd0;
+        synth2_frequency <= (green_area >= detection_threshold)?(lfo_enabled?(($signed(lfo_out+12'd200+green_center_h_index) >= 12'sd0)?(12'd200+green_center_h_index+lfo_out):12'd0):(12'd200+green_center_h_index)):12'd0;        
+        
+        /*
+        *Filter cutoff frequency is proportional to horizontal distance between two hands(red and green)
+        * Filter is only active when both hands are on screen, otherwise it defaults to 255 (practically no filter)
+        */
+        filter_cutoff <= (((green_center_h_index - red_center_h_index) <= 255) && (red_area >= detection_threshold) && (green_area >= detection_threshold)) ? (green_center_h_index - red_center_h_index) : 255; //abs value? currently only works if green is to the right of red
+        
+        /*
+        *Create two vertical amplitude zones for both synthesizers
+        * Sound is full-amplitude when hands are on top half of screen,
+        * and hald amplitude when hands are on bottom half
+        */
         if (red_center_v_index < 120)begin
-            synth1_amplitude <= (red_area >= detection_threshold)?3'd7:3'd0;
+            synth1_amplitude <= (red_area >= detection_threshold)?4'd15:4'd0;
         end else if (red_center_v_index >= 120 && red_center_v_index < 240)begin
-            synth1_amplitude <= (red_area >= detection_threshold)?3'd6:3'd0;
+            synth1_amplitude <= (red_area >= detection_threshold)?4'd14:4'd0;
         end
         if (green_center_v_index < 120)begin
-            synth2_amplitude <= (green_area >= detection_threshold)?3'd7:3'd0;
+            synth2_amplitude <= (green_area >= detection_threshold)?4'd15:4'd0;
         end else if (green_center_v_index >= 120 && green_center_v_index < 240)begin
-            synth2_amplitude <= (green_area >= detection_threshold)?3'd6:3'd0;
+            synth2_amplitude <= (green_area >= detection_threshold)?4'd14:4'd0;
         end
         
+        
+        /*
+        *Switch between three waveshape zones (controlled by x-position of blue)
+        */
         case (region)
-            2'b0: begin 
+            preset1: begin 
                 waveshape[0] <= SAW;
                 waveshape[1] <= SAW;
                 waveshape[2] <= SQUARE;
                 waveshape[3] <= SQUARE;
+                waveshape_bar_color <= 12'h00A;
             end         
-            2'b01: begin
+            preset2: begin
                 waveshape[0] <= SAW;
                 waveshape[1] <= SINE;
                 waveshape[2] <= TRIANGLE;
                 waveshape[3] <= SQUARE;
+                waveshape_bar_color <= 12'h00F;
             end         
-            2'b10: begin
+            preset3: begin
                 waveshape[0] <= TRIANGLE;
                 waveshape[1] <= SAW;
                 waveshape[2] <= TRIANGLE;
                 waveshape[3] <= SAW;
+                waveshape_bar_color <= 12'hBBF;
             end 
+            default: begin 
+                waveshape[0] <= TRIANGLE;
+                waveshape[1] <= SAW;
+                waveshape[2] <= TRIANGLE;
+                waveshape[3] <= SAW;
+                waveshape_bar_color <= 12'h00F;
+            end    
         endcase
         
-        //TOP OF VGA
+        /*
+        *Scale pixel area down to 300 so we can show it on the graph
+        */
+        red_area_scaled <= ((red_area>>4)<= 9'd300)?(red_area>>4):9'd300;
+        green_area_scaled <= ((green_area>>4)<= 9'd300)?(green_area>>4):9'd300;
+        blue_area_scaled <= ((blue_area>>4)<= 9'd300)?(blue_area>>4):9'd300;
+        
+        /*
+        *Draw camera image frames with crosshairs (if applicable)
+        */
         if (sw[2]&&((hcount<320) &&  (vcount<240))) begin //If sw[2] show original image
             current_pixel <= raw_image_buff;
             raw_image_output_pixel_addr <= hcount+vcount*32'd320;
         end
-        
         else if (~sw[2]&&((hcount<320) &&  (vcount<240))) begin //Otherwise show red mask image
-            //Add green crosshair on center coordinates (if enough pixels are detected)
+            //Add magenta crosshair on center coordinates (if enough pixels are detected)
             current_pixel <= ((hcount==red_center_h_index) || (vcount==red_center_v_index))?((red_area >= detection_threshold)?12'hF0F:red_buff):red_buff;
             //red_buff_output_pixel_addr <= hcount+vcount*32'd320;
         end
@@ -266,30 +306,29 @@ module top_level(
             if (hcount == 426 || hcount == 533) begin
                 current_pixel <= 12'hFF0;
             end 
-            else begin //Add green crosshair on center coordinates (if enough pixels are detected)
+            else begin //Add magenta crosshair on center coordinates (if enough pixels are detected)
                 current_pixel <= ((hcount==blue_center_h_index+320) || (vcount==blue_center_v_index))?((blue_area >= detection_threshold)?12'hF0F:blue_buff):blue_buff;
                 //blue_buff_output_pixel_addr <= (hcount-11'd320)+vcount*32'd320;
             end 
         end
         else if (~sw[2]&&((hcount>=640) && (hcount<960) && (vcount<240))) begin //Show green mask image next to it
-            //Add green crosshair on center coordinates (if enough pixels are detected)
-            if (hcount >= 951) begin
-                current_pixel <= 12'hFF0;
-            end else begin
-                current_pixel <= ((hcount==green_center_h_index+640) || (vcount==green_center_v_index))?((green_area >= detection_threshold)?12'hF0F:green_buff):green_buff;
-               // green_buff_output_pixel_addr <= (hcount-11'd640)+vcount*32'd320;
-            end
+            //Add magenta crosshair on center coordinates (if enough pixels are detected)
+            current_pixel <= ((hcount==green_center_h_index+640) || (vcount==green_center_v_index))?((green_area >= detection_threshold)?12'hF0F:green_buff):green_buff;
+            //green_buff_output_pixel_addr <= (hcount-11'd640)+vcount*32'd320;
         end
         
         //BOTTOM OF VGA
         else if ((vcount>=240) && sw[3]) begin //attempt to show synth
             current_pixel <= synth_pix; 
         end 
-        //Show controls as vertical bar graphs
+        
+        /*
+        *Show controls as vertical bar graphs on the bottom of the screen
+        */
         else if (~sw[3] && ~sw[2] && (vcount>=240)) begin 
             if (hcount<320) begin //Show Red (Left hand) bars at hcount = 10-20, 110-120, 210-220 from vcount = (750 - range(var)) to 750
                 if ((hcount>=10 && hcount<=20) && (vcount>=510 && vcount<=751)) begin //y position of red blob; range = 0 to 239 
-                     current_pixel <= r_bar_1_border?12'hFFF:(vcount-511>red_center_v_index) ? ((red_area >= detection_threshold)? ((red_center_v_index>8'd120)?12'hA00:12'hF00):12'h000): 12'h000;                
+                     current_pixel <= r_bar_1_border?12'hFFF:(vcount-511>red_center_v_index) ? ((red_area >= detection_threshold)? ((red_center_v_index>8'd120)?12'hA00:12'hF99):12'h000): 12'h000;              
                 end 
                 else if ((hcount>=110 && hcount<=120) && (vcount>=430 && vcount<=751)) begin //x position of red blob; ranges = 0 to 319
                      current_pixel <= r_bar_2_border?12'hFFF:(vcount-431>(319-red_center_h_index)) ? ((red_area >= detection_threshold)? 12'hF00:12'h000): 12'h000;         
@@ -304,17 +343,16 @@ module top_level(
                     current_pixel <= b_bar_1_border?12'hFFF:(vcount-511>blue_center_v_index) ?((blue_area >= detection_threshold)? 12'h00F:12'h000): 12'h000;
                 end
                 else if ((hcount>=430 && hcount<=440) && (vcount>=430 && vcount<=751)) begin 
-                    current_pixel <= b_bar_2_border?12'hFFF:(vcount-431>(319-blue_center_h_index)) ?((blue_area >= detection_threshold)? 12'h00F:12'h000): 12'h000;
+                    current_pixel <= b_bar_2_border?12'hFFF:(vcount-431>(319-blue_center_h_index)) ?((blue_area >= detection_threshold)? waveshape_bar_color:12'h000): 12'h000;
                 end
                 else if ((hcount>=530 && hcount<=540) && (vcount>=449 && vcount<=751)) begin //area of blue blob; ranges = 0 to 76800 --> 450-750 for 300 buckets
                     current_pixel <= b_bar_3_border?12'hFFF:(vcount-449>(300-blue_area_scaled)) ? ((blue_area >= detection_threshold)? 12'h00F:12'h000): 12'h000;
                 end
                 else current_pixel <= 12'h000;
-
             end 
             else if (hcount>=640 && hcount<960) begin //Show green (third limb) bars at hcount = 650-660, 750-760, 850-860 from vcount = (750 - range(var)) to 750 
                 if ((hcount>=650 && hcount<=660) && (vcount>=510 && vcount<=751)) begin
-                    current_pixel <= g_bar_1_border?12'hFFF:(vcount-511>green_center_v_index) ? ((green_area >= detection_threshold)?  ((green_center_v_index>8'd120)?12'h0A0:12'h0F0):12'h000): 12'h000;
+                    current_pixel <= g_bar_1_border?12'hFFF:(vcount-511>green_center_v_index) ? ((green_area >= detection_threshold)?  ((green_center_v_index>8'd120)?12'h0A0:12'h9F9):12'h000): 12'h000;
                 end
                 else if ((hcount>=750 && hcount<=760) && (vcount>=430 && vcount<=751)) begin 
                     current_pixel <= g_bar_2_border?12'hFFF:(vcount-431>(319-green_center_h_index)) ? ((green_area >= detection_threshold)? 12'h0F0:12'h000): 12'h000;
@@ -335,14 +373,14 @@ module top_level(
         hsync_buff <= {hsync, hsync_buff[4:1]};
         vsync_buff <= {vsync, vsync_buff[4:1]};
         blank_buff <= {blank, blank_buff[4:1]};
-
     end 
+    
     // the following lines are required for the Nexys4 VGA circuit - do not change
     assign vga_r = ~blank_buff[0] ? current_pixel[11:8]: 0;
     assign vga_g = ~blank_buff[0] ? current_pixel[7:4] : 0;
     assign vga_b = ~blank_buff[0] ? current_pixel[3:0] : 0;
     assign vga_hs = ~hsync_buff[0];
-    assign vga_vs = ~vsync_buff[0]; //*try w/o to debug other pipeline issue
+    assign vga_vs = ~vsync_buff[0];
          
     oscillator lfo (
         .clk_in(clk_65mhz),
@@ -389,7 +427,7 @@ module top_level(
     pwm pwm_out(
         .clk_in(clk_65mhz), 
         .rst_in(reset), 
-        .level_in({~all_synth_out[7],all_synth_out[6:0]}),
+        .level_in({~all_synth_out[15],all_synth_out[14:0]}),
         .pwm_out(pwm_val));
     assign aud_pwm = pwm_val?1'bZ:1'b0; 
     
@@ -397,14 +435,12 @@ module top_level(
    camera_to_mask color_blobs(
     .clk_65mhz(clk_65mhz),
     .reset(reset), 
-    .sw(sw),
+    .thresh_on(sw[10:7]),
     .ja_p(ja), 
     .jb_p(jb), 
     .jd_p(jd),
     .jbclk_p(jbclk), 
-    .jdclk_p(jdclk),
-    .hcount(hcount),    
-    .vcount(vcount),    
+    .jdclk_p(jdclk),   
   
     .raw_image_buff_out(raw_image_buff),
     .raw_image_output_pixel_addr(raw_image_output_pixel_addr),
@@ -442,10 +478,5 @@ module top_level(
     .vcount_in(vcount),
     .pixel_out(synth_pix)
     );
-                   
-                   ila_1 my_ila(.clk(clk_65mhz),
-                                .probe0(red_area_scaled),
-                                .probe1(vcount),
-                                .probe2(hcount),
-                                .probe3(vcount-450<=red_area_scaled));
+             
 endmodule

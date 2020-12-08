@@ -11,7 +11,7 @@ module oscillator_tb();
   logic [1:0] shape; 
   logic [11:0] frequency; 
   
-  logic [7:0] wave_out; 
+  logic [15:0] wave_out; 
     
   oscillator osc1 (.clk_in(clk),.rst_in(rst),.step_in(step),.shape_in(shape),.frequency_in(frequency),.wave_out(wave_out));
   
@@ -19,7 +19,7 @@ module oscillator_tb();
   
   initial begin
     clk = 0;
-    shape = 3;
+    shape = 2;
     step = 0;
     frequency = 1000;
     #100; 

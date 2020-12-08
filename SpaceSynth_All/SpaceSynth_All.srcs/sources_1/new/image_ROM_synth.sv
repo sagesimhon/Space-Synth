@@ -1,23 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 12/07/2020 12:45:42 PM
-// Design Name: 
-// Module Name: image_ROM_synth
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
 module image_ROM_synth //picture_blob
    #(parameter WIDTH = 750,     // default picture width
@@ -26,7 +7,7 @@ module image_ROM_synth //picture_blob
     input [10:0] x_in,hcount_in,
     input [9:0] y_in,vcount_in,
     output logic [11:0] pixel_out);
-      
+
    logic [18:0] image_addr;   // num of bits for 750*503 ROM is 19
    logic [7:0] image_bits, red_mapped, green_mapped, blue_mapped;
 

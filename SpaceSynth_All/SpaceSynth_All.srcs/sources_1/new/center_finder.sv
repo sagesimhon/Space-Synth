@@ -8,7 +8,7 @@ module center_finder(input clk_in, input rst_in, //clock and reset
                      output logic [8:0] h_index_out);
     
     parameter MAX_V_IDX = 8'd239; // height of camera frame
-    parameter MAX_H_IDX = 9'd0; // width of camera frame
+    parameter MAX_H_IDX = 9'd0; // When to stop counting and start dividing
     
     logic [7:0] v_index_in_prev;
     logic [8:0] h_index_in_prev;
@@ -64,17 +64,21 @@ module center_finder(input clk_in, input rst_in, //clock and reset
                end
                
             NEWPIXEL: begin 
+                //Add h and v indices of active pixel to respective sum
                 h_sum <= h_sum+h_index_in;
                 v_sum <= v_sum+v_index_in;
+                //Keep track of how many active pixels we've counted
                 num_pixels <= num_pixels+17'd1;
                 
                 v_index_in_prev <= v_index_in;
                 h_index_in_prev <= h_index_in;
                 
+                //If its time to stop counting and start dividing, do that
                 if (v_index_in == MAX_V_IDX && h_index_in == MAX_H_IDX)begin
                     divide_enable <= 1'b1;
                     frame_state <= DONE;
                 end
+                //otherwise return to enable
                 else begin
                     divide_enable <= 1'b0;
                     frame_state <= IDLE;
@@ -98,8 +102,8 @@ module center_finder(input clk_in, input rst_in, //clock and reset
         endcase     
     end
     
-
-    //26 clock cycles to divide
+    //Dividers for averaging row indices and column indices
+    // It takes 26 clock cycles to divide
     average_divider r_div(
 		.aclk(clk_in),
 		.s_axis_dividend_tdata(h_sum),
