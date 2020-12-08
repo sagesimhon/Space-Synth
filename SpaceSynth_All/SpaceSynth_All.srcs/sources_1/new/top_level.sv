@@ -89,7 +89,7 @@ module top_level(
     logic [10:0] hcount;   
     logic [9:0] vcount;   
     logic hsync, vsync, blank;
-    logic [3:0] hsync_buff, vsync_buff, blank_buff = 4'b0;
+    logic [4:0] hsync_buff, vsync_buff, blank_buff = 5'b0;
     xvga xvga1(.vclock_in(clk_65mhz),.hcount_out(hcount),.vcount_out(vcount),
           .hsync_out(hsync),.vsync_out(vsync),.blank_out(blank)); //768x1024 using clk_65mhz
     
@@ -155,6 +155,12 @@ module top_level(
     g_bar_1_border, g_bar_2_border, g_bar_3_border = 1'b0;
     
     logic [8:0] red_area_scaled, blue_area_scaled, green_area_scaled; //area right shifted by 8 (76800/256 normalizes to 300)
+    
+    //Image of Synth
+    logic [10:0] x_in = 5;
+    logic [9:0] y_in = 250;
+    logic [11:0] synth_pix;
+    
     //TODO remove magic numbers might get points off
     always_comb begin
         r_bar_1_border = (((hcount == 10 || hcount == 20) && (vcount <= 751 && vcount >= 510))
@@ -184,9 +190,13 @@ module top_level(
         
     end
     
+    assign blue_buff_output_pixel_addr = (hcount-11'd320)+vcount*32'd320;
+    assign red_buff_output_pixel_addr = hcount+vcount*32'd320;
+    assign green_buff_output_pixel_addr = (hcount-11'd640)+vcount*32'd320;
+
     always_ff @(posedge clk_65mhz) begin
 
-        lfo_frequency <= (red_area < lfo_threshold) ? 12'd0 : red_area >= (red_area >= detection_threshold)?(red_area>>9):12'd0;
+        lfo_frequency <= (red_area < lfo_threshold) ? 12'd0 : red_area >= (red_area >= detection_threshold)?(red_area>>9):12'd0; //*mixing --> lowers amp if 0?
         lfo_amplitude <= (green_area < lfo_threshold) ? 3'd0 : (green_area >= detection_threshold)?(green_area>>10):3'd0; 
         synth1_frequency <= (red_area >= detection_threshold)?(12'd200+(red_center_h_index<<1)+lfo_out<<<3):12'd0;
         synth2_frequency <= (green_area >= detection_threshold)?(12'd200+(green_center_h_index<<1)+lfo_out<<<3):12'd0;        
@@ -207,7 +217,7 @@ module top_level(
         end
 
 
-        filter_cutoff <= (green_center_h_index - red_center_h_index) <= 255 ? (green_center_h_index - red_center_h_index) : 255; //abs value? currently only works if green is to the right of red
+        filter_cutoff <= (green_center_h_index - red_center_h_index) <= 255 ? (green_center_h_index - red_center_h_index) : 255; //*abs value? currently only works if green is to the right of red
         
         if (red_center_v_index < 120)begin
             synth1_amplitude <= (red_area >= detection_threshold)?3'd7:3'd0;
@@ -241,14 +251,16 @@ module top_level(
             end 
         endcase
         
+        //TOP OF VGA
         if (sw[2]&&((hcount<320) &&  (vcount<240))) begin //If sw[2] show original image
             current_pixel <= raw_image_buff;
             raw_image_output_pixel_addr <= hcount+vcount*32'd320;
         end
+        
         else if (~sw[2]&&((hcount<320) &&  (vcount<240))) begin //Otherwise show red mask image
             //Add green crosshair on center coordinates (if enough pixels are detected)
             current_pixel <= ((hcount==red_center_h_index) || (vcount==red_center_v_index))?((red_area >= detection_threshold)?12'hF0F:red_buff):red_buff;
-            red_buff_output_pixel_addr <= hcount+vcount*32'd320;
+            //red_buff_output_pixel_addr <= hcount+vcount*32'd320;
         end
         else if (~sw[2]&&((hcount>=320) && (hcount<640) && (vcount<240))) begin //Show blue mask image next to it
             if (hcount == 426 || hcount == 533) begin
@@ -256,7 +268,7 @@ module top_level(
             end 
             else begin //Add green crosshair on center coordinates (if enough pixels are detected)
                 current_pixel <= ((hcount==blue_center_h_index+320) || (vcount==blue_center_v_index))?((blue_area >= detection_threshold)?12'hF0F:blue_buff):blue_buff;
-                blue_buff_output_pixel_addr <= (hcount-11'd320)+vcount*32'd320;
+                //blue_buff_output_pixel_addr <= (hcount-11'd320)+vcount*32'd320;
             end 
         end
         else if (~sw[2]&&((hcount>=640) && (hcount<960) && (vcount<240))) begin //Show green mask image next to it
@@ -264,13 +276,17 @@ module top_level(
             if (hcount >= 951) begin
                 current_pixel <= 12'hFF0;
             end else begin
-            current_pixel <= ((hcount==green_center_h_index+640) || (vcount==green_center_v_index))?((green_area >= detection_threshold)?12'hF0F:green_buff):green_buff;
-            green_buff_output_pixel_addr <= (hcount-11'd640)+vcount*32'd320;
+                current_pixel <= ((hcount==green_center_h_index+640) || (vcount==green_center_v_index))?((green_area >= detection_threshold)?12'hF0F:green_buff):green_buff;
+               // green_buff_output_pixel_addr <= (hcount-11'd640)+vcount*32'd320;
             end
         end
         
+        //BOTTOM OF VGA
+        else if ((vcount>=240) && sw[3]) begin //attempt to show synth
+            current_pixel <= synth_pix; 
+        end 
         //Show controls as vertical bar graphs
-        else if (~sw[2] && (vcount>=240)) begin 
+        else if (~sw[3] && ~sw[2] && (vcount>=240)) begin 
             if (hcount<320) begin //Show Red (Left hand) bars at hcount = 10-20, 110-120, 210-220 from vcount = (750 - range(var)) to 750
                 if ((hcount>=10 && hcount<=20) && (vcount>=510 && vcount<=751)) begin //y position of red blob; range = 0 to 239 
                      current_pixel <= r_bar_1_border?12'hFFF:(vcount-511>red_center_v_index) ? ((red_area >= detection_threshold)? ((red_center_v_index>8'd120)?12'hA00:12'hF00):12'h000): 12'h000;                
@@ -316,9 +332,9 @@ module top_level(
     
     always_ff @(posedge clk_65mhz) begin
         //right shift buffers and insert new value on left
-        hsync_buff <= {hsync, hsync_buff[3:1]};
-        vsync_buff <= {vsync, vsync_buff[3:1]};
-        blank_buff <= {blank, blank_buff[3:1]};
+        hsync_buff <= {hsync, hsync_buff[4:1]};
+        vsync_buff <= {vsync, vsync_buff[4:1]};
+        blank_buff <= {blank, blank_buff[4:1]};
 
     end 
     // the following lines are required for the Nexys4 VGA circuit - do not change
@@ -326,7 +342,7 @@ module top_level(
     assign vga_g = ~blank_buff[0] ? current_pixel[7:4] : 0;
     assign vga_b = ~blank_buff[0] ? current_pixel[3:0] : 0;
     assign vga_hs = ~hsync_buff[0];
-    assign vga_vs = ~vsync_buff[0];
+    assign vga_vs = ~vsync_buff[0]; //*try w/o to debug other pipeline issue
          
     oscillator lfo (
         .clk_in(clk_65mhz),
@@ -417,6 +433,15 @@ module top_level(
     .green_center_v_index_out(green_center_v_index),
     .green_center_h_index_out(green_center_h_index)
    );
+   
+   image_ROM_synth synth_blob(
+    .pixel_clk_in(clk_65mhz),
+    .x_in(x_in),
+    .hcount_in(hcount),
+    .y_in(y_in),
+    .vcount_in(vcount),
+    .pixel_out(synth_pix)
+    );
                    
                    ila_1 my_ila(.clk(clk_65mhz),
                                 .probe0(red_area_scaled),

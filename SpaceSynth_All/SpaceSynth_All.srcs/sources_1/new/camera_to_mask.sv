@@ -57,6 +57,8 @@ module camera_to_mask(
     logic blue_processed_pixels;
     logic green_processed_pixels;
     logic [11:0] raw_image_pixels;
+    //logic [11:0] raw_image_pixels_delayed;
+    logic [11:0] raw_image_buff [21:0]; 
     logic [3:0] red_diff;
     logic [3:0] green_diff;
     logic [3:0] blue_diff;
@@ -70,11 +72,13 @@ module camera_to_mask(
     logic [8:0] h_idx_out;
     
     logic [16:0] bram_input_pixel_addr;
-    logic [84:0] bram_input_addr_buff = 85'b0; //17*5
-//    logic [16:0] red_addr_buff [4:0]; 
-//    logic [16:0] blue_addr_buff [4:0];
-//    logic [16:0] green_addr_buff [4:0]; 
-   
+    logic [16:0] bram_buff [22:0];
+    logic [16:0] bram_input_pixel_addr_delayed;
+    logic [4:0] bram_addr_delay_state = 0; 
+//    logic [84:0] bram_input_addr_buff = 85'b0; //17*5
+    logic [4:0] raw_delay_state = 0; 
+    genvar i; 
+    genvar j; 
     //clock signal from FPGA to camera module
     assign xclk = (xclk_count >2'b01); // 25% speed of 65 mhz clock
     assign jbclk_p = xclk; // drives camera
@@ -92,14 +96,32 @@ module camera_to_mask(
         href_in <= href_buff;
         pixel_in <= pixel_buff;
         xclk_count <= xclk_count + 2'b01;
-        
+   end 
+   
+   generate  
+        for (j = 1; j < 22; j = j+1) begin
+            always_ff @(posedge pclk_in) begin
+                raw_image_buff[j] <= raw_image_buff[j-1];
+            end
+        end
+    
+    endgenerate 
+    
+   generate 
+        for (i = 1; i < 23; i = i+1) begin
+            always_ff @(posedge pclk_in) begin
+                bram_buff[i] <= bram_buff[i-1];
+            end
+        end
+    
+    endgenerate
+    
+   always_ff @(posedge pclk_in) begin      
         //Just raw image from camera truncated to 12 bits
-        //if (h_idx_out > 8) begin 
         raw_image_pixels <= {output_pixels[15:12],output_pixels[10:7],output_pixels[4:1]}; //{h[7:0], s[7:0], v[7:0]};
-        //end else begin
-        //    raw_image_pixels <= 12'h000;
-        //end 
         
+        raw_image_buff[0] <= raw_image_pixels;
+       
         if (sw[7]) begin 
             
             //Thresholding green (Hue 85)
@@ -122,18 +144,85 @@ module camera_to_mask(
                 green_processed_pixels <= 1'b0;
                 blue_processed_pixels <= 1'b0;
             end 
+         end else if (sw[8]) begin 
             
+            //Thresholding green (Hue 85)
+            if (h >= 83) begin 
+                green_processed_pixels <= 1'b1;
+                red_processed_pixels <= 1'b0;
+                blue_processed_pixels <= 1'b0;
+            //Thresholding blue (Hue 175)
+            end else if (h >= 168 && h <= 172) begin 
+                blue_processed_pixels <= 1'b1;
+                green_processed_pixels <= 1'b0;
+                red_processed_pixels <= 1'b0;
+            //Thresholding red (Hue 0)
+            end else if (h >= 253 || h <= 2) begin 
+                red_processed_pixels <= 1'b1;
+                green_processed_pixels <= 1'b0;
+                blue_processed_pixels <= 1'b0;
+            end else begin
+                red_processed_pixels <= 1'b0;
+                green_processed_pixels <= 1'b0;
+                blue_processed_pixels <= 1'b0;
+            end     
+          
+          end else if (sw[9]) begin 
+            
+            //Thresholding green (Hue 85)
+            if ((h >= 83 && h <= 125) && v > 110 && s > 110) begin 
+                green_processed_pixels <= 1'b1;
+                red_processed_pixels <= 1'b0;
+                blue_processed_pixels <= 1'b0;
+            //Thresholding blue (Hue 175)
+            end else if ((h >= 168 && h <= 172) && v > 160 && s > 30) begin 
+                blue_processed_pixels <= 1'b1;
+                green_processed_pixels <= 1'b0;
+                red_processed_pixels <= 1'b0;
+            //Thresholding red (Hue 0)
+            end else if ((h >= 253 || h <= 2) && v > 110 && s > 80) begin 
+                red_processed_pixels <= 1'b1;
+                green_processed_pixels <= 1'b0;
+                blue_processed_pixels <= 1'b0;
+            end else begin
+                red_processed_pixels <= 1'b0;
+                green_processed_pixels <= 1'b0;
+                blue_processed_pixels <= 1'b0;
+            end   
+        end
+        
+         else if (sw[10]) begin 
+            
+            //Thresholding green (Hue 85)
+            if ((h >= 83 && h <= 125) && v > 110 && s > 110) begin 
+                green_processed_pixels <= 1'b1;
+                red_processed_pixels <= 1'b0;
+                blue_processed_pixels <= 1'b0;
+            //Thresholding blue (Hue 175)
+            end else if ((h >= 168 && h <= 172) && v > 160 && s > 30) begin 
+                blue_processed_pixels <= 1'b1;
+                green_processed_pixels <= 1'b0;
+                red_processed_pixels <= 1'b0;
+            //Thresholding red (Hue 0)
+            end else if ((h >= 248 || h <= 5) && v > 110 && s > 80) begin 
+                red_processed_pixels <= 1'b1;
+                green_processed_pixels <= 1'b0;
+                blue_processed_pixels <= 1'b0;
+            end else begin
+                red_processed_pixels <= 1'b0;
+                green_processed_pixels <= 1'b0;
+                blue_processed_pixels <= 1'b0;
+            end   
         end
         else begin
             red_processed_pixels <= 1'b1;
             blue_processed_pixels <= 1'b1;
             green_processed_pixels <= 1'b1;
         end  
-        
-        bram_input_addr_buff <= {bram_input_pixel_addr, bram_input_addr_buff[84:17]};
-//        red_addr_buff <= {red_buff_output_pixel_addr, red_addr_buff[4:1]};
-//        blue_addr_buff <= {blue_buff_output_pixel_addr, blue_addr_buff[4:1]};                
-//        green_addr_buff <= {green_buff_output_pixel_addr, green_addr_buff[4:1]};                
+
+        bram_buff[0] <= bram_input_pixel_addr;
+
+  
     end 
     
     //Turn binary masks into colored pixels
@@ -151,10 +240,10 @@ module camera_to_mask(
                           .frame_done_out(frame_done_out),
                           .v_idx_out(v_idx_out),
                           .h_idx_out(h_idx_out),
-                          .pixel_addr_out(bram_input_pixel_addr));
+                          .pixel_addr_out(bram_input_pixel_addr));//delay*
    
    //Convert RGB pixels to HSV color space
-   rgb2hsv converter(.clock(clk_65mhz), 
+   rgb2hsv converter(.clock(pclk_in), 
                         .reset(reset),
                         .r({output_pixels[15:11], 3'b000}),
                         .g({output_pixels[10:5], 2'b00}),
@@ -202,7 +291,7 @@ module camera_to_mask(
                              .clkb(clk_65mhz),
                              .doutb(raw_image_buff_out));
     
-    red_mask_bram r_mask_bram(.addra(bram_input_pixel_addr), 
+    red_mask_bram r_mask_bram(.addra(bram_buff[21]), 
                              .clka(pclk_in), //camera's clock signal 
                              .dina(red_processed_pixels),
                              .wea(valid_pixel),
@@ -210,7 +299,7 @@ module camera_to_mask(
                              .clkb(clk_65mhz),
                              .doutb(red_mask_buff_out));
     
-    blue_mask_bram b_mask_bram(.addra(bram_input_addr_buff[16:0]), 
+    blue_mask_bram b_mask_bram(.addra(bram_buff[21]), 
                              .clka(pclk_in), //camera's clock signal 
                              .dina(blue_processed_pixels),
                              .wea(valid_pixel),
@@ -218,7 +307,7 @@ module camera_to_mask(
                              .clkb(clk_65mhz),
                              .doutb(blue_mask_buff_out));
     
-    green_mask_bram g_mask_bram(.addra(bram_input_pixel_addr), 
+    green_mask_bram g_mask_bram(.addra(bram_buff[21]), 
                              .clka(pclk_in), //camera's clock signal 
                              .dina(green_processed_pixels),
                              .wea(valid_pixel),

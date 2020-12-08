@@ -34,6 +34,11 @@ set_property target_language Verilog [current_project]
 set_property board_part digilentinc.com:nexys4_ddr:part0:1.1 [current_project]
 set_property ip_output_repo /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
+add_files /home/sage/Downloads/ds_image.coe
+add_files /home/sage/Downloads/ds_color_map_red.coe
+add_files /home/sage/Downloads/ds_color_map_green.coe
+add_files /home/sage/Downloads/ds_color_map_blue.coe
+add_files /home/sage/Downloads/synth_image.coe
 read_verilog -library xil_defaultlib -sv {
   /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/amplitude_control.sv
   /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/camera_read.sv
@@ -41,6 +46,7 @@ read_verilog -library xil_defaultlib -sv {
   /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/center_finder.sv
   /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/filter.sv
   /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/filter_coeffs.sv
+  /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/image_ROM_synth.sv
   /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/mixer.sv
   /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/oscillator.sv
   /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/new/pwm.sv
@@ -77,6 +83,18 @@ set_property used_in_synthesis false [get_files -all /home/sage/Space-Synth/Spac
 set_property used_in_implementation false [get_files -all /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/ila_1/ila_v6_2/constraints/ila_impl.xdc]
 set_property used_in_implementation false [get_files -all /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/ila_1/ila_v6_2/constraints/ila.xdc]
 set_property used_in_implementation false [get_files -all /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/ila_1/ila_1_ooc.xdc]
+
+read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/image_rom_1/image_rom_1.xci
+set_property used_in_implementation false [get_files -all /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/image_rom_1/image_rom_1_ooc.xdc]
+
+read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_coe/red_coe.xci
+set_property used_in_implementation false [get_files -all /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_coe/red_coe_ooc.xdc]
+
+read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/green_coe/green_coe.xci
+set_property used_in_implementation false [get_files -all /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/green_coe/green_coe_ooc.xdc]
+
+read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_coe/blue_coe.xci
+set_property used_in_implementation false [get_files -all /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_coe/blue_coe_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
