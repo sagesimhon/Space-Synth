@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="blue_coe_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1607414327">
-  <File Type="PA-TCL" Name="blue_coe.tcl"/>
-  <File Type="REPORTS-TCL" Name="blue_coe_reports.tcl"/>
-  <File Type="RDS-RDS" Name="blue_coe.vds"/>
-  <File Type="RDS-UTIL" Name="blue_coe_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="blue_coe_utilization_synth.pb"/>
+<GenRun Id="blue_coe_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1607408070">
+  <File Type="VDS-TIMING-PB" Name="blue_coe_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="blue_coe_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="blue_coe.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="blue_coe_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="blue_coe_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="blue_coe_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="blue_coe.vds"/>
+  <File Type="REPORTS-TCL" Name="blue_coe_reports.tcl"/>
+  <File Type="PA-TCL" Name="blue_coe.tcl"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/blue_coe">
     <File Path="$PSRCDIR/sources_1/ip/blue_coe/blue_coe.xci">
       <FileInfo>

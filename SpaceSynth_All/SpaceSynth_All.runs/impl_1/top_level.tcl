@@ -65,30 +65,30 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param chipscope.maxJobs 2
+  set_param chipscope.maxJobs 1
   set_param xicom.use_bs_reader 1
   create_project -in_memory -part xc7a100tcsg324-1
   set_property board_part digilentinc.com:nexys4_ddr:part0:1.1 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir {C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.cache/wt} [current_project]
-  set_property parent.project_path {C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.xpr} [current_project]
-  set_property ip_output_repo {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.cache/ip}} [current_project]
+  set_property webtalk.parent_dir /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.cache/wt [current_project]
+  set_property parent.project_path /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.xpr [current_project]
+  set_property ip_output_repo /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
-  add_files -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.runs/synth_1/top_level.dcp}}
-  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/green_mask_bram/green_mask_bram.xci}}
-  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_mask_bram/blue_mask_bram.xci}}
-  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider.xci}}
-  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_mask_bram/red_mask_bram.xci}}
-  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/image_bram/image_bram.xci}}
-  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/div_gen_0/div_gen_0.xci}}
-  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0.xci}}
-  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_coe/red_coe.xci}}
-  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_coe/blue_coe.xci}}
-  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/green_coe/green_coe.xci}}
-  read_ip -quiet {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/image_rom_1/image_rom_1.xci}}
-  read_xdc {{C:/Users/Praj/Documents/2020 Fall/6.111/Final Project/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc}}
+  add_files -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.runs/synth_1/top_level.dcp
+  read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/green_mask_bram/green_mask_bram.xci
+  read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_mask_bram/blue_mask_bram.xci
+  read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/average_divider/average_divider.xci
+  read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_mask_bram/red_mask_bram.xci
+  read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/image_bram/image_bram.xci
+  read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/div_gen_0/div_gen_0.xci
+  read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0.xci
+  read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/image_rom_1/image_rom_1.xci
+  read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/red_coe/red_coe.xci
+  read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/green_coe/green_coe.xci
+  read_ip -quiet /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/sources_1/ip/blue_coe/blue_coe.xci
+  read_xdc /home/sage/Space-Synth/SpaceSynth_All/SpaceSynth_All.srcs/constrs_1/imports/Lab5a/nexys4ddr_audio.xdc
   link_design -top top_level -part xc7a100tcsg324-1
   close_msg_db -file init_design.pb
 } RESULT]

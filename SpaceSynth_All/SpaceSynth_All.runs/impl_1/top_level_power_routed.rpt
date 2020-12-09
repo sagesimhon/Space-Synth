@@ -1,8 +1,8 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
-| Tool Version     : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date             : Tue Dec  8 00:24:12 2020
-| Host             : DESKTOP-RLIVKHG running 64-bit major release  (build 9200)
+| Tool Version     : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+| Date             : Tue Dec  8 13:02:14 2020
+| Host             : ubuntu running 64-bit Ubuntu 20.04.1 LTS
 | Command          : report_power -file top_level_power_routed.rpt -pb top_level_power_summary_routed.pb -rpx top_level_power_routed.rpx
 | Design           : top_level
 | Device           : xc7a100tcsg324-1
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.326        |
+| Total On-Chip Power (W)  | 0.325        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.224        |
+| Dynamic (W)              | 0.223        |
 | Device Static (W)        | 0.102        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 83.5         |
@@ -52,22 +52,22 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.021 |        8 |       --- |             --- |
-| Slice Logic             |     0.028 |    18356 |       --- |             --- |
-|   LUT as Logic          |     0.021 |     4967 |     63400 |            7.83 |
+| Clocks                  |     0.022 |        8 |       --- |             --- |
+| Slice Logic             |     0.028 |    18401 |       --- |             --- |
+|   LUT as Logic          |     0.021 |     4982 |     63400 |            7.86 |
 |   CARRY4                |     0.004 |     1121 |     15850 |            7.07 |
-|   Register              |     0.003 |     9400 |    126800 |            7.41 |
-|   LUT as Shift Register |    <0.001 |       14 |     19000 |            0.07 |
+|   Register              |     0.003 |     9417 |    126800 |            7.43 |
+|   LUT as Shift Register |    <0.001 |       31 |     19000 |            0.16 |
 |   BUFG                  |    <0.001 |        1 |        32 |            3.13 |
 |   F7/F8 Muxes           |    <0.001 |       75 |     63400 |            0.12 |
 |   Others                |     0.000 |     2369 |       --- |             --- |
-| Signals                 |     0.023 |    12550 |       --- |             --- |
+| Signals                 |     0.021 |    12579 |       --- |             --- |
 | Block RAM               |     0.012 |     85.5 |       135 |           63.33 |
 | MMCM                    |     0.122 |        1 |         6 |           16.67 |
 | DSPs                    |     0.005 |       10 |       240 |            4.17 |
 | I/O                     |     0.014 |       62 |       210 |           29.52 |
 | Static Power            |     0.102 |          |           |                 |
-| Total                   |     0.326 |          |           |                 |
+| Total                   |     0.325 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -77,7 +77,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.105 |       0.087 |      0.018 |
+| Vccint    |       1.000 |     0.104 |       0.087 |      0.018 |
 | Vccaux    |       1.800 |     0.086 |       0.068 |      0.018 |
 | Vcco33    |       3.300 |     0.008 |       0.004 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -151,17 +151,17 @@ Table of Contents
 +-----------------+-----------+
 | Name            | Power (W) |
 +-----------------+-----------+
-| top_level       |     0.224 |
+| top_level       |     0.223 |
 |   clkdivider    |     0.122 |
 |     inst        |     0.122 |
-|   color_blobs   |     0.073 |
+|   color_blobs   |     0.072 |
 |     b_mask_bram |     0.001 |
 |       U0        |     0.001 |
 |     blue_cf     |     0.016 |
 |       c_div     |     0.008 |
 |       r_div     |     0.008 |
 |     converter   |     0.015 |
-|       h_div     |     0.008 |
+|       h_div     |     0.007 |
 |       s_div     |     0.006 |
 |     frame_bram  |     0.004 |
 |       U0        |     0.004 |
@@ -172,7 +172,7 @@ Table of Contents
 |       r_div     |     0.008 |
 |     r_mask_bram |     0.001 |
 |       U0        |     0.001 |
-|     red_cf      |     0.017 |
+|     red_cf      |     0.016 |
 |       c_div     |     0.008 |
 |       r_div     |     0.008 |
 |   lfo           |     0.001 |

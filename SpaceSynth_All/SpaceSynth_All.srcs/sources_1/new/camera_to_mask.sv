@@ -65,6 +65,8 @@ module camera_to_mask(
     logic frame_done_out;
     logic [7:0] v_idx_out;
     logic [8:0] h_idx_out;
+    logic [8:0] h_idx_out_buff [20:0];
+    logic [7:0] v_idx_out_buff [20:0];
     
     logic [16:0] bram_input_pixel_addr;
 
@@ -85,7 +87,24 @@ module camera_to_mask(
         href_in <= href_buff;
         pixel_in <= pixel_buff;
         xclk_count <= xclk_count + 2'b01;
+
+        //align indices with pipelined pixels
+        h_idx_out_buff[0] <= h_idx_out_buff[1];
+        h_idx_out_buff[1] <= h_idx_out_buff[2];
+        h_idx_out_buff[2] <= h_idx_out_buff[3];
+        h_idx_out_buff[3] <= h_idx_out_buff[4];
+        h_idx_out_buff[4] <= h_idx_out_buff[5];
+        h_idx_out_buff[5] <= h_idx_out_buff[6];
+        h_idx_out_buff[6] <= h_idx_out;
         
+        v_idx_out_buff[0] <= v_idx_out_buff[1];
+        v_idx_out_buff[1] <= v_idx_out_buff[2];
+        v_idx_out_buff[2] <= v_idx_out_buff[3];
+        v_idx_out_buff[3] <= v_idx_out_buff[4];
+        v_idx_out_buff[4] <= v_idx_out_buff[5];
+        v_idx_out_buff[5] <= v_idx_out_buff[6];
+        v_idx_out_buff[6] <= v_idx_out;
+       
         //Just raw image from camera truncated to 12 bits
         raw_image_pixels <= {output_pixels[15:12],output_pixels[10:7],output_pixels[4:1]}; //{h[7:0], s[7:0], v[7:0]};
 
@@ -162,7 +181,7 @@ module camera_to_mask(
          else if (thresh_on[3]) begin 
 
             //Thresholding green (Hue 85)
-            if ((h >= 83 && h <= 125) && v > 110 && s > 110) begin 
+            if ((h >= 83 && h <= 125) && v > 135 && s > 110) begin 
                 green_processed_pixels <= 1'b1;
                 red_processed_pixels <= 1'b0;
                 blue_processed_pixels <= 1'b0;
@@ -172,7 +191,7 @@ module camera_to_mask(
                 green_processed_pixels <= 1'b0;
                 red_processed_pixels <= 1'b0;
             //Thresholding red (Hue 0)
-            end else if ((h >= 248 || h <= 5) && v > 110 && s > 80) begin 
+            end else if ((h >= 248 || h <= 5) && v > 115 && s > 80) begin 
                 red_processed_pixels <= 1'b1;
                 green_processed_pixels <= 1'b0;
                 blue_processed_pixels <= 1'b0;
@@ -220,8 +239,8 @@ module camera_to_mask(
    //Find center and area of red pixel mask
    center_finder red_cf(.clk_in(clk_65mhz),
                          .rst_in(reset),
-                         .v_index_in(v_idx_out),
-                         .h_index_in(h_idx_out), 
+                         .v_index_in(v_idx_out_buff[0]),
+                         .h_index_in(h_idx_out_buff[0]), 
                          .pixel_in(red_processed_pixels),
                          .valid_out(red_center_valid),
                          .area_out(red_area_out),

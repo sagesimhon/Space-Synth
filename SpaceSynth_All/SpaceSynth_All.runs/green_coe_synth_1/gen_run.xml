@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="green_coe_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1607414295">
-  <File Type="PA-TCL" Name="green_coe.tcl"/>
-  <File Type="REPORTS-TCL" Name="green_coe_reports.tcl"/>
-  <File Type="RDS-RDS" Name="green_coe.vds"/>
-  <File Type="RDS-UTIL" Name="green_coe_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="green_coe_utilization_synth.pb"/>
+<GenRun Id="green_coe_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1607408070">
+  <File Type="VDS-TIMING-PB" Name="green_coe_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="green_coe_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="green_coe.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="green_coe_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="green_coe_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="green_coe_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="green_coe.vds"/>
+  <File Type="REPORTS-TCL" Name="green_coe_reports.tcl"/>
+  <File Type="PA-TCL" Name="green_coe.tcl"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/green_coe">
     <File Path="$PSRCDIR/sources_1/ip/green_coe/green_coe.xci">
       <FileInfo>
