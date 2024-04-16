@@ -1,2 +1,2 @@
 # Space Synth
- Camera Based Synthesizer on an FPGA!
+A camera-based, motion-controlled synthesizer on an FPGA!
