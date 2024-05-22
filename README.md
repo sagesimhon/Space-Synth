@@ -1,4 +1,3 @@
 # Space Synth
-A camera-based, motion-controlled synthesizer on an FPGA!
-
-MIT 6.111 Final Project 
+ Camera Based Synthesizer on an FPGA (MIT 6.111 Final Project)
+[![Watch the video](https://www.youtube.com/watch?v=WZKkTiWdeqU)
